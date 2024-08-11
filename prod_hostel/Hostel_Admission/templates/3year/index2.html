@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>{% load static%}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Applicant Details</title>
+    <style>
+        body {
+            {% comment %} display: flex; {% endcomment %}
+            justify-content: center;
+            align-items: center;
+            justify-items
+            {% comment %} height: 100vh; {% endcomment %}
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+        }
+        .container {
+            width: 50%;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            box-sizing: border-box;
+            position: relative;
+        }
+        .header {
+            text-align: center;
+            font-size: 1.5em;
+            font-weight: bold;
+            margin-bottom: 20px;
+
+        }
+        .photo {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            text-align: center;
+        }
+        .photo img {
+            max-width: 150px;
+            max-height: 150px;
+            border: 1px solid #ddd;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        td, th {
+            padding: 10px;
+            border: 1px solid #ddd;
+            vertical-align: top;
+        }
+        #printButton {
+            background-color: #3d66b9; /* Blue color for the button */
+            color: white;           /* White text color */
+            padding: 10px 20px;     /* Increase the size by padding */
+            font-size: 16px;        /* Increase font size */
+            border: none;           /* Remove border */
+            border-radius: 5px;     /* Rounded corners */
+            cursor: pointer; 
+        }
+        .button-container {
+            display: flex;
+            justify-content: center; /* Center horizontally */
+            align-items: center;     /* Center vertically */
+            margin: 5px ;          /* Margin from top and bottom */
+            {% comment %} height: 100vh;           /* Full viewport height, if needed */ {% endcomment %}
+        }
+        th {
+            background-color: #f2f2f2;
+            text-align: left;
+        }
+        .label {
+            font-weight: bold;
+            width: 30%;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div style="display:flex;">
+        <div class="image1">
+            <img id="Image1" src="{% static 'img/gpn_logo.jpg' %}" style="height:100px;">
+        </div>
+        <div class="header">
+            Government Polytechnic Nagpur<br>
+            Boys Hostel
+        </div>
+        <div class="photo">
+            <img src="../../../media/{{data.SPhoto}}" alt="Passport Photo">
+        </div>
+    </div>
+        <table>
+            {% comment %} {% for data in data %} {% endcomment %}
+            <tr>
+                <td class="label"> Student Name:</td>
+                <td>{{ data.name }}</td>
+            </tr>
+            <tr>
+                <td class="label">Enrollment:</td>
+                <td>{{ data.Enroll}}</td>
+            </tr>
+            
+            <tr>
+                <td class="label">Date of Birth:</td>
+                <td>{{ data.DOB }}</td>
+            </tr>
+            <tr>
+                <td class="label">Category:</td>
+                <td>{{ data.cast }}</td>
+            </tr>
+           
+            <tr>
+                <td class="label">Blood Group:</td>
+                <td>{{data.BGroup}}</td>
+            </tr>
+            <tr>
+                <td class="label">Nationality:</td>
+                <td>{{data.nationality}}</td>
+            </tr>
+            <tr>
+                <td class="label">Mobile No.:</td>
+                <td>{{data.phone1}}</td>
+            </tr>
+            <tr>
+                <td class="label">Email:</td>
+                <td>{{data.Email}}</td>
+            </tr>
+            
+            <tr>
+                <td class="label">Address:</td>
+                <td>{{data.Address1}}</td>
+            </tr>
+            <tr>
+                <td class="label">Father Name:</td>
+                <td>{{data.Father_name}}</td>
+            </tr>
+            <tr>
+                <td class="label">Father Contact No.:</td>
+                <td>{{data.phone2}}</td>
+            </tr>
+
+            <tr>
+                <td class="label">Occupation:</td>
+                <td>{{data.occupation}}</td>
+            </tr>
+            <tr>
+                <td class="label">Father Address:</td>
+                <td>{{data.Address2}}</td>
+            </tr>
+            <tr>
+                <td class="label">Branch:</td>
+                <td>{{data.Branch}}</td>
+            </tr>
+
+            <tr>
+                <td class="label">Shift:</td>
+                <td>{{data.shift}}</td>
+            </tr>
+            <tr>
+                <td class="label">No. Of Backlog:</td>
+                <td>{{data.Nu_Backlog}}</td>
+            </tr>
+            <tr>
+                <td class="label">Last Year Percentage:</td>
+                <td>{{data.percentage}}</td>
+            </tr>
+            {% if data.marksheet1 != "NA" %}
+            <tr>
+                <td class="label">Marksheet2</td>
+                <td>{{data.marksheet1}}</td>
+            </tr>
+            {% endif %}
+            {% if data.marksheet2 != "NA" %}
+            <tr>
+                <td class="label">Marsheet 2</td>
+                <td>{{data.marksheet2}}</td>
+            </tr>
+            {% endif %}
+            {% if data.student_signature != "NA" %}
+            <tr>
+                <td class="label">Student Signature</td>
+                <td>{{data.student_signature}}</td>
+            </tr>
+            {% endif %}
+
+            {% if data.father_signature != "NA" %}
+            <tr>
+                <td class="label">Father Signature </td>
+                <td>{{data.father_signature}}</td>
+            </tr>
+            {% endif %}
+
+            {% if data.Domacile != "NA" %}
+            <tr>
+                <td class="label">Domicile </td>
+                <td>{{data.Domacile}}</td>
+            </tr>
+            {% endif %}
+
+            {% if data.Allotment != "NA" %}
+            <tr>
+                <td class="label">Allotment </td>
+                <td>{{data.Allotment}}</td>
+            </tr>
+            {% endif %}
+            {% if data.Addmission != "NA" %}
+            <tr>
+                <td class="label">Addmission Receipt </td>
+                <td>{{data.Addmission}}</td>
+            </tr>
+            {% endif %}
+            {% if data.Registration != "NA" %}
+            <tr>
+                <td class="label">Registration Receipt </td>
+                <td>{{data.Registration}}</td>
+            </tr>
+            {% endif %}
+            {% if data.SPhoto != "NA" %}
+            <tr>
+                <td class="label">Passport Photo </td>
+                <td>{{data.SPhoto}}</td>
+            </tr>
+            {% endif %}
+            
+            {% if data.ncl != "NA" %}
+            <tr>
+                <td class="label">Non-creamy Layer </td>
+                <td>{{data.ncl}}</td>
+            </tr>
+            {% endif %}
+{% comment %} {% endfor %} {% endcomment %}
+
+        </table>
+    </div>
+
+    
+<div class="button-container">
+    <button id="printButton" onclick="printPage()">Print</button>
+</div>
+<script>
+    function printPage() {
+        window.print();
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hostel Admission Form</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
+    <style>
+        body {
+            box-sizing: border-box;
+            margin: 0;
+            background-image: url('bg1.png');
+            background-size: cover;
+            background-position: center;
+            font-family: 'Arial', sans-serif;
+            color: #333;
+        }
+        .container {
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px auto;
+            max-width: 1200px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            flex-wrap: wrap; /* Allows items to wrap if needed */
+        }
+        .header img.logo {
+            width: 100px;
+            margin-right: 20px; /* Space between logo and text */
+        }
+        .header .header-text {
+            text-align: center;
+        }
+        .header h3 {
+            font-size: 28px;
+            margin: 0;
+        }
+        .header p {
+            font-size: 18px;
+            margin: 0;
+        }
+        .sub-header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .sub-header h3 {
+            font-size: 24px;
+            background-color: #343a40;
+            color: #fff;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .info-title {
+            font-size: 20px;
+            background-color: #6c757d;
+            color: #fff;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        .student-info {
+            display: flex;
+            flex-direction:row;
+            align-items: flex-start;
+            margin-bottom: 20px;
+        }
+        .student-info .image-section {
+            width: 150px;
+            height: 200px;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-right: 20px;
+        }
+        .student-info .image-section img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: cover;
+        }
+        .student-info .info-table {
+            flex: 1;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        th {
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+        pre {
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            background-color: #f8f9fa;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
+        .btn-container {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+        .btn-custom {
+            background-color: #6f42c1;
+            color: white;
+            border-radius: 5px;
+            padding: 10px 20px;
+            font-size: 18px;
+            border: none;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+        }
+        .btn-custom:hover {
+            background-color: #5a32a3;
+        }
+        .clear-fix {
+            clear: both;
+        }
+        @media print {
+            body {
+                background: none;
+                margin: 0;
+            }
+            .container {
+                box-shadow: none;
+                border: none;
+                padding: 0;
+                margin: 0;
+            }
+            .header img.logo {
+                width: 80px;
+            }
+            .btn-container, .btn-custom {
+                display: none;
+            }
+            table, th, td {
+                border: 1px solid #000;
+            }
+            pre {
+                background-color: #fff;
+                border: 1px solid #000;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <img src="{% static "img\gpn_logo.jpg" %}" alt="College Logo" class="logo" />
+            <div class="header-text">
+                <h3>Government Polytechnic Nagpur</h3>
+                <p>( An Autonomous Institute of Government of Maharashtra )</p>
+            </div>
+        </div>
+        <div class="sub-header">
+            <h3>Boys Hostel Admission Form</h3>
+        </div>
+        <div class="info-title">
+            <h2>Student Information :</h2>
+        </div>
+        <div class="student-info">
+            <div class="image-section">
+                <img src="{{s.SPhoto.url}}" alt="Student Picture" />
+            </div>
+            <div class="info-table">
+                <table>
+                    <tr>
+                        <th>ID</th>
+                        <td>{{ s.fno }}</td>
+                    </tr>
+                    <tr>
+                        <th>Enrollment NO.</th>
+                        <td>{{ s.Enroll }}</td>
+                    </tr>
+                    <tr>
+                        <th>Name</th>
+                        <td>{{ s.name }}</td>
+                    </tr>
+                    <tr>
+                        <th>DOB</th>
+                        <td>{{ s.DOB }}</td>
+                    </tr>
+                    <tr>
+                        <th>Category</th>
+                        <td>{{ s.cast }}</td>
+                    </tr>
+                    <tr>
+                        <th>Nation</th>
+                        <td>{{ s.nationality }}</td>
+                    </tr>
+                    <tr>
+                        <th>Blood Group</th>
+                        <td>{{ s.BGroup }}</td>
+                    </tr>
+                    <tr>
+                        <th>Phone No.</th>
+                        <td>{{ s.phone1 }}</td>
+                    </tr>
+                    <tr>
+                        <th>Address</th>
+                        <td>{{ s.Address1 }}</td>
+                    </tr>
+                    <tr>
+                        <th>Email</th>
+                        <td>{{ s.Email }}</td>
+                    </tr>
+                    <tr>
+                        <th>Branch</th>
+                        <td>{{ s.Branch }}</td>
+                    </tr>
+                    <tr>
+                        <th>Shift</th>
+                        <td>{{ s.shift }}</td>
+                    </tr>
+                    <tr>
+                        <th>Number Of Backlog</th>
+                        <td>{{ s.Nu_Backlog }}</td>
+                    </tr>
+                    <tr>
+                        <th>Percentage</th>
+                        <td>{{ s.percentage }}</td>
+                    </tr>
+                    {% comment %} <tr>
+                        <th>Documents Uploaded</th>
+                        <td>{{ s.SPhoto }},{{ s.Addmission }},{{ s.Allotment }},{{ s.Domacile }},{{ s. }}{{ s.father_signature }}</td>
+                    </tr> {% endcomment %}
+                </table>
+            </div>
+        </div>
+        <div class="info-title">
+            <h2>Parents Information :</h2>
+        </div>
+        <div>
+            <table>
+                <tr>
+                    <th>Name :</th>
+                    <td>{{ s.Father_name }}</td>
+                </tr>
+                <tr>
+                    <th>Phone :</th>
+                    <td>{{ s.phone2 }}</td>
+                </tr>
+                <tr>
+                    <th>Add :</th>
+                    <td>{{ s.Address2 }}</td>
+                </tr>
+                <tr>
+                    <th>Occupation</th>
+                    <td>{{ s.occupation }}</td>
+                </tr>
+            </table>
+        </div>
+        <div class="info-title">
+            <h2>Undertakings & Signature student :</h2>
+        </div>
+        <div>
+            <pre>
+                Undertaking by the student
+                "I, _______________, hereby declare that I understand and accept the rules,
+                regulations, and code of conduct set
+                forth by [Institution Name] for hostel residents. I solemnly undertake to abide
+                 by these regulations during my stay
+                at the hostel .I am aware tat any violation of these rules may lead to disciplinary
+                 action, which could result in 
+                expulsion from the hostel or the institution.  I pledge to contribute positively to 
+                the hostel community and uphold
+                the values of mutual respect, cooperation, and academic integrity.<!-- <img src="{{ s.student_signature.url }}" class="resized-image" /> -->
+            </pre>
+            <h4 style="margin-left: 15%">Student Signature</h4>
+        </div>
+        <div class="info-title">
+            <h2>Undertakings & Signature parents :</h2>
+        </div>
+        <div>
+            <pre>
+                I undertake fully responsibility for any misbehavior and act of
+                discipline of my son / daughter for which have no objection to 
+                remove him /her from the hostel without notice.                <img src="{{ s.parent_signature.url }}" class="resized-image" /> 
+            </pre>
+            <h4 style="margin-left: 15%">Parents Signature</h4>
+        </div>
+        <div class="btn-container">
+            <button class="btn-custom" onclick="window.print()">Print</button>
+            {% comment %} <button class="btn-custom" onclick="">Back</button> {% endcomment %}
+            <a href="{% url 'admin_log' %}" class="btn-custom">Back</a>
+        </div>
+    </div>
+</body>
+</html>

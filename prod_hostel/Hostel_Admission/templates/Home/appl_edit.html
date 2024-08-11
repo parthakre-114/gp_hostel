@@ -1,0 +1,1801 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Information Form</title>
+    <style>
+        *{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    
+        }
+        
+        form {
+            max-width: 1030px;
+            margin: 20px auto;
+            margin-top: 40px;
+            background-color: aliceblue;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            color: #333;
+        }
+    
+        h2 {
+            color: #3498db;
+        }
+    
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #3498db;
+        }
+    
+        input,
+        select,
+        button {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #3498db;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+    
+        .doc {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+    
+        .file-input {
+            position: relative;
+            overflow: hidden;
+        }
+    
+        .file-input input[type="file"] {
+            position: absolute;
+            font-size: 100px;
+            opacity: 0;
+            right: 0;
+            top: 0;
+        }
+    
+        .file-input button {
+            border: none;
+            background-color: #3498db;
+            color: #fff;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    
+        .file-input button:hover {
+            background-color: #2980b9;
+        }
+    
+        button {
+            background-color: #4caf50;
+            color: white;
+            padding: 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    
+        button:hover {
+            background-color: #45a049;
+        }
+    
+    .HeaderColorDiv {
+    /* background-color: #394b71; */
+    background-color: #0077b6;
+    height: 30px;
+    width: 1000px;
+    /* background-image: linear-gradient(-90deg,#000080, #0077b6, green,yellow, orange); */
+    }
+    .width1000pxdiv {
+    width: 100%;
+    }
+    .headerribbon_content {
+    width: 100%;
+    }
+    .headerribbon {
+    width: 100%;
+    background-color: #FFF;
+    display: flex;
+    flex-direction: row;
+    
+    
+    }
+    .headerribbon_title_text {
+    /* height: 100px; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* float: left; */
+    font-family: Georgia;
+    font-size: min(38px, max(30px, 3vw));
+    /* font: 3vw Georgia; */
+    /* line-height: 100px; */
+    color: #281d82;
+    margin-left: 3%;
+    }
+    .image1{
+    margin-left: 20%;
+    padding: 10px auto;
+    }
+    
+    .HeaderColorDiv {
+    /* background-color: #394b71; */
+    background-color: #0077b6;
+    height: 30px;
+    width: 1000px;
+    /* background-image: linear-gradient(-90deg,#000080, #0077b6, green,yellow, orange); */
+    }
+    
+    .body
+    {
+    background-image: url({% static 'img/bg1.png' %});  
+    }
+    .avoidclick
+    {
+    pointer-events: none;
+    }
+    .spacediv
+    {
+    height: 70px;
+    width: 10px;
+    background: #E6E6E6;
+    }
+    
+    .btn
+    {
+    width: 135px;
+    height: 40px;
+    max-height: 40px;
+    max-width: 150px; /* border: solid 2px #b62a26;     color: #b62a26; */
+    border: solid 2px #0077B6;
+    color: #0077B6;
+    background: white;
+    border-radius: 6px;
+    cursor: pointer;
+    font-family: Calibri;
+    font-size: medium;
+    margin-right: 20px;
+    padding: 8px;
+    }
+    .image-container {
+        display: none;
+        margin-top: 10px;
+        position
+    }
+    .resized-image {
+        max-width: 200px; /* Adjust size as needed */
+        height: auto;
+    }
+    .btn-show-image {
+        cursor: pointer;
+    }
+    .modal{
+        display:none;
+        position:fixed;
+        z-index:1000;
+        left:0;
+        top:0;
+        width:100%;
+        height:100%;
+        overflow:auto;
+        background-color: rgba(0, 0, 0, 0.8); /* Black with opacity */
+        backdrop-filter: blur(5px);
+        justify-content:center;
+        align-items:center;
+        cursor:zoom-out;
+    }
+    .modal img{
+        max-width: 90%;
+        max-height: 90%;
+    }
+
+    .modal-content{
+        margin:auto;
+        max-width:90%;
+        max-height:90%;''''
+        display:block;
+    }
+    .close {
+        position: absolute;
+        top: 20px;
+        right: 35px;
+        color: #fff;
+        font-size: 40px;
+        font-weight: bold;
+        cursor: pointer;
+    }
+    .close:hover {
+        color: #bbb;
+        text-decoration: none;
+        cursor: pointer;
+    }
+
+
+    .btn:hover
+    {
+    border: solid 2px white;
+    color: white; /background: #b62a26;/
+    background: #0077B6;
+    }
+    
+    .btnclick
+    {
+    width: 100px; /height: 25px;     max-height: 25px;     max-width: 150px;/ /* border: solid 2px #b62a26;     color: #b62a26; */
+    border: solid 2px #0077B6;
+    color: #0077B6;
+    background: white;
+    border-radius: 6px;
+    cursor: pointer;
+    font-family: Calibri;
+    font-size: medium;
+    margin-right: 20px;
+    padding: 2px;
+    }
+    
+    .btnclick:hover
+    {
+    border: solid 2px white;
+    color: white; /background: #b62a26;/
+    background: #0077B6;
+    }
+    
+    
+    
+    .hplinkhome
+    {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 15px;
+    position: relative;
+    }
+    
+    .hplinkhome:hover
+    {
+    color: yellow;
+    }
+    
+    
+    .headingdivupdate
+    {
+    /background:#b62a26;/ /background:#73D674;/ /background: #0074b3;/
+    background: white; /color: White;/
+    color: black; /color:#145B9B;/
+    font-size: min(max(1.4vw, 12px), 16px);
+    font-family: Calibri;
+    margin: 3px;
+    border: 2px solid #00A4BE;
+    font-weight: bold;
+    border-radius: 6px;
+    text-align: justify;
+    padding-left: 20px;
+    padding-right: 20px; 
+    max-height:250px;
+    
+    }
+    .headingdiv
+    {
+    text-align: center; /background:#b62a26;/ /background:#73D674;/
+    background: #0074b3;
+    color: White; /color:#145B9B;/
+    font-size: large;
+    font-family: Calibri;
+    margin: 3px;
+    border: 2px solid #00A4BE;
+    font-weight: bold;
+    border-radius: 6px;
+    }
+    .centermsgdiv
+    {
+    width: 1000px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    font-family: Calibri;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    background-color: white;
+    font-size: medium;
+    font-weight: bold;
+    max-height: 70px;
+    border-radius: 6px;
+    border: 1px solid #0077b6;
+    }
+    
+    .hoverdiv
+    {
+    font-family: Calibri;
+    text-align: center;
+    color: #b62a26;
+    margin-top: 3px;
+    margin-bottom: 3px;
+    font-weight: bold;
+    position: relative;
+    text-decoration: none;
+    }
+    .hoverdivbar
+    {
+    font-family: Calibri;
+    text-align: center;
+    color: #0077b6;
+    margin-top: 3px;
+    margin-bottom: 3px;
+    font-weight: bold;
+    position: relative;
+    text-decoration: none;
+    }
+    
+    .HeaderColorDiv
+    {
+    /background-color:#394b71;/
+    background-color: #0077b6;
+    height: 30px;
+    width: 1000px; /background-image: linear-gradient(-90deg,#000080, #0077b6, green,yellow, orange);/
+    }
+    
+    .MenuItemDivbar
+        {
+            width: 243px;
+            float: left;
+            text-align: center;
+            margin-right: 10px;
+            background: white;
+            font-family: Calibri;
+            color: black;
+            {% comment %} font-weight: bold; {% endcomment %}
+            padding-top: 5px;
+            padding-bottom: 5px;
+            {% comment %} box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); {% endcomment %}
+            position: relative; /*pointer-events: none;*/
+            
+        }
+        .MenuItemDivbar a{
+            text-decoration:none;
+            font-size:60px;
+        }
+    .MenuItemDivbar:hover .NotificationSpan
+    {
+    /If you hover over the help icon, show the help_popup span/
+    display: block;
+    }
+    .MenuItemLastDivbar
+    {
+    width: 490px;
+    float: left;
+    text-align: center;
+    background: white;
+    font-family: Calibri;
+    color: #0077b6;
+    font-weight: bold;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    position: relative;
+    }
+    
+    .MenuItemLastDivbar:hover .NotificationSpan
+    {
+    /If you hover over the help icon, show the help_popup span/
+    display: block;
+    }
+    
+    .MenuItemDivHome
+    {
+    width: 240px;
+    float: left; /text-align: center;/
+    border-bottom-color: #e6e6e6; /border-bottom-color:#FFD700;/
+    border-bottom-style: solid;
+    margin-left: 15px;
+    margin-right: 10px;
+    background: white;
+    font-family: Calibri; /color:#b62a26;/
+    color: #0077b6;
+    font-weight: bold;
+    padding-top: 5px;
+    padding-bottom: 5px; /box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);/
+    position: relative;
+    top: 1px;
+    left: -1px;
+    border-bottom-style: solid; /border-bottom-color: inherit;/
+    border-bottom-width: medium;
+    }
+    
+    .MenuItemDivHome:hover .NotificationSpan
+    {
+    /If you hover over the help icon, show the help_popup span/
+    display: block;
+    left: 100px;
+    }
+    
+    .MenuItemDivHomeLast
+    {
+    width: 240px;
+    float: left; /text-align: center;/
+    margin-left: 15px;
+    margin-right: 10px;
+    background: white;
+    font-family: Calibri; /color:#b62a26;/
+    color: #0077b6;
+    font-weight: bold;
+    padding-top: 5px;
+    padding-bottom: 5px; /box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);/
+    position: relative;
+    top: 1px;
+    left: -1px;
+    }
+    
+    .MenuItemDivHomeLast:hover .NotificationSpan
+    {
+    /If you hover over the help icon, show the help_popup span/
+    display: block;
+    left: 100px;
+    }
+    
+    .MenuItemDiv
+    {
+    width: 240px;
+    float: left; /text-align: center;/
+    margin-left: 15px;
+    margin-right: 10px;
+    background: white;
+    font-family: Calibri; /color:#b62a26;/
+    color: #0077b6;
+    font-weight: bold;
+    padding-top: 5px;
+    padding-bottom: 5px; /box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);/
+    position: relative;
+    }
+    
+    .MenuItemLastDiv
+    {
+    width: 240px;
+    float: left;
+    text-align: center;
+    background: white;
+    font-family: Calibri;
+    color: #b62a26;
+    font-weight: bold;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    position: relative;
+    }
+    
+    .MenuItemDiv:hover .NotificationSpan
+    {
+    /If you hover over the help icon, show the help_popup span/
+    display: block;
+    left: 100px;
+    }
+    
+    .MenuItemLastDiv:hover .NotificationSpan
+    {
+    /If you hover over the help icon, show the help_popup span/
+    display: block;
+    }
+    
+    .NotificationSpan
+    {
+    /Normally, hide this span/
+    display: none;
+    position: absolute;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    color: red;
+    width: 240px; /text-align: center;/
+    top: 30px;
+    background: white;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    z-index: 99; /360px; is around the position I want/
+    }
+    
+    .MenuSubitemHome
+    {
+    text-decoration: none;
+    line-height: 30px; /color:#b62a26;/ /color:#8CC739;/
+    color: #628b27;
+    width: 240px;
+    float: left;
+    margin-left: 10px;
+    }
+    
+    
+    
+    .MenuSubitem
+    {
+    text-decoration: none;
+    line-height: 20px; /color:#b62a26;/ /color:#8CC739;/ /color: #628b27;/
+    color: #0077b6;
+    width: 240px;
+    float: left;
+    cursor: pointer; /leftbar/
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    vertical-align: middle;
+    text-align: center;
+    font-weight: normal;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    }
+    
+    .ddl{
+        margin-top: 20px;
+        height: 25px;
+        width: 100%;
+        font-size: 15px;
+        border: 1px black solid;
+        border-radius: 5px;
+        padding: 5px;
+    }
+    
+    .MenuSubitemBlue
+    {
+    text-decoration: none;
+    line-height: 30px;
+    color: Blue;
+    width: 240px;
+    }
+    
+    .MenuItemDiv:hover
+    {
+    /color:Black;/
+    color: #628b27;
+    }
+    
+    .MenuSubitem:hover
+    {
+    /color:Black;/ /color: #628b27;/
+    background-color: #0077b6;
+    color: yellow;
+    }
+    
+    .Height5pxdiv
+    {
+    height: 5px;
+    }
+    
+    .Height10pxdiv
+    {
+    height: 10px;
+    }
+    
+    .Height20pxdiv
+    {
+    height: 20px;
+    }
+    
+    .Height30pxdiv
+    {
+    height: 30px;
+    }
+    
+    .Height40pxdiv
+    {
+    height: 40px;
+    }
+    
+    .Height50pxdiv
+    {
+    height: 50px;
+    width: 192px;
+    }
+    
+    .Height60pxdiv
+    {
+    height: 60px;
+    width: 192px;
+    }
+    
+    .width5pxdiv
+    {
+    width: 5px;
+    height: 12px;
+    float: left;
+    }
+    
+    .width10pxdiv
+    {
+    width: 10px;
+    height: 12px;
+    float: left;
+    }
+    .width20pxdiv
+    {
+    width: 20px;
+    height: 12px;
+    float: left;
+    }
+    .width1000pxdiv
+    {
+    width: 1000px;
+    
+    }
+    
+    .width1000pxdivcolornone
+    {
+    width: 1000px;
+    height: auto;
+    background-color: none;
+    }
+    
+    .stylecleardiv
+    {
+    clear: both;
+    height: 0px;
+    }
+    
+    .spacebetweendiv
+    {
+    width: 10px;
+    height: 1px;
+    float: left;
+    }
+    
+    
+    
+    /new css for left DIV Ends/
+    
+    /* Instructions CSS classes starts*/
+    
+    .headinstructions
+    {
+    background-color: #206ba4;
+    color: white;
+    height: 25px;
+    width: 1000px;
+    font-family: Calibri;
+    font-weight: bold;
+    text-align: center;
+    }
+    
+    .instrctions
+    {
+    text-align: left;
+    font-family: Calibri;
+    font-size: medium;
+    }
+    
+    .redinstrctions
+    {
+    text-align: left;
+    font-family: Calibri;
+    font-size: medium;
+    color: Red;
+    }
+    
+    
+    .event-section{
+    width: 1000px;
+    
+    }
+    
+    
+    .container
+    {
+    width: 100%;
+    height: 100%;
+    background-color: aliceblue;
+    border-radius: 5px;
+    position: relative;
+    margin-top: 20px;
+    overflow: hidden;
+    
+    }
+    .container form tr
+    {
+    row-gap: 80px;
+    margin-bottom: 80px;
+    }
+    
+    
+    
+    .registration_title
+    {
+    width: 100%;
+    height: 30px;
+    background-color: #0077B6;
+    color: #FFF;
+    font: 25px Calibri;
+    
+    
+    }
+    
+    .tbldata
+    {
+    text-align: left;
+    }
+    
+    .content-wrapper
+    {
+    margin-top: 50px;
+    }
+    .doc{
+    display: flex;
+    flex-direction: column;
+    gap: 3%;
+    }
+    
+    
+    
+    
+    form tr input{
+        margin: 15px 10px 10px 0px;
+        height: 25px;
+        width: 100%;
+        font-size: 15px;
+        border: 1px black solid;
+        border-radius: 5px;
+        padding: 5px;
+    }
+    
+    form tr select{
+        margin: 15px 10px 10px 0px;
+        height: 25px;
+        width: 100%;
+        font-size: 15px;
+        border: 1px black solid;
+        border-radius: 5px;
+        padding: 2px;
+    }
+    
+    .ddl{
+        margin-top: 20px;
+        height: 25px;
+        width: 100%;
+        font-size: 13px;
+        border: 1px black solid;
+        border-radius: 5px;
+        padding: 2px;
+    }
+    form td{
+    
+    }
+    
+    .btn-box{
+    
+    width: 100%;
+    margin: 30px auto;
+    text-align: center;
+    
+    margin: 25px;
+    
+    font-size: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 7px 20px;
+    border-radius: 5px;
+    color: #fbfbfb;
+    border: 0;
+    cursor: pointer;
+    
+    
+    
+    }
+    
+    .genders {
+        display: flex;
+        align-items: center;
+        font-family: Arial, Helvetica, sans-serif;
+        margin-left: 15px;
+        font-size: 15px;
+    }
+    
+    .genders input {
+        width: 20px;
+        margin-bottom: 20px;
+        margin-left: 10px;
+    }
+    
+    form button{
+    width: 110px;
+    height: 35px;
+    margin: 0 10px;
+    background-color:rgb(27, 99, 155);
+    cursor: pointer;
+    
+    
+    
+        font-size: 20px;
+        font-family: Arial, Helvetica, sans-serif;
+        padding: 7px 20px;
+        border-radius: 5px;
+        color: #fbfbfb;
+        border: 0;
+        cursor: pointer;
+    }
+    
+    form button:hover {
+        color: #3a3636;
+    }
+    
+    .secondyear-form
+    {
+    width: 100%;
+    height: 40px;
+    background-color: #bddff2;
+    color: #1919a2;
+    text-align: center;
+    }
+    .image-container {
+        display: none;
+        margin-top: 10px;
+        position
+    }
+    .resized-image {
+        max-width: 200px; /* Adjust size as needed */
+        height: auto;
+    }
+    .btn-show-image {
+        cursor: pointer;
+    }
+    .modal{
+        display:none;
+        position:fixed;
+        z-index:1000;
+        left:0;
+        top:0;
+        width:100%;
+        height:100%;
+        overflow:auto;
+        background-color: rgba(0, 0, 0, 0.8); /* Black with opacity */
+        backdrop-filter: blur(5px);
+        justify-content:center;
+        align-items:center;
+        cursor:zoom-out;
+    }
+    .modal img{
+        max-width: 90%;
+        max-height: 90%;
+    }
+
+    .modal-content{
+        margin:auto;
+        max-width:90%;
+        max-height:90%;''''
+        display:block;
+    }
+    .close {
+        position: absolute;
+        top: 20px;
+        right: 35px;
+        color: #fff;
+        font-size: 40px;
+        font-weight: bold;
+        cursor: pointer;
+    }
+    .close:hover {
+        color: #bbb;
+        text-decoration: none;
+        cursor: pointer;
+    }
+    
+    .body{
+    
+    }
+        @media (max-width: 600px) {
+            form {
+                margin: 10px;
+            }
+        }
+    </style>
+    <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+    integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  />
+    <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+
+<body>
+    <body class="body">
+ 
+        {% if message %}
+        <script>
+            alert('{{ msg }}');
+        </script>
+        {% endif %}
+    
+        <div class="aspNetHidden">
+             <input type="hidden" name="_VIEWSTATE" id="_VIEWSTATE" value="/wEPDwUKMTY1NDU2MTA1MmRkbjd70GvCgYa1qGR9qPa5YVU5Ob5/RvTygev3Ex0QTSk=">
+             </div>
+             
+             <div class="aspNetHidden">
+             
+                 <input type="hidden" name="_VIEWSTATEGENERATOR" id="_VIEWSTATEGENERATOR" value="8D0E13E6">
+             </div>
+                     <div align="center">
+                         <div class="HeaderColorDiv">
+                         </div>
+                         <div class="width1000pxdiv">
+                             
+                             <div class="headerribbon_content">
+                                 <div class="headerribbon">
+                                     <div class="image1">
+                                         <img id="Image1" src="{% static "img\gpn_logo.jpg" %}" style="height:100px;">
+                                     </div>
+                                     <div class="headerribbon_title_text">
+                                         <div>
+                                             GPN Online Hostel Admision                
+                                         </div>
+                                         <div class="MenuItemDivbar">
+                                            <a href="{% url 'logged_home' %}"><box-icon type='solid' name='home'></box-icon></a> 
+                                          </div>
+                                     </div>
+                                   
+                                 </div>
+                             </div>
+                         </div>
+                         <div class="HeaderColorDiv">
+                         </div>
+                     </div>
+     
+     
+     
+         <!--Test Menu Div Start-->
+         <div class="stylecleardiv">
+         </div>
+         <div align="center">
+             
+         </div>
+     
+     
+         <div class="stylecleardiv">
+         </div>
+         <div class="Height10pxdiv">
+         </div>
+     
+     
+     
+     
+     <div align="center">
+     
+     <div class="event-section">
+         
+         <div class="secondyear-form">
+             <p style="margin: 0; padding-left: 20px;">
+                 <h2> Hostel Addmission</h2>
+             </p>
+         </div>
+         <div class="container">
+            <form action="{% url 'appl_edit' %}" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+
+                <div class="content_wrapper">
+                    <div class="instructions_ribbon">
+                        <ul>
+                            <li><b>Please go through the detailed notification and application submission instructions provided in the home page before submitting the application.</b></li>
+                            
+                        </ul>
+                    </div> 
+                    <div class="registration_title">
+                        <p style="margin: 0; padding-left: 20px;">
+                            STUDENT DETAILS
+                        </p>
+                    </div>
+                    <div class="registration_content">
+                        <table class="tbldata">
+                            
+                            <tr>
+                                <td>
+                                    1. Student's Name (As per Marksheet) <span style="color: Red">
+                                        <sup><b>*</b></sup></span><br />
+                                    <span style="font-size: 14px">Note: Any deviation may lead to the cancellation of candidature.</span>
+                                </td>
+                                <td>
+                                    <input type="text" name="name" value="{{data.name}}" placeholder="Full Name">
+                                </td>
+                                <td>
+                                </td>
+                            </tr>
+        
+                            <tr>
+                                <td>
+                                    2. Enrollment Number  <span style="color: Red">
+                                        <sup><b>*</b></sup></span><br />
+                                    <span style="font-size: 14px"></span>
+                                </td>
+                                <td>
+                                    <input type="text" name="enroll"  value="{{request.session.enroll}}" placeholder="Enrollment Number" disabled>
+                                </td>
+                                <td>
+                                </td>
+                            </tr>
+        
+        
+                            <tr>
+                                <td>
+                                    3. Date of Birth <span style="color: Red"><sup><b>*</b></sup></span>
+                                </td>
+                               
+                                <td>
+                                    <input type="date" id="myDate"  name="DOB" value="{{data.DOB|date:'Y-m-d'}}">
+                                    {% comment %} <button type="button"onclick="myFunction()">Try it</button> {% endcomment %}
+                                </td>
+                                <script>
+                                    {% comment %} document.getElementById("myDate").value ="2014-02-09"; {% endcomment %}
+                                    {% comment %} function myFunction() { {% endcomment %}
+                                        a = {{data.DOB}};
+                                        document.getElementById("myDate").value =a;
+                                      {% comment %} } {% endcomment %}
+                                  
+                                  </script>
+                                <td>
+                                </td>
+                            </tr>
+        
+        
+                            
+                            <tr>
+                                <td>
+                                    4. Catogory <span style="color: Red"><sup><b>*</b></sup></span>
+                                </td>
+                                <td>
+                                    <select value="{{data.cast}}" name="cast" id="cast">
+                                        <option hidden>Cast</option>
+                                       
+
+                                        <option  {% if data.cast == 'SC' %} selected {%endif%}>SC</option>
+                                        <option  {% if data.cast == 'OBC' %} selected {%endif%}>OBC</option>
+                                        <option  {% if data.cast == 'NT' %} selected {%endif%}>NT</option>
+                                        <option  {% if data.cast == 'ST' %} selected {%endif%}>ST</option>
+                                        <option  {% if data.cast == 'OPEN' %} selected {%endif%}>OPEN</option>
+                                        <option  {% if data.cast == 'SBC' %} selected {%endif%}>SBC</option>
+                                    </select>
+                                </td>
+                                <td>
+                                </td>
+                            </tr>
+        
+        
+                            <tr>
+                                <td>
+                                    5. Blood Group <span style="color: Red"><sup><b>*</b></sup></span>
+                                </td>
+                                <td>
+                                    <input type="text" value="{{data.BGroup}}" name="Bgroup" placeholder="Blood Group">
+                                </td>
+                                <td>
+                                </td>
+                            </tr>
+        
+        
+                            <tr>
+                                <td>
+                                    6. Nationality <span style="color: Red"><sup><b>*</b></sup></span>
+                                </td>
+                                <td>
+                                    <input type="text" value="{{data.nationality}}" name="nation" placeholder="Nationality">
+                                </td>
+                                <td>
+                                </td>
+                            </tr>
+        
+        
+                            <tr>
+                                <td>
+                                    7. Mobile Number (Enter 10 Digit Mobile Number) 
+                                    <span style="color: Red"><sup><b>*</b></sup></span>
+                                </td>
+                                <td>
+                                    <input type="number" value="{{data.phone1}}" name="Number" placeholder="XXX XXX XXXX">
+                                </td>
+                                <td>
+                                </td>
+                            </tr>
+        
+        
+                            <tr>
+                                <td>
+                                    8. Email <span style="color: Red"><sup><b>*</b></sup></span>
+                                </td>
+                                <td>
+                                    <input type="email" name="email" value="{{data.Email}}"placeholder="abc@gmail.com">
+                                </td>
+                                <td>
+                                </td>
+                            </tr>
+        
+        
+                            <tr>
+                                <td>
+                                    9. ADDRESS <span
+                                        style="color: Red"><sup><b>*</b></sup></span>
+                                </td>
+                                <td>
+                                    <input type="text" name="add" value="{{data.Address1}}" placeholder="Address">
+                                </td>
+                                <td>
+                                </td>
+                            </tr>
+        
+        
+                        </table>
+                    </div>
+
+
+
+                    <div class="content-wrapper">
+                        <div class="registration_title">
+                            <p style="margin: 0; padding-left: 20px;">
+                                PARENTAL\GUARDIAN INFORMATION
+                            </p>
+                        </div>
+                    </div>
+        
+                    <div class="regestration-content">
+                        <table>
+                            <tr>
+                                <td>
+                                    1. Father Name (As per marksheet) <span style="color: Red">
+                                        <sup><b>*</b></sup></span><br />
+                                </td>
+                                <td>
+                                    <input type="text" value="{{data.Father_name}}" name="fname" placeholder="Father's Full Name">
+                                </td>
+                                <td>
+                                </td>
+                            </tr>
+        
+                            <tr>
+                                <td>
+                                    2. Mobile Number (Enter 10 Digit Mobile Number) 
+                                        <span style="color: Red"><sup><b>*</b></sup></span>
+                                </td>
+                                <td>
+                                    <input type="number" value="{{data.phone2}}" name="fPhone" placeholder="Mobile Number">
+                                </td>
+                                <td>
+                                </td>
+                            </tr>
+        
+        
+                            <tr>
+                                <td>
+                                    3.Occupation<span style="color: Red">
+                                        <sup><b>*</b></sup></span><br />
+                                </td>
+                                <td>
+                                    <input type="text" name="occupation" value="{{data.occupation}}" placeholder="Occupation">
+        
+                                </td>
+                                <td>
+                                </td>
+                            </tr>
+        
+        
+                            <tr>
+                                <td>
+                                    4. ADDRESS <span
+                                    style="color: Red"><sup><b>*</b></sup></span>
+                                </td>
+                                <td>
+                                    <input type="text" value="{{data.Address2}}" name="fAddress" placeholder="Address">
+        
+                                </td>
+                                <td>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+    
+                    
+                    <div class="content-wrapper">
+                        <div class="registration_title">
+                            <p style="margin: 0; padding-left: 20px;">
+                                EDUCATIONAL DETAILS
+                            </p>
+                        </div>
+                    </div>
+        
+                    <div class="regestration-content">
+                        <table>
+                            <tr>
+                                <td>
+                                    1. Branch  <span style="color: Red">
+                                        <sup><b>*</b></sup></span><br />
+                                </td>
+                                <td>
+                                    <select name="Branch" value="{{data.Branch}}" id="branch">
+                                        <option hidden>Branch</option>
+                                        <option  {% if data.Branch == 'Information Technology' %} selected {%endif%}>Information Technology</option>
+                                        <option  {% if data.Branch == 'Artificial Intelligence' %} selected {%endif%}>Artificial Intelligence</option>
+                                        <option {% if data.Branch == 'Computer' %} selected {%endif%}>Computer </option>
+                                        <option {% if data.Branch == 'Mechanical' %} selected {%endif%}>Mechanical</option>
+                                        <option {% if data.Branch == 'Civil' %} selected {%endif%}>Civil</option>
+                                        <option {% if data.Branch == 'Textile' %} selected {%endif%}>Textile</option>
+                                        <option {% if data.Branch == 'Electronics' %} selected {%endif%}>Electronics</option>
+                                        <option {% if data.Branch == 'Electrical' %} selected {%endif%}>Electrical</option>
+                                        <option {% if data.Branch == 'Mechatronics' %} selected {%endif%}>Mechatronics</option>
+                                        <option {% if data.Branch == 'Mining' %} selected {%endif%}>Mining</option>
+                                        <option {% if data.Branch == 'Travel & Tourism' %} selected {%endif%}>Travel & Tourism</option>
+                                        <option {% if data.Branch == 'Pacaking' %} selected {%endif%}>Pacaking/option>
+                                        <option {% if data.Branch == 'Automobile' %} selected {%endif%}>Automobile</option>
+
+
+        
+                                </select>
+                                </td>
+                                <td>
+                                </td>
+                            </tr>
+        
+        
+                            
+        
+                            <tr>
+                                <td>
+                                    3.Any Backlog <span style="color: Red"><sup><b>*</b></sup></span>
+                                </td>
+                                <td>
+                                    <select id="backlog" name="Backlog">
+                                        <option >Select</option>
+                                        <option >NO</option>
+                                        <option>YES</option>
+                                    </select>
+                                </td>
+                                <td>
+                                </td>
+                            </tr>
+        
+        
+                            <tr id="no-backlog">
+                                <td>
+                                    4.Number Of Backlog <span style="color: Red"><sup><b>*</b></sup></span>
+                                </td>
+                                <td>
+                                    <input type="number" name="noBack"value="{{data.Nu_Backlog}}" placeholder="NumberOfBacklog">
+                                </td>
+                                <td>
+                                </td>
+                            </tr>
+        
+        
+                            <tr>
+                                <td id="yearmarks2">
+                                    5. Marks Obtain In ODD Semester                     <span style="color: Red"><sup><b>*</b></sup></span>
+                                </td>
+                                <td>
+                                    <input type="number" value="{{data.mark1}}"name="Obtained1" placeholder="Marks Obtain">
+                                </td>
+                            </tr>
+                     
+                            
+                            
+                            <tr>
+                                <td>
+                                      6.        outoff     <span style="color: Red"><sup><b>*</b></sup></span>          
+                                </td>
+                                <td><input type="number"  value="{{data.outoff1}}"name="Total1" placeholder="OutOff"></td>
+                
+                            </tr>
+        
+        
+        
+                            <tr id="miningblockhide">
+                                <td>
+                                    7. Marks Obtain In Even Semester                    <span style="color: Red"><sup><b>*</b></sup></span>
+                                </td>
+                                <td>
+                                    <input type="number" value="{{data.mark2}}" name="Obtained2" placeholder="Marks Obtain">
+                                </td>
+                       
+                            </tr>
+                     
+                            
+                            
+                            <tr id="outoff2">
+                                <td>
+                                      8.        outoff     <span style="color: Red"><sup><b>*</b></sup></span>          
+                                </td>
+                         
+                            
+                                <td><input type="number"  value="{{data.outoff2}}" name="Total2" placeholder="OutOff"></td>
+                
+                            </tr>
+
+                           
+                        </table>
+        
+                    </div>
+
+       
+
+
+                    <div class="content-wrapper">
+                        <div class="registration_title">
+                            <p style="margin: 0; padding-left: 20px;">
+                                UPLOAD DOCUMENTS
+                            </p>
+                        </div>
+                    </div>
+        
+                    <div class="regestration-content">
+                        <table>
+                            <tr>
+                                  <td>Non Creamy Layer is optional for SC/ST candidates</td>  
+                            </tr>
+                            <tr>
+                                <tr>
+        
+                                </tr>
+                                <td>
+                                    1. Students's Passport-Size Photo<span style="color: Red">
+                                        <sup><b>*</b></sup></span><br />
+                                </td>
+                                <td>
+                                    <input type="file"accept="image/*" name="photo" id="photo1" class="input-file" required>
+                                </td>
+                                <td>
+                                    <button
+                                      class="btn btn-primary btn-show-image"
+                                      onclick="showImage('photo1')" class="input-but"
+                                    >
+                                      Show Image
+                                    </button>
+                                  </td>
+                            </tr>
+        
+                            <tr>
+                                <td>
+                                    2.Students's Signature <span style="color: Red"><sup><b>*</b></sup></span>
+                                </td>
+                                <td>
+                                    <input type="file" name="Signature" id="photo2" class="input-file" required>
+                                </td>
+                                <td>
+                                    <button
+                                      class="btn btn-primary btn-show-image"
+                                      onclick="showImage('photo2')" class="input-but"
+                                    >
+                                      Show Image
+                                    </button>
+                                  </td>
+                            </tr>
+        
+                            <tr>
+                                <td>
+                                    3.Father Signature<span style="color: Red"><sup><b>*</b></sup></span>
+                                </td>
+                                <td>
+                                    <input type="file" name="fSignature" id="photo3" class="input-file" required>
+                                </td>
+                                <td>
+                                    <button
+                                      class="btn btn-primary btn-show-image"
+                                      onclick="showImage('photo3')" class="input-but"
+                                    >
+                                      Show Image
+                                    </button>
+                                  </td>
+                            </tr>
+    {% comment %} {% with year=2 %}
+                     {% if 2 == 1 %}
+                            <tr>
+                                <td>
+                                    4.10th Marksheet  <span style="color: Red">
+                                        <sup><b>*</b></sup></span><br />
+                                </td>
+                                <td>
+                                    <input type="file" name="Marksheet2" id="photo4"class="input-file" >
+                                </td>
+                                <td>
+                                    <button
+                                      class="btn btn-primary btn-show-image"
+                                      onclick="showImage('photo4')" class="input-but"
+                                    >
+                                      Show Image
+                                    </button>
+                                  </td>
+                            </tr> {% endcomment %}
+                            {% comment %} {% elif 2==2 %}  {% endcomment %}
+                            <tr>
+                                <td id="semmarksheet"> 
+                                    4.1 sem Marksheet  <span style="color: Red">
+                                        <sup><b>*</b></sup></span><br />
+                                </td>
+                                <td>
+                                    <input type="file" name="Marksheet1" id="photo4"class="input-file" >
+                                </td>
+                                <td>
+                                    <button
+                                      class="btn btn-primary btn-show-image"
+                                      onclick="showImage('photo4')" class="input-but"
+                                    >
+                                      Show Image
+                                    </button>
+                                  </td>
+                            </tr>
+
+                            <tr id="blockmarksheet">
+                                <td>
+                                    4.2sem  Marksheet  <span style="color: Red">
+                                        <sup><b>*</b></sup></span><br />
+                                </td>
+                                <td>
+                                    <input type="file" name="Marksheet2" id="photo4"class="input-file">
+                                </td>
+                                <td>
+                                    <button
+                                      class="btn btn-primary btn-show-image"
+                                      onclick="showImage('photo4')" class="input-but"
+                                    >
+                                      Show Image
+                                    </button>
+                                  </td>
+                            </tr>
+                             {% comment %} {% elif 3 == 2 %}
+                            <tr>
+                                <td id="semmarksheet">
+                                    4.3 sem Marksheet  <span style="color: Red">
+                                        <sup><b>*</b></sup></span><br />
+                                </td>
+                                <td>
+                                    <input type="file" name="Marksheet1" id="photo4"class="input-file" >
+                                </td>
+                                <td>
+                                    <button
+                                      class="btn btn-primary btn-show-image"
+                                      onclick="showImage('photo4')" class="input-but"
+                                    >
+                                      Show Image
+                                    </button>
+                                  </td>
+                            </tr>
+
+                            <tr id="blockmarksheet">
+                                <td>
+                                    4.4sem  Marksheet  <span style="color: Red">
+                                        <sup><b>*</b></sup></span><br />
+                                </td>
+                                <td>
+                                    <input type="file" name="Marksheet2" id="photo4"class="input-file">
+                                </td>
+                                <td>
+                                    <button
+                                      class="btn btn-primary btn-show-image"
+                                      onclick="showImage('photo4')" class="input-but"
+                                    >
+                                      Show Image
+                                    </button>
+                                  </td>
+                            </tr>
+                            {% endif %} 
+                            {% endwith %} {% endcomment %}
+
+                                     <tr>
+                                <td>
+                                    5.Allotment Letter<span style="color: Red"><sup><b>*</b></sup></span>
+                                </td>
+                                <td>
+                                    <input type="file" name="Allotment" id="photo5"class="input-file" required>
+                                </td>
+                                <td>
+                                    <button
+                                      class="btn btn-primary btn-show-image"
+                                      onclick="showImage('photo5')" class="input-but"
+                                    >
+                                      Show Image
+                                    </button>
+                                  </td>
+                
+                            </tr>
+        
+                            <tr id="domicile-block">
+                                <td>
+                                    6.Domecile Letter<span style="color: Red"><sup><b>*</b></sup></span>
+                                </td>
+                                <td>
+                                    <input type="file" name="Domacile" id="photo6" class="input-file" >
+                                </td>
+                                <td>
+                                    <button
+                                      class="btn btn-primary btn-show-image"
+                                      onclick="showImage('photo6')" class="input-but"
+                                    >
+                                      Show Image
+                                    </button>
+                                  </td>
+                            </tr>
+                            <tr  id="caste-file-block">
+                                <td>
+                                    9. Caste Certificate <span style="color: Red"><sup><b>*</b></sup></span>
+                                </td>
+                                <td>
+                                    <input type="file" name="cast_cert" id="photo9" class="input-file" >
+                                </td>
+                                <td>
+                                    <button class="btn btn-primary btn-show-image" onclick="showImage('photo9')"
+                                        class="input-but">
+                                        Show Image
+                                    </button>
+                                </td>
+
+                            </tr>
+                            <tr id="Non-creamy-layer-block">
+                                <td>
+                                    Non Creamy Layer <span style="color: Red"><sup><b>*</b></sup></span>
+                                </td>
+                                <td>
+                                    <input type="file" name="ncl" id="photo10" class="Non-creamy-layer"
+                                        >
+                                </td>
+                                <td>
+                                    <button class="btn btn-primary btn-show-image"
+                                        onclick="showImage('photo10')" class="input-but">
+                                        Show Image
+                                    </button>
+                                </td>
+
+                            </tr>
+                    
+        
+                            <tr>
+                                <td>
+                                    7.Admission Receipt<span style="color: Red"><sup><b>*</b></sup></span>
+                                </td>
+                                <td>
+                                    <input type="file" name="Addmission" id="photo7"class="input-file" required>
+                                </td>
+                                <td>
+                                    <button
+                                      class="btn btn-primary btn-show-image"
+                                      onclick="showImage('photo7')" class="input-but"
+                                    >
+                                      Show Image
+                                    </button>
+                                  </td>
+                
+                            </tr>
+        
+        
+        
+                            <tr>
+                                <td>
+                                   8. Course Registration Receipt<span style="color: Red"><sup><b>*</b></sup></span>
+                                </td>
+                                <td>
+                                    <input type="file" name="Registration" id="photo8"class="input-file" required>
+                                </td>
+                                <td>
+                                    <button
+                                      class="btn btn-primary btn-show-image"
+                                      onclick="showImage('photo8')" class="input-but"
+                                    >
+                                      Show Image
+                                    </button>
+                                  </td>
+                
+                            </tr>
+                             
+        
+                            <tr>
+                                <td>
+                                   9. Payment Receipt<span style="color: Red"><sup><b>*</b></sup></span>
+                                </td>
+                                <td>
+                                    <input type="file" name="payment_ss" id="photo9"class="input-file" required>
+                                </td>
+                                <td>
+                                    <button
+                                      class="btn btn-primary btn-show-image"
+                                      onclick="showImage('photo9')" class="input-but"
+                                    >
+                                      Show Image
+                                    </button>
+                                  </td>
+                
+                            </tr>
+                        </table>
+
+                        <script>
+
+                            const castes=document.getElementById("cast")
+                            const noncreamylayerblock=document.getElementById("Non-creamy-layer-block");
+                            const casteblock=document.getElementById("caste-file-block");
+                            const domicileblock=document.getElementById("domicile-block");
+                            const branch=document.getElementById("branch");
+                            const yearmarks2=document.getElementById("yearmarks2");
+                            const miningblock=document.getElementById("miningblockhide");
+                            const outoff=document.getElementById("outoff2");
+                            const firstyr = document.getElementById("1ndyear_marksheet");
+                            const semmark=document.getElementById("semmarksheet")
+                            const blockmarksheet=document.getElementById("blockmarksheet");
+
+                                document.getElementById("cast").addEventListener("change", (event)=> {
+                                    let selectedcaste = event.target.value;
+                                    console.log(selectedcaste);
+
+                                    if (selectedcaste === 'SC' || selectedcaste === 'ST') {
+                                        noncreamylayerblock.style.display = "none";
+                                        casteblock.style.display = "";
+                                    }
+                                    else if (selectedcaste === "OPEN") {
+                                        noncreamylayerblock.style.display = "none";
+                                        casteblock.style.display = "none";
+                                    }
+                                    else {
+                                        noncreamylayerblock.style.display = "";
+                                        casteblock.style.display = "";
+                                    }
+                                });
+
+
+
+
+                            {% comment %} castes.addEventListener('change',(event)=>
+                            {
+                                let selectedcaste=event.target.value;
+                                console.log(selectedcaste)
+                            
+                            
+                                if(selectedcaste==='SC' || selectedcaste==='ST'){
+                                    noncreamylayerblock.style.display="none";
+                                    domicileblock.style.display="";
+                                    casteblock.style.display="";
+                                }
+                                else if(selectedcaste==="OPEN" ){
+                                    noncreamylayerblock.style.display="none";
+                                    domicileblock.style.display="";
+                                    casteblock.style.display="none";
+                                }
+                                else{
+                                    noncreamylayerblock.style.display="";
+                                    domicileblock.style.display="";
+                                    casteblock.style.display="";
+                                }
+                            }) {% endcomment %}
+            
+                             branch.addEventListener('change',(event)=>{
+                                if(event.target.value==="Mining"){
+                                    yearmarks2.innerText="5.Marks Obtain";
+                                    miningblock.style.display="none";
+                                    outoff.style.display="none";
+                                    semmark.innerText="Year wise marksheet";
+                                    blockmarksheet.style.display="none";
+
+                                }
+                                else{
+                                    yearmarks2.innerText="5.Marks Obtain In Semester 3";
+                                    miningblock.style.display="";
+                                    outoff.style.display="";
+                                    semmark.innerText="Sem marksheet";
+                                    blockmarksheet.style.display="";
+                                }
+                            }) 
+
+                            function closeModal() {
+                                const modal = document.getElementById("imageModal");
+                                modal.style.display = "none";
+                              }
+                        
+                              function showImage(input_file) {
+                                const modal = document.getElementById("imageModal");
+                                const modalImage = document.getElementById("modalImage");
+                                const fileInput=document.getElementById(input_file)
+          
+                                if (fileInput.files && fileInput.files[0]) {
+                                  const fileURL = URL.createObjectURL(fileInput.files[0]);
+                                  modalImage.src = fileURL;
+                                  modal.style.display = "flex";
+                              } else {
+                                  alert('Please select a file first.');
+                              }
+
+                              }
+                        
+                              window.onclick = function (event) {
+                                const modal = document.getElementById("imageModal");
+                                if (event.target === modal) {
+                                  closeModal();
+                                }
+                              };
+
+                              const backlog=document.getElementById('backlog');
+                              const no_backlog=document.getElementById('no-backlog');
+                          
+                              backlog.addEventListener('change',(event)=>{
+                                  if(event.target.value==='NO'){
+                                      no_backlog.style.display='none';
+                                  }
+                                  else{
+                                      no_backlog.style.display='';
+                                  }
+                              })
+                            
+                            
+                            
+            </script>
+                    </div>
+                    
+
+
+
+
+                   
+                    
+            <div class="content-wrapper">
+                <div class="registration_title">
+                    <p style="margin: 0; padding-left: 20px;">
+                        UNDERTAKINGS
+                    </p>
+                </div>
+            </div>
+
+            <div class="regestration-content">
+                <table>
+                    <tr>
+                        <td>
+                          
+                            <pre style="margin-right: 50%;">
+                                Undertaking by the student
+                                "I, _______________, hereby declare that I understand and accept the rules,
+                                regulations, and code of conduct set
+                                forth by [Institution Name] for hostel residents. I solemnly undertake to abide
+                                 by these regulations during my stay
+                                at the hostel .I am aware tat any violation of these rules may lead to disciplinary
+                                 action, which could result in 
+                                expulsion from the hostel or the institution.  I pledge to contribute positively to 
+                                the hostel community and uphold
+                                the values of mutual respect, cooperation, and academic integrity.
+                            </pre>
+                        </td>
+                        <td>
+                            <input type="checkbox" required><span>Agree to terms and conditions</span>
+                        </td>
+                        <td>
+                        </td>
+                    </tr>
+<tr>
+
+</tr>
+
+
+                    <tr>
+                        <td>
+                            
+                            <pre>
+
+                                I undertake fully responsibility for any misbehavior and act of
+                                discipline of my son / daughter for which have no objection to 
+                                remove him /her from the hostel without notice.
+                            </pre>
+                        </td>
+                        <td>
+                            <input type="checkbox" required><span>Agree to terms and conditions</span>
+                        </td>
+                        <td>
+                        </td>
+                    </tr>
+
+                </table>
+            </div>
+            <div id="imageModal" class="modal">
+                <span class="close" onclick="closeModal()"
+                  ><i class="fa-solid fa-xmark fa-lg" style="color: #f20707"></i
+                ></span>
+                <img class="modal-content" id="modalImage" />
+              </div>
+{% comment %} <input type="submit" name="submit" value="Submit"> {% endcomment %}
+                    <button type="submit"> Submit </button>
+    </form>
+    <label>  GOVERNMENT POLYTECHNIC NAGPUR </label>
+   
+    {% comment %} <script src="{% static 'js/category.js' %}"> {% endcomment %}
+</body>
+
+
+</html>
