@@ -2309,13 +2309,12 @@ def newappl3(request):
 def receipt(request):
     if request.method == "POST":
         data = get_data_from_enroll(request.POST['enroll'])
-        print(data.SPhoto)
         return render(request ,'receipt.html',{"s":data,'admin':'yes'})
         
 
     en = request.session.get('enroll')
     data = get_data_from_fno(request.session.get('fno'))
-    print(data.SPhoto)
+    # print(data.Backlog)
     return render(request ,'receipt.html',{"s":data})
 
 

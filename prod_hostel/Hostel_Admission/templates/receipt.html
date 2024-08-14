@@ -103,6 +103,11 @@
     border-radius: 5px;
     margin-bottom: 20px;
 }
+.resized-image{
+    width:140px;
+    height:40px;
+    margin-left: 15%
+}
     </style>
 </head>
 <body>
@@ -184,24 +189,30 @@
                 <td class="label">Branch:</td>
                 <td>{{s.Branch}}</td>
             </tr>
-        
+            {%if s.Backlog != 'NO'%}
             <tr>
                 <td class="label"> Backlog:</td>
                 <td>{{s.Backlog}}</td>
             </tr>
+            {%endif%}
             <tr>
                 <td class="label">Last Year Percentage:</td>
                 <td>{{ s.percentage|floatformat:2 }}</td>
             </tr>
             {% comment %} {% if %} {% endcomment %}
+            {%if s.mark1 != 0.0%}
             <tr>
                 <td class="label">ODD SEM Marksheet</td>
                 <td>{{s.mark1}}/{{s.outoff1}}</td>
             </tr>
+            {%endif%}
+            {% if s.mark2 != 0.0 and s.Branch != 'Mining' %}
             <tr>
                 <td class="label">EVEN SEM Marksheet</td>
                 <td>{{s.mark2}}/{{s.outoff2}}</td>
             </tr>
+            {%endif%}
+
 
 
             <tr>
@@ -278,9 +289,9 @@
         expulsion from the hostel or the institution.  I pledge to contribute positively to 
         the hostel community and uphold
         the values of mutual respect, cooperation, and academic integrity.
-        <img src="{{ s.student_signature.url }}" class="resized-image" /> 
     </pre>
-    <h4 style="margin-left: 15%">Student Signature</h4>
+    <img src="{{ s.student_signature.url }}" class="resized-image" /> 
+    <h4 style="margin-left: 15%;margin-top:1%;">Student Signature</h4>
 </div>
 <div class="info-title">
     <h2>Undertakings & Signature parents :</h2>
@@ -290,9 +301,9 @@
         I <u> <b> {{s.Father_name}} </b> </u> undertake fully responsibility for any misbehavior and act of
         discipline of my son / daughter for which have no objection to 
         remove him /her from the hostel without notice.             
- <img src="{{ s.parent_signature.url }}" class="resized-image" />
     </pre>
-    <h4 style="margin-left: 15%">Parents Signature</h4>
+    <img src="{{ s.father_signature.url }}" class="resized-image" />
+    <h4 style="margin-left: 15%;margin-top:1%;">Parents Signature</h4>
 </div>
 
 <div class="button-container">
