@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Report</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+        }
+        .container {
+            width: 90%;
+            max-width: 1200px; /* Increased max-width to accommodate additional column */
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            box-sizing: border-box;
+            margin: auto;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #333;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        th, td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+            color: #333;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+        .button-container {
+            display: flex;
+            justify-content: center;
+        }
+        #printButton {
+            background-color: #3d66b9;
+            color: white;
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        #printButton:hover {
+            background-color: #2a4d91;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>{{Year}} Year {{name}} Students </h1>
+        <table id="studentTable">
+            <thead>
+                <tr>
+                    <th>Sr. No.</th>
+                    <th>Form No</th>
+                    <th>Name</th>
+<th>Enrollment</th>
+<th>Transaction ID </th>
+                    <th>Contact No. 1</th>
+                    <th>Contact No. 2</th>
+                    <th>Remark</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Data will be inserted here by JavaScript -->
+                 {% for data in data %}
+                <tr>
+                    <td> {{ forloop.counter }} </td>
+                    <td> {{data.fno}}
+                        
+                    <td>{{data.name}}</td>
+                    <td>{{data.Enroll}}  </td>
+                    <td>{{data.trans_id}}</td>             
+                    <td>{{data.phone1}}</td>
+                    <td>{{data.phone2}}
+                    <td>{{data.Remark}}</td>
+                    {% comment %} <td>{{data.cast}}</td> {% endcomment %}
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <div class="button-container">
+            <button id="printButton" onclick="printPage()">Print</button>
+        </div>
+        <div class="button-container" style="margin-top:10px">
+            <button id="printButton" onclick="window.history.back()">Back</button>
+        </div>
+    </div>
+
+    <script>
+        {% comment %} document.addEventListener('DOMContentLoaded', function() {
+            fetch('/data')
+                .then(response => response.json())
+                .then(data => {
+                    const tableBody = document.querySelector('#studentTable tbody');
+                    data.forEach((student, index) => {
+                        const row = document.createElement('tr');
+                        row.innerHTML = `
+                            <td>${index + 1}</td>
+                            <td>${student.name}</td>
+                            <td>${student.enrollment_no}</td>
+                            <td>${student.contact_no}</td> <!-- New column for Contact No -->
+                            <td>${student.remark}</td>
+                        `;
+                        tableBody.appendChild(row);
+                    });
+                });
+        }); {% endcomment %}
+
+        function printPage() {
+            window.print();
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,1490 @@
+{% load static %}
+<html lang="en"><head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hostel Addmission</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  <style>
+      .HeaderColorDiv {
+          /* background-color: #394b71; */
+          background-color: #0077b6;
+          height: 30px;
+          width: 1000px;
+          /* background-image: linear-gradient(-90deg,#000080, #0077b6, green,yellow, orange); */
+      }
+      .width1000pxdiv {
+          width: 100%;
+      }
+      .headerribbon_content {
+          width: 100%;
+      }
+      .headerribbon {
+          width: 100%;
+          background-color: #FFF;
+          display: flex;
+          flex-direction: row;
+          
+          
+      }
+      .headerribbon_title_text {
+          /* height: 100px; */
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          /* float: left; */
+          font-family: Georgia;
+          font-size: min(38px, max(30px, 3vw));
+          /* font: 3vw Georgia; */
+          /* line-height: 100px; */
+          color: #281d82;
+          margin-left: 1.5%;
+          margin-right: 3%;
+      }
+
+      .headerribbon_title_text span{
+        margin-left: 100px;
+        margin-top: 100px;
+      }
+      .image1{
+          margin-left: 15%;
+          padding: 10px auto;
+      }
+      
+      .HeaderColorDiv {
+          /* background-color: #394b71; */
+          background-color: #0077b6;
+          height: 30px;
+          width: 1000px;
+          /* background-image: linear-gradient(-90deg,#000080, #0077b6, green,yellow, orange); */
+      }
+      
+      .body
+      {
+          background-image: url({% static 'img/bg1.png' %});
+      }
+      .avoidclick
+      {
+          pointer-events: none;
+      }
+      .spacediv
+      {
+          height: 70px;
+          width: 10px;
+          background: #E6E6E6;
+      }
+      
+      .btn
+      {
+          width: 135px;
+          height: 40px;
+          max-height: 40px;
+          max-width: 150px; /* border: solid 2px #b62a26;     color: #b62a26; */
+          border: solid 2px #0077B6;
+          color: #0077B6;
+          background: white;
+          border-radius: 6px;
+          cursor: pointer;
+          font-family: Calibri;
+          font-size: medium;
+          margin-right: 20px;
+          padding: 8px;
+      }
+      
+      .btn:hover
+      {
+          border: solid 2px white;
+          color: white; /*background: #b62a26;*/
+          background: #0077B6;
+      }
+      
+      .btnclick
+      {
+          width: 100px; /*height: 25px;     max-height: 25px;     max-width: 150px;*/ /* border: solid 2px #b62a26;     color: #b62a26; */
+          border: solid 2px #0077B6;
+          color: #0077B6;
+          background: white;
+          border-radius: 6px;
+          cursor: pointer;
+          font-family: Calibri;
+          font-size: medium;
+          margin-right: 20px;
+          padding: 2px;
+      }
+      
+      .btnclick:hover
+      {
+          border: solid 2px white;
+          color: white; /*background: #b62a26;*/
+          background: #0077B6;
+      }
+      
+      
+        
+      .hplinkhome
+      {
+          color: white;
+          text-decoration: none;
+          font-weight: bold;
+          font-size: 15px;
+          position: relative;
+      }
+      
+      .hplinkhome:hover
+      {
+          color: yellow;
+      }
+     
+
+      .headingdivupdate
+      {
+          /*background:#b62a26;*/ /*background:#73D674;*/ /*background: #0074b3;*/
+          background: white; /*color: White;*/
+          color: black; /*color:#145B9B;*/
+          font-size: min(max(1.4vw, 12px), 16px);
+          font-family: Calibri;
+          margin: 3px;
+          border: 2px solid #00A4BE;
+          font-weight: bold;
+          border-radius: 6px;
+          text-align: justify;
+          padding-left: 20px;
+          padding-right: 20px; 
+       max-height:250px;
+      
+      }
+      .headingdiv
+      {
+          text-align: center; /*background:#b62a26;*/ /*background:#73D674;*/
+          background: #0074b3;
+          color: White; /*color:#145B9B;*/
+          font-size: large;
+          font-family: Calibri;
+          margin: 3px;
+          border: 2px solid #00A4BE;
+          font-weight: bold;
+          border-radius: 6px;
+      }
+      .centermsgdiv
+      {
+          width: 1000px;
+          box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+          font-family: Calibri;
+          padding-top: 10px;
+          padding-bottom: 10px;
+          background-color: white;
+          font-size: medium;
+          font-weight: bold;
+          max-height: 70px;
+          border-radius: 6px;
+          border: 1px solid #0077b6;
+      }
+
+      .hoverdiv
+      {
+          font-family: Calibri;
+          text-align: center;
+          color: #b62a26;
+          margin-top: 3px;
+          margin-bottom: 3px;
+          font-weight: bold;
+          position: relative;
+          text-decoration: none;
+      }
+      .hoverdivbar
+      {
+          font-family: Calibri;
+          text-align: center;
+          color: #0077b6;
+          margin-top: 3px;
+          margin-bottom: 3px;
+          font-weight: bold;
+          position: relative;
+          text-decoration: none;
+      }
+    
+
+      
+  
+      
+      
+      
+      .HeaderColorDiv
+      {
+          /*background-color:#394b71;*/
+          background-color: #0077b6;
+          height: 30px;
+          width: 1000px; /*background-image: linear-gradient(-90deg,#000080, #0077b6, green,yellow, orange);*/
+      }
+     
+      {% comment %} .MenuItemDivbar
+      {
+          width: 243px;
+          float: left;
+          text-align: center;
+          margin-right: 10px;
+          background: white;
+          font-family: Calibri;
+          color: #0077b6;
+          font-weight: bold;
+          padding-top: 5px;
+          padding-bottom: 5px;
+          box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+          position: relative; /*pointer-events: none;*/
+      } {% endcomment %}
+      .MenuItemDivbar:hover .NotificationSpan
+      {
+          /*If you hover over the help icon, show the help_popup span*/
+          display: block;
+      }
+      .MenuItemLastDivbar
+      {
+          width: 240px;
+          float: left;
+          text-align: center;
+          background: white;
+          font-family: Calibri;
+          color: #0077b6;
+          font-weight: bold;
+          padding-top: 5px;
+          padding-bottom: 5px;
+          box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+          position: relative;
+      }
+      
+      .MenuItemLastDivbar:hover .NotificationSpan
+      {
+          /*If you hover over the help icon, show the help_popup span*/
+          display: block;
+      }
+      
+      .MenuItemDivHome
+      {
+          width: 240px;
+          float: left; /*text-align: center;*/
+          border-bottom-color: #e6e6e6; /*border-bottom-color:#FFD700;*/
+          border-bottom-style: solid;
+          margin-left: 15px;
+          margin-right: 10px;
+          background: white;
+          font-family: Calibri; /*color:#b62a26;*/
+          color: #0077b6;
+          font-weight: bold;
+          padding-top: 5px;
+          padding-bottom: 5px; /*box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);*/
+          position: relative;
+          top: 1px;
+          left: -1px;
+          border-bottom-style: solid; /*border-bottom-color: inherit;*/
+          border-bottom-width: medium;
+      }
+      
+      .MenuItemDivHome:hover .NotificationSpan
+      {
+          /*If you hover over the help icon, show the help_popup span*/
+          display: block;
+          left: 100px;
+      }
+      
+      .MenuItemDivHomeLast
+      {
+          width: 240px;
+          float: left; /*text-align: center;*/
+          margin-left: 15px;
+          margin-right: 10px;
+          background: white;
+          font-family: Calibri; /*color:#b62a26;*/
+          color: #0077b6;
+          font-weight: bold;
+          padding-top: 5px;
+          padding-bottom: 5px; /*box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);*/
+          position: relative;
+          top: 1px;
+          left: -1px;
+      }
+      
+      .MenuItemDivHomeLast:hover .NotificationSpan
+      {
+          /*If you hover over the help icon, show the help_popup span*/
+          display: block;
+          left: 100px;
+      }
+      
+      .MenuItemDiv
+      {
+          width: 240px;
+          float: left; /*text-align: center;*/
+          margin-left: 15px;
+          margin-right: 10px;
+          background: white;
+          font-family: Calibri; /*color:#b62a26;*/
+          color: #0077b6;
+          font-weight: bold;
+          padding-top: 5px;
+          padding-bottom: 5px; /*box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);*/
+          position: relative;
+      }
+      
+      .MenuItemLastDiv
+      {
+          width: 240px;
+          float: left;
+          text-align: center;
+          background: white;
+          font-family: Calibri;
+          color: #b62a26;
+          font-weight: bold;
+          padding-top: 5px;
+          padding-bottom: 5px;
+          box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+          position: relative;
+      }
+      
+      .MenuItemDiv:hover .NotificationSpan
+      {
+          /*If you hover over the help icon, show the help_popup span*/
+          display: block;
+          left: 100px;
+      }
+ 
+      .MenuItemLastDiv:hover .NotificationSpan
+      {
+          /*If you hover over the help icon, show the help_popup span*/
+          display: block;
+      }
+      
+      .NotificationSpan
+      {
+          /*Normally, hide this span*/
+          display: none;
+          position: absolute;
+          padding-top: 10px;
+          padding-bottom: 10px;
+          color: red;
+          width: 240px; /*text-align: center;*/
+          top: 30px;
+          background: white;
+          box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+          z-index: 99; /*360px; is around the position I want*/
+      }
+      
+      .MenuSubitemHome
+      {
+          text-decoration: none;
+          line-height: 30px; /*color:#b62a26;*/ /*color:#8CC739;*/
+          color: #628b27;
+          width: 240px;
+          float: left;
+          margin-left: 10px;
+      }
+
+
+      
+      .MenuSubitem
+      {
+          text-decoration: none;
+          line-height: 20px; /*color:#b62a26;*/ /*color:#8CC739;*/ /*color: #628b27;*/
+          color: #0077b6;
+          width: 240px;
+          float: left;
+          cursor: pointer; /*leftbar*/
+          border-radius: 10px;
+          -webkit-border-radius: 10px;
+          -moz-border-radius: 10px;
+          vertical-align: middle;
+          text-align: center;
+          font-weight: normal;
+          padding-top: 5px;
+          padding-bottom: 5px;
+      }
+      
+
+      
+      .MenuSubitemBlue
+      {
+          text-decoration: none;
+          line-height: 30px;
+          color: Blue;
+          width: 240px;
+      }
+      
+      .MenuItemDiv:hover
+      {
+          /*color:Black;*/
+          color: #628b27;
+      }
+      
+      .MenuSubitem:hover
+      {
+          /*color:Black;*/ /*color: #628b27;*/
+          background-color: #0077b6;
+          color: yellow;
+      }
+
+      .Height5pxdiv
+      {
+          height: 5px;
+      }
+      
+      .Height10pxdiv
+      {
+          height: 10px;
+      }
+      
+      .Height20pxdiv
+      {
+          height: 20px;
+      }
+      
+      .Height30pxdiv
+      {
+          height: 30px;
+      }
+      
+      .Height40pxdiv
+      {
+          height: 40px;
+      }
+      
+      .Height50pxdiv
+      {
+          height: 50px;
+          width: 192px;
+      }
+      
+      .Height60pxdiv
+      {
+          height: 60px;
+          width: 192px;
+      }
+      
+      .width5pxdiv
+      {
+          width: 5px;
+          height: 12px;
+          float: left;
+      }
+      
+      .width10pxdiv
+      {
+          width: 10px;
+          height: 12px;
+          float: left;
+      }
+      .width20pxdiv
+      {
+          width: 20px;
+          height: 12px;
+          float: left;
+      }
+      .width1000pxdiv
+      {
+          width: 1000px;
+      
+      }
+      
+      .width1000pxdivcolornone
+      {
+          width: 1000px;
+          height: auto;
+          background-color: none;
+      }
+      
+      .stylecleardiv
+      {
+          clear: both;
+          height: 0px;
+      }
+      
+      .spacebetweendiv
+      {
+          width: 10px;
+          height: 1px;
+          float: left;
+      }
+ 
+      
+   
+      /*new css for left DIV Ends*/
+      
+      /* Instructions CSS classes starts*/
+      
+      .headinstructions
+      {
+          background-color: #206ba4;
+          color: white;
+          height: 25px;
+          width: 1000px;
+          font-family: Calibri;
+          font-weight: bold;
+          text-align: center;
+      }
+      
+      .instrctions
+      {
+          text-align: left;
+          font-family: Calibri;
+          font-size: medium;
+      }
+      
+      .redinstrctions
+      {
+          text-align: left;
+          font-family: Calibri;
+          font-size: medium;
+          color: Red;
+      }
+
+
+
+
+
+
+
+      .button-container {
+          display: flex;
+          justify-content: center;
+      }
+
+      /* CSS for the buttons */
+      .button {
+          background-color: #3498db;
+          color: #fff;
+          padding: 10px 20px;
+          margin: 0px 40px 20px 80px;
+          border: none;
+          border-radius: 5px;
+          cursor: pointer;
+          transition: background-color 0.3s, transform 0.2s;
+          height: 40px;
+          width: 160px;
+          text-decoration: none;
+          text-justify: center;
+          
+      }
+
+      /* Hover effect */
+      .button:hover {
+          background-color: #2980b9;
+          transform: scale(1.05);
+      }
+
+
+
+      .slider{
+          width: 1000px;
+          height: 300px;
+          align-items: center;
+          background-size: 100% 100%;
+          
+          background-image: url({% static 'img/g1.png' %});
+          animation: changeImage 20s linear infinite;
+      
+      }
+
+      .event-section{
+          width: 1000px;
+          
+      }
+
+      .event{
+          width: 293px;
+          margin: 1% 1% 1% 1%;
+          float: left;
+          background-color: #fff;
+          padding: 10px;
+      }
+
+      .event .heading1{
+          border-bottom: 1px solid #46b7c1;
+          padding: 5px;
+          color: #fff;
+          background: #46b7c1;
+      }
+      .heading1{
+          font-size: 28px;
+          font-weight: 500;
+          border-bottom: 1px solid #46b7c1;
+          margin-bottom: 20px;
+          color: #46b7c1;
+          text-align: center;
+      }
+
+      .event ul li{
+          margin-bottom: 20px;
+      }
+
+
+      .aboutus-container .heading1{
+          border-bottom: 1px solid #46b7c1;
+          padding: 5px;
+          color: #fff;
+          background: #46b7c1;
+      }
+      .aboutus-container div{
+          width: 45%;
+          float:left;
+          line-height: 30px;
+          font-size: 10px;
+          margin: 0% 1% 0% 1%;
+          background-color: #fff;
+          padding: 10px;
+      }
+
+      .aboutus-container h4{
+          font-size: 22px;
+
+      }
+      .aboutus-container p{
+          line-height: 42px;
+          font-size:17px ;
+      }
+
+      .aboutus-container img{
+          width: 49%;
+          height: 365px;
+          float: left;
+      }
+
+
+
+      .teachers-container .heading1{
+          border-bottom: 1px solid #46b7c1;
+          padding: 5px;
+          color: #fff;
+          background: #46b7c1;
+          margin-top: 2%;
+      }
+
+      .staff-card {
+          display: inline-block;
+          margin: 10px;
+          border: 1px solid #ccc;
+          padding: 10px;
+          text-align: center;
+          transition: transform 0.3s;
+      }
+
+      .staff-card:hover {
+          transform: scale(1.1);
+      }
+
+      .staff-image {
+          max-width: 260px;
+          height: 250px;
+      }
+
+      .staff-name {
+          font-weight: bold;
+          margin-top: 5px;
+      }
+
+      .staff-post {
+          margin-top: 5px;
+         
+      }
+
+      .gallery-container .heading1{
+          border-bottom: 1px solid #46b7c1;
+          padding: 5px;
+          color: #fff;
+          background: #46b7c1;
+          margin-top: 2%;
+      }
+
+      .gallery-container img{
+          width: 30%;
+          height: 45%;
+
+      }
+
+      .footer{
+          background-color: #46b7c1;
+          padding: 5px 0px;
+          width: 1000px;
+          float: left;
+          margin-bottom: 40px;
+      }
+
+      .footer-logo{
+          width: 250px;
+          height: 250px;
+          margin: 10px;
+      }
+
+      .footer-section{
+          width: 1000px;
+          float: left;
+          text-align: center;
+          
+      }
+
+      .footer-section a{
+          color: #fff;
+          margin-left: 10px;
+          text-decoration: none;
+          margin-bottom: 30%;
+      }
+      
+      /*Instruction CSS Classes ends*/
+      
+      
+/* Existing CSS styles */
+
+@media(max-width: 700px) {
+  .HeaderColorDiv, .width1000pxdiv {
+      width: 100%;
+  }
+
+
+  .headerribbon_title_text {
+      /* height: 100px; */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      /* float: left; */
+      font-family: Georgia;
+      font-size: min(38px, max(30px, 3vw));
+      /* font: 3vw Georgia; */
+      /* line-height: 100px; */
+      color: #281d82;
+      margin-left: 0%;
+  }
+
+  .MenuItemDivbar
+  {
+      width: 84px;
+      float: left;
+      text-align: center;
+      margin-right: 10px;
+      background: white;
+      font-family: Calibri;
+      color: #0077b6;
+      font-weight: bold;
+      padding-top: 5px;
+      padding-bottom: 5px;
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+      position: relative; /*pointer-events: none;*/
+  }
+  .MenuItemDivbar:hover .NotificationSpan
+  {
+      /*If you hover over the help icon, show the help_popup span*/
+      display: block;
+  }
+
+  .MenuItemLastDivbar
+      {
+          width: 84px;
+          float: left;
+          text-align: center;
+          background: white;
+          font-family: Calibri;
+          color: #0077b6;
+          font-weight: bold;
+          padding-top: 5px;
+          padding-bottom: 5px;
+          box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+          position: relative;
+      }
+      
+      .MenuItemLastDivbar:hover .NotificationSpan
+      {
+          /*If you hover over the help icon, show the help_popup span*/
+          display: block;
+      }
+
+      .MenuItemDiv
+      {
+          width: 84px;
+          float: left; /*text-align: center;*/
+          margin-left: 15px;
+          margin-right: 10px;
+          background: white;
+          font-family: Calibri; /*color:#b62a26;*/
+          color: #0077b6;
+          font-weight: bold;
+          padding-top: 5px;
+          padding-bottom: 5px; /*box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);*/
+          position: relative;
+      }
+      
+      .MenuItemLastDiv
+      {
+          width: 84px;
+          float: left;
+          text-align: center;
+          background: white;
+          font-family: Calibri;
+          color: #b62a26;
+          font-weight: bold;
+          padding-top: 5px;
+          padding-bottom: 5px;
+          box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+          position: relative;
+      }
+      
+      .MenuItemDiv:hover .NotificationSpan
+      {
+          /*If you hover over the help icon, show the help_popup span*/
+          display: block;
+          left: 100px;
+      }
+
+      .NotificationSpan
+      {
+          /*Normally, hide this span*/
+          display: none;
+          position: absolute;
+          padding-top: 10px;
+          padding-bottom: 10px;
+          color: red;
+          width: 84px; /*text-align: center;*/
+          top: 30px;
+          background: white;
+          box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+          z-index: 99; /*360px; is around the position I want*/
+      }
+      
+
+      .MenuSubitem
+      {
+          text-decoration: none;
+          line-height: 20px; /*color:#b62a26;*/ /*color:#8CC739;*/ /*color: #628b27;*/
+          color: #0077b6;
+          width: 84px;
+          float: left;
+          cursor: pointer; /*leftbar*/
+          border-radius: 10px;
+          -webkit-border-radius: 10px;
+          -moz-border-radius: 10px;
+          vertical-align: middle;
+          text-align: center;
+          font-weight: normal;
+          padding-top: 5px;
+          padding-bottom: 5px;
+      }
+      
+
+      
+      .MenuSubitemBlue
+      {
+          text-decoration: none;
+          line-height: 20px;
+          color: Blue;
+          width: 84px;
+      }
+      
+      .MenuItemDiv:hover
+      {
+          /*color:Black;*/
+          color: #628b27;
+      }
+      
+      .MenuSubitem:hover
+      {
+          /*color:Black;*/ /*color: #628b27;*/
+          background-color: #0077b6;
+          color: yellow;
+      }
+
+      .staff-card {
+          display: inline-block;
+          margin: 10px 10px 10px 10px;
+          border: 1px solid #ccc;
+          padding: 10px;
+          text-align: center;
+          height: 300px;
+          width: 350px;
+          transition: transform 0.3s;
+      }
+
+      .staff-card:hover {
+          transform: scale(1.1);
+      }
+
+      .staff-image {
+          max-width: 80px;
+          height: 70px;
+      }
+
+
+  .centermsgdiv{
+      width: 100%;
+  }
+  .MenuItemDivbar
+  {
+      width: fit-content;
+      float: left;
+      text-align: center;
+      margin-left: 60px;
+      background: white;
+      font-family: Calibri;
+      color: black;
+      {% comment %} font-weight: bold; {% endcomment %}
+      padding-top: 5px;
+      padding-bottom: 5px;
+      {% comment %} box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); {% endcomment %}
+      position: relative; /*pointer-events: none;*/
+      
+  }
+  .image1{
+      margin-left: 10%;
+      padding: 10px auto;
+  }
+
+  .slider{
+      width: 100%;
+  }
+  .headingdivupdate {
+      width: 100%;
+      font-size: 14px;
+  }
+
+  .event {
+    
+      width: 116px;
+      margin: 4% 1% 1% 1%;
+      float: left;
+      background-color: #fff;
+      padding: 1px 1px 1px 0px;
+  }
+
+  .event-section {
+      width: 100%;
+  }
+
+  .event .heading1, .heading1 {
+      font-size: 24px;
+  }
+
+  .aboutus-container div, .aboutus-container img {
+      width: 100%;
+
+      float: none;
+  }
+
+  .aboutus-container h4 {
+      font-size: 20px;
+  }
+
+  .aboutus-container p {
+      font-size: 16px;
+  }
+
+  .gallery-container img {
+      width: 85px;
+      height: 80px;
+      margin: 15px 15px 15px 15px;
+      margin-top: 10px;
+  }
+
+  .footer-logo {
+      width: 250px;
+      height: 250px;
+  }
+  .footer-section{
+      width: 100%;
+      float: left;
+      text-align: center;
+      
+  }
+
+  .youtubevedio{
+    margin: 15px auto;
+  }
+  .youtubevedio embed{
+    margin: 40px 40px 40px 40px;
+  }
+
+
+  .footer-section a{
+      color: #fff;
+      margin-left: 10px;
+      text-decoration: none;
+      margin-bottom: 30%;
+  }
+  
+  .footer{
+      background-color: #46b7c1;
+      padding: 5px 0px;
+      width: 100%;
+      float: left;
+      margin-bottom: 40px;
+  }
+  
+}
+@media only screen and (max-width: 1200px) {
+    .analytics {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .analytics {
+        grid-template-columns: 100%;
+    }
+    
+    .sidebar {
+        left: -165px;
+        z-index: 90;
+    }
+    
+    header {
+        left: 0;
+        width: 100%;
+    }
+    
+    .main-content {
+        margin-left: 0;
+        width: 100%;
+    }
+    
+    #menu-toggle:checked ~ .sidebar {
+        left: 0;
+    }
+    
+    #menu-toggle:checked ~ .sidebar {
+        width: 165px;
+    }
+
+    #menu-toggle:checked ~ .sidebar .side-header span {
+        display: inline-block;
+    }
+
+    #menu-toggle:checked ~ .sidebar .profile,
+    #menu-toggle:checked ~ .sidebar .side-menu a small {
+        display: block;
+    }
+
+    #menu-toggle:checked ~ .sidebar .side-menu a span {
+        font-size: 1.7rem;
+    }
+    
+    #menu-toggle:checked ~ .main-content header {
+        left: 0px;
+    }
+    
+    table {
+        width: 900px;
+    }
+}
+
+.gallery-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 50px;
+}
+
+.gallery-item {
+    /* flex: 1 1 200px; */
+    flex: 1 1 calc(20% - 10px);
+    width: 250px;
+    height: 150px;
+    overflow: hidden;
+    position: relative;
+    
+}
+
+.gallery-item img:hover {
+    transform: scale(1.05);
+}
+
+.gallery-item img {
+    transition: transform 0.3s ease-in-out;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ensures the image covers the entire container */
+    display: block;
+}
+
+/* Next & previous buttons */
+.prev, .next {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    width: auto;
+    padding: 16px;
+    margin-top: -22px;
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+    transition: 0.6s ease;
+    border-radius: 0 3px 3px 0;
+    user-select: none;
+}
+
+/* Position the "next button" to the right */
+.next {
+    right: 0;
+    border-radius: 3px 0 0 3px;
+}
+
+/* Position the "prev button" to the left */
+.prev {
+    left: 0;
+    border-radius: 3px 0 0 3px;
+}
+
+/* On hover, add a black background color with a little bit see-through */
+.prev:hover, .next:hover {
+    background-color: rgba(0,0,0,0.8);
+}
+.heading1{
+    font-size: 28px;
+    font-weight: 500;
+    border-top: 3px solid #46b7c1;
+    margin-bottom: 20px;
+    color: #46b7c1;
+    text-align: center;
+    color:black;
+}
+
+  </style>
+
+
+</head>
+<body class="body">
+ 
+{% if messages %}
+<script>
+    {% for message in messages %}
+    {% if forloop.last %}
+        alert("{{ message }}");
+        {% endif %}
+         {% endfor %}
+        </script>
+{% endif %}
+
+  <form method="post" action="./" id="form1">
+      <div class="aspNetHidden">
+          <input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="/wEPDwUKMTY1NDU2MTA1MmRkbjd70GvCgYa1qGR9qPa5YVU5Ob5/RvTygev3Ex0QTSk=">
+          </div>
+          
+          <div class="aspNetHidden">
+          
+              <input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="8D0E13E6">
+          </div>
+                  <div align="center">
+                      <div class="HeaderColorDiv">
+                      </div>
+                      <div class="width1000pxdiv">
+                          
+                          <div class="headerribbon_content">
+                              <div class="headerribbon">
+                                  <div class="image1">
+                                      <img id="Image1" src="{% static 'img/gpn_logo.jpg' %}" style="height:100px;">
+                                  </div>
+                                  <div class="headerribbon_title_text">
+
+                                    <div >
+                                        <div style="margin-left:10px;">
+                                            <h2 style="font-weight:900;margin-bottom:0px;">Government Polytechnic Nagpur</h2>     
+                                            <p style="margin-bottom:0;font-size:26px">(Online Hostel Admission)</p>
+                                        </div>
+                                        <div style="width: fit-content;float: right;margin-top: -50px;margin-right: -70px;" >
+
+                                        <span style="margin-left:50px;"> 
+                                            <a href="{% url 'home' %}" class="option-box">
+                                                <i class="fa fa-power-off" style="width: 30px; height: 30px; margin-left: 10px;font-size: 30px; color: black;"></i>
+                                            </a>
+                                         </span> 
+                                        </div>
+
+                                    </div>
+
+
+                                      {% comment %} <div>
+                                          GPN Online Hostel Addmission   <span style="margin-left:50px;"> 
+                                            <a href="{% url 'home' %}" class="option-box">
+                                                <i class="fa fa-power-off" style="width: 30px; height: 30px; margin-left: 10px;font-size: 30px; color: black;"></i>
+                                            </a>
+                                         </span>               
+                                      </div> {% endcomment %}
+                                  </div>
+                                
+                              </div>
+                          </div>
+
+                         
+                      </div>
+                      <div class="HeaderColorDiv"><h5 style="text-align: right;padding-right : 30px;color : white">En No. {{request.session.enroll}}</h5>
+                      </div>
+                  </div>
+
+
+
+      <!--Test Menu Div Start-->
+      <div class="stylecleardiv">
+      </div>
+      <div class="stylecleardiv">
+      </div>
+      <div class="Height10pxdiv">
+      </div>
+      <div class="stylecleardiv">
+      </div>
+      <div class="Height10pxdiv">
+      </div>
+      <div class="stylecleardiv">
+      </div>
+      <div class="Height10pxdiv">
+      </div>
+      <div class="stylecleardiv">
+      </div>
+      <div class="Height10pxdiv">
+      </div>
+
+
+      <div align="center">
+          <div class="width1000pxdiv">
+              <div class="button-container">
+                  <a class="button" href="{% url 'firstyrdes' %}"><b>FIRST YEAR</b></a>
+                  <a class="button" href="{% url 'secondyrdes' %}"><b>SECOND YEAR</b></a>
+                  <a class="button" href="{% url 'thirdyrdes' %}"><b>THIRD YEAR</b></a>
+              </div>
+          </div>
+      </div>
+
+
+      <div class="stylecleardiv">
+      </div>
+      <div class="Height10pxdiv">
+      </div>
+      <div align="center">
+          <div class="centermsgdiv">
+              <span>
+                  <marquee behavior="scroll" direction="left" onmouseover="this.stop();" onmouseout="this.start();">
+                   <span><i class="fa-solid fa-bell"></i></span>
+                      
+                      Notification for HOSTEL ADDMISSION ONLINE
+                      2023 Schedule-I Start From
+                       <span style="color: Red">03-08-2023</span> to
+                       <span style="color: Red">23-08-2023</span>.
+                 </marquee>
+              </span>
+          </div>
+      </div>
+
+
+      <div class="Height10pxdiv">
+      </div>
+      <div align="center">
+          
+              <div class="slider">
+                  
+              </div>
+          
+      </div>
+      <div class="Height10pxdiv">
+      </div>
+
+<div class="stylecleardiv">
+</div>
+<div class="Height10pxdiv">
+</div>
+
+<div class="Height20pxdiv">
+</div>
+
+<div align="center">
+  <div class="event-section" style="background-color: #f0f3fa;">
+      <div class="aboutus-container">
+          <div>
+              <h2 class="heading1">About Us</h2>
+              <h4>Government Polytechnic nagpur</h4>
+              <p>
+                Established in 1914, Government Polytechnic Nagpur stands as the most esteemed institute in Nagpur,
+                 Maharashtra. With a rich legacy of over a century,  offering top-tier
+                  education and cementing its reputation as the best polytechnic institute in the state. Join us on a journey of 
+                  innovation and learning at the forefront of technical education</p>
+          </div>
+          <div>
+            <h2 class="notice" style="border-bottom: 2px solid #ff0000; padding-bottom: 5px; color: #ff0000;">Notice</h2>
+            <p style="background-color: #e9ecef; padding: 10px; border-radius: 5px;">          
+              <p id="notice-textbox" style="width: 100%; height: 50px; margin-top: 10px; padding: 10px; border: 1px solid #ccc; border-radius: 5px; color: #ff0000;">Hostel fees is 22,000/- only!</p>
+              <p id="notice-textbox" style="width: 100%; height: 50px; margin-top: 10px; padding: 10px; border: 1px solid #ccc; border-radius: 5px; color: #ff0000;">Hostel fees is 22,000/- only!</p>
+              <p id="notice-textbox" style="width: 100%; height: 50px; margin-top: 10px; padding: 10px; border: 1px solid #ccc; border-radius: 5px; color: #ff0000;">Hostel fees is 22,000/- only!</p>
+              <p id="notice-textbox" style="width: 100%; height: 50px; margin-top: 10px; padding: 10px; border: 1px solid #ccc; border-radius: 5px; color: #ff0000;">Hostel fees is 22,000/- only!</p>
+            </p>
+          </div>
+      </div>
+  </div>
+</div>
+       
+
+<div class="stylecleardiv">
+</div>
+<div class="Height10pxdiv">
+</div>
+
+<div class="Height20pxdiv">
+</div>
+
+
+<div align="center">
+      <div class="event-section" style="background-color: #f0f3fa;">
+          <div class="teachers-container">
+              <div>
+                  <h2 class="heading1">Our Staff</h2>
+
+                  <div class="staff-card">
+                      <img class="staff-image" src="{% static 'img/daigavanesir.jpeg' %}" alt="Staff 1">
+                      <div class="staff-name">Dr. Manoj B. Daigavane</div>
+                      <div class="staff-post">Joint Director,<br>Regional Directorate of Technical Education,Nagpur<br>
+                        Principal,Government Polytechnic, Nagpur</div>
+                  </div>
+              
+                  <div class="staff-card">
+                      <img class="staff-image" src="{% static 'img/Surkar_sir.jpg' %}" alt="Staff 2">
+                      <div class="staff-name"> Prof.Devendra Surkar</div>
+                      <div class="staff-post">Secretary,<br>Government Polytechnic Hostel,<br>Nagpur<br></div>
+                  </div>
+              <br>
+                  <div class="staff-card">
+                      <img class="staff-image" src="{% static 'img/bhadekarsir.png' %}" alt="Staff 3">
+                      <div class="staff-name">Prof.Lokesh L.Bhadekar</div>
+                      <div class="staff-post"> Warden 1,<br>Government Polytechnic Hostel,<br>Nagpur<br></div>
+                  </div>
+
+                  <div class="staff-card">
+                    <img class="staff-image" src="{% static 'img/Chede_sir.jpg' %}" alt="Staff 3">
+                    <div class="staff-name">Prof.Chide</div>
+                    <div class="staff-post"> Warden 2, <br>Government Polytechnic Hostel,<br>Nagpur<br></div>
+                </div>
+                <div class="staff-card">
+                    <img class="staff-image" src="{% static 'img/gpn.jpg' %}" alt="Staff 3">
+                    <div class="staff-name"> Mr. Rathod</div>
+                    <div class="staff-post"> Hostel Clerk <br>Government Polytechnic Nagpur<br></div>
+                </div>
+              </div>
+          </div>
+      </div>
+  
+</div>
+
+
+<div class="stylecleardiv">
+</div>
+<div class="Height10pxdiv">
+</div>
+
+<div class="Height20pxdiv">
+</div>
+
+
+<div align="center">
+  
+  <div class="event-section" style="background-color: #f0f3fa;">
+      <h2 class="heading1">Gallery</h2>
+      <div class="gallery-container">
+              {% comment %} <img src="{% static 'img/d2.jpg' %}" alt="">
+              <img src="{% static 'img/d1.jpg' %}" alt="">
+              <img src="{% static 'img/gp3.jpg' %}" alt=""> 
+              <img src="{% static 'img/gp4.jpg' %}" alt="">
+              <img src="{% static 'img/gp5.jpg' %}" alt="">
+              <img src="{% static 'img/gp6.jpg' %}" alt="">
+              <img src="{% static 'img/d3.webp' %}" alt="">
+              <img src="{% static 'img/d5.webp' %}" alt="">
+              <img src="{% static 'img/d4.jpg' %}" alt=""> {% endcomment %}
+
+              <div class="gallery-item">
+                <img src="{% static 'img/d2.jpg' %}" alt="">
+            </div>
+            <div class="gallery-item">
+                <img src="{% static 'img/d1.jpg' %}" alt="">
+            </div>
+            <div class="gallery-item">
+                <img src="{% static 'img/gp3.jpg' %}" alt="">
+            </div>
+            <div class="gallery-item">
+                <img src="{% static 'img/gp4.jpg' %}" alt="">
+            </div>
+            <div class="gallery-item">
+                <img src="{% static 'img/gp5.jpg' %}" alt="">
+            </div>
+            <div class="gallery-item">
+                <img src="{% static 'img/gp6.jpg' %}" alt="">
+            </div>
+            <div class="gallery-item">
+                <img src="{% static 'img/d3.webp' %}" alt="">
+            </div>
+            <div class="gallery-item">
+                <img src="{% static 'img/d5.webp' %}" alt="">
+            </div>
+      </div>
+  </div>
+</div>
+<a class="button" style="margin-top: 15px; margin-left: 43%;" href="{% url 'HelpStudent' %}"><b>Help/Instructions</b></a>
+              
+<div class="stylecleardiv">
+</div>
+<div class="Height10pxdiv">
+</div>
+
+<div class="Height20pxdiv">
+</div>
+<div class="stylecleardiv">
+</div>
+<div class="Height10pxdiv">
+</div>
+
+<div class="Height20pxdiv">
+</div>
+
+<div align="center">
+  
+    <div class="event-section" style="background-color: #f0f3fa;">
+        <div class="youtubevedio">
+            <h2><b>A Perfect Hostel Tour Is Here!!</b></h2>
+              <embed contenteditable="true" style="width:720px;  height: 500px;" src="https://www.youtube.com/embed/dTQS32tPZy4"></embed>
+                
+        </div>
+    </div>
+  </div>
+  <div class="stylecleardiv">
+</div>
+<div class="Height10pxdiv">
+</div>
+
+<div class="Height20pxdiv">
+</div>
+
+  <div class="stylecleardiv">
+</div>
+<div class="Height10pxdiv">
+</div>
+
+<div class="Height20pxdiv">
+</div>
+
+
+<div align="center">
+  <div class="event-section">
+  <div class="footer">
+      <div class="container">
+          <div class="footer-section">
+              <img class="footer-logo" src="{% static 'img/gpn_logo.jpg' %}" alt="">
+          </div>
+
+          <div class="footer-section">
+              <div class="container" align="center" style="margin-top: 1%;">
+                  <div class="copyright">
+                    &copy; Copyright <strong>Designed by Group_5 </strong> All Rights Reserved
+                  </div>
+                  <div class="credits">
+                    
+                  </div>
+                </div>
+          </div>
+
+      </div>
+  </div>
+</div>
+</div>
+  </form>
+
+</body></html>

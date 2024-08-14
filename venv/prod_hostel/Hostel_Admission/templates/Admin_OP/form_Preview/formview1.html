@@ -1,0 +1,630 @@
+{% load static%}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    {% comment %}
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
+    />
+    {% endcomment %} {% comment %}
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+    />
+    {% endcomment %}
+  </head>
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/fontawesome.min.css"
+    integrity="sha512-B46MVOJpI6RBsdcU307elYeStF2JKT87SsHZfRSkjVi4/iZ3912zXi45X5/CBr/GbCyLx6M1GQtTKYRd52Jxgw=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  />
+  <style>
+        .resized-image {
+        max-width: 50%;
+        max-height: 150px;
+    }
+    body{
+        box-sizing:border-box;
+        padding:0;
+        margin:0;
+        background-image: url({% static 'img/bg1.png' %});
+        text-align:center;
+        margin-bottom:50px;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse; /* Ensures borders are collapsed into a single border */
+        margin: 20px 0; /* Adds space above and below the table */
+    }
+    th, td {
+        border: 1px solid #ddd; /* Light gray border */
+        padding: 12px; /* Adds padding inside each cell */
+        text-align: center; /* Aligns text to the left */
+    }
+    th {
+        background-color: #f4f4f4; /* Light gray background for header */
+        color: #333; /* Darker text color */
+    }
+    tr:nth-child(even) {
+        background-color: #f9f9f9; /* Alternating row colors */
+    }
+    tr:hover {
+        background-color: #f1f1f1; /* Hover effect */
+    }
+    .container-fluid{
+        display:flex;
+        justify-content:center;
+    }
+    .outer-container{
+        width:60%;
+    }
+    .text-center{
+        margin-bottom:0px;
+    }
+    .info-title{
+        font-size:24px;
+        background-color:black;
+        color:white;
+        text-align:starts;
+        margin-bottom:0px;
+    }
+    .image-container {
+        display: none;
+        margin-top: 10px;
+        position
+    }
+    .resized-image {
+        max-width: 200px; /* Adjust size as needed */
+        height: auto;
+    }
+    .btn-show-image {
+        cursor: pointer;
+    }
+    .modal{
+        display:none;
+        position:fixed;
+        z-index:1000;
+        left:0;
+        top:0;
+        width:100%;
+        height:100%;
+        overflow:auto;
+        background-color: rgba(0, 0, 0, 0.8); /* Black with opacity */
+        backdrop-filter: blur(5px);
+        justify-content:center;
+        align-items:center;
+        cursor:zoom-out;
+    }
+    .modal img{
+        max-width: 90%;
+        max-height: 90%;
+    }
+
+    .modal-content{
+        margin:auto;
+        max-width:90%;
+        max-height:90%;''''
+        display:block;
+    }
+    .close {
+        position: absolute;
+        top: 20px;
+        right: 35px;
+        color: #fff;
+        font-size: 40px;
+        font-weight: bold;
+        cursor: pointer;
+    }
+    .close:hover {
+        color: #bbb;
+        text-decoration: none;
+        cursor: pointer;
+    }
+    .in-field{
+        width:100%;
+        height:90%;
+        border:none;
+        outline:none;
+    }
+    .submit{
+        background-color:purple;
+        color:white;
+        border-radius:10px;
+        width:90%;
+        padding:10px;
+        font-size:20px;
+    }
+    .submit:hover{
+        transform:scale(1.1);
+        transition: transform 0.3s ease;
+        background-color:#08e717;
+    }
+    .all-forms-but{
+        background-color:purple;
+        padding:10px;
+        font-size:18px;
+        border-radius:10px;
+        margin-top:20px;
+    }
+    .all-forms-but a{
+        text-decoration:none;
+        color:white;
+    }
+    .all-forms-but:hover{
+        transform:scale(1.1);
+        transition:transform 0.3s ease;
+    }.img-view{
+      text-decoration:none;
+      color:purple;
+    }
+    .images{
+      width:150px;
+      height:150px;
+      {% comment %} background-color:red; {% endcomment %}
+      float:right;
+      margin-top:-16%;
+      {% comment %} background:tansparent;
+       {% endcomment %}
+    }
+    .photo-img{
+      width:100%;
+      height:120px;
+    }
+    .signature-img{
+      width:100%;
+      height:50px;
+    }
+    .photo-img img{
+      width:100%;
+      height:100%;
+    }
+    .signature-img img{
+      width:100%;
+      height:100%;
+    }
+  </style>
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+    integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  />
+  <body>
+    <div id="preview">
+      <div class="container-fluid">
+        <div class="outer-container">
+          <div class="col-md-12">
+            <div class="collge-name">
+              <button class="all-forms-but" onclick="window.history.back()">Back</button>
+              <h3 class="text-center" style="font-size: 28px">
+                Government Polytechnic Nagpur
+              </h3>
+              <p class="text-center" style="font-size: 18px">
+                ( An Autonomous Institute of Government of Maharashtra )
+              </p>
+            </div>
+            <div class="hostel-form-name">
+              <h3 class="text-center" style="font-size: 20px">
+                Hostel Addmission Form
+              </h3>
+            </div> 
+            <div class="images">
+              <div class="photo-img">
+                <img src="{{ s.SPhoto.url }}">
+              </div>
+              <div class="signature-img">
+                <img src="{{ s.student_signature.url }}">
+              </div>
+            </div>
+
+            <div class="info-title">
+              <h2>Student Information :</h2>
+            </div>
+          
+            <div>
+              <div class="shadow-sm p-3 mb-5 bg-body-tertiary rounded">
+                <table border="" cellpadding="10" cellspacing="0">
+                  <tr>
+                    <th>ID</th>
+                    <td>{{ s.fno }}</td>
+                  </tr>
+                  <tr>
+                    <th>Enrollment NO.</th>
+                    <td>{{ s.Enroll }}</td>
+                  </tr>
+                  <tr>
+                    <th>Name</th>
+                    <td>{{ s.name }}</td>
+                  </tr>
+                  <tr>
+                    <th>DOB</th>
+                    <td>{{ s.DOB }}</td>
+                  </tr>
+                  <tr>
+                    <th>Category</th>
+                    <td>{{ s.cast }}</td>
+                  </tr>
+                  <tr>
+                    <th>Nation</th>
+                    <td>{{ s.nationality }}</td>
+                  </tr>
+                  <tr>
+                    <th>Blood Group</th>
+                    <td>{{ s.BGroup }}</td>
+                  </tr>
+                  <tr>
+                    <th>Phone No.</th>
+                    <td>{{ s.phone1 }}</td>
+                  </tr>
+                  <tr>
+                    <th>Address</th>
+                    <td>{{ s.Address1 }}</td>
+                  </tr>
+                  <tr>
+                    <th>Email</th>
+                    <td>{{ s.Email }}</td>
+                  </tr>
+                  <tr>
+                    <th>Branch</th>
+                    <td>{{ s.Branch }}</td>
+                  </tr>
+                  <tr>
+                  <tr>
+                    <th>Number Of Backlog</th>
+                    <td>{{ s.Nu_Backlog }}</td>
+                  </tr>
+                  <tr>
+                    <th>Percentage</th>
+                    <td>{{ s.percentage|floatformat:2 }}</td>
+                  </tr>
+                    {% if s.Year != First %}
+                  <tr>
+                    <th class="label">ODD SEM Marksheet</th>
+                    <td>{{s.mark1}}<strong><b> / </b></strong>{{s.outoff1}}</td>
+                </tr>
+                <tr>
+                    <th class="label">EVEN SEM Marksheet</th>
+                    <td>{{s.mark2}}<strong><b> / </b> </strong>{{s.outoff2}}</td>
+                </tr>
+                {% else %}
+
+                <tr>
+                  <th class="label">10th Marks </th>
+                  <td>{{s.mark1}}<strong><b> / </b></strong>{{s.outoff1}}</td>
+              </tr>
+              {% endif%}
+
+                  
+                </table>
+              </div>
+            </div>
+
+            <div class="info-title">
+              <h2>Parents Information :</h2>
+            </div>
+            <div>
+              <div class="shadow-sm p-3 mb-5 bg-body-tertiary rounded">
+                <table border="" cellpadding="10" cellspacing="0">
+                  <tr>
+                    <th>Name :</th>
+                    <td>{{ s.Father_name }}</td>
+                  </tr>
+                  <tr>
+                    <th>Phone :</th>
+                    <td>{{ s.phone2 }}</td>
+                  </tr>
+                  <tr>
+                    <th>Add :</th>
+                    <td>{{ s.Address2 }}</td>
+                  </tr>
+                  <tr>
+                    <th>Occupation</th>
+                    <td>{{ s.occupation }}</td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+
+            <div class="info-title">
+              <h2>Undertakings & Signature of Student :</h2>
+            </div>
+            <div>
+              <div class="shadow-sm p-3 mb-5 bg-body-tertiary rounded">
+                <pre>
+                  
+"I, {{s.name}}, hereby declare that I understand and accept the rules,
+regulations, and code of conduct set
+forth by [Institution Name] for hostel residents. I solemnly undertake to abide
+ by these regulations during my stay
+at the hostel .I am aware tat any violation of these rules may lead to disciplinary
+ action, which could result in 
+expulsion from the hostel or the institution.  I pledge to contribute positively to 
+the hostel community and uphold
+the values of mutual respect, cooperation, and academic integrity.
+
+                    <img src="{{ s.student_signature.url }}"  class="rounded resized-image" />
+                </pre>
+                <h4 style="margin-left: 15%">Student Signature</h4>
+              </div>
+            </div>
+
+            <div class="info-title">
+              <h2>Undertakings & Signature of Parents :</h2>
+            </div>
+            <div>
+              <div class="shadow-sm p-3 mb-5 bg-body-tertiary rounded">
+                <pre>
+                  I undertake fully responsibility for any misbehavior and act of
+                  discipline of my son / daughter for which have no objection to 
+                  remove him /her from the hostel without notice.
+
+                    <img src="{{ s.father_signature.url }}" class="rounded resized-image" />  
+                </pre>
+                <h4 style="margin-left: 15%">Parents Signature</h4>
+              </div>
+            </div>
+            <div class="info-title">
+              <h2>Uploaded-Documents:</h2>
+            </div>
+            <div class="upload-documents-sec">
+              <table border="" cellpadding="10" cellspacing="0">
+                <thead>
+                  <tr>
+                    <th>Document Type</th>
+                    <th>
+                      Uploaded(
+                      <i
+                        class="fa-solid fa-check fa-lg"
+                        style="color: #08e717"
+                      ></i>
+                      /
+                      <i
+                        class="fa-solid fa-xmark fa-lg"
+                        style="color: #f20707"
+                      ></i>
+                      )
+                    </th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Marksheet 1</td>
+                    <td>
+                      {% if not s.marksheet1 == "NA" %}
+                      <i
+                        class="fa-solid fa-check fa-lg"
+                        style="color: #08e717"
+                      ></i>
+                      {% else %}
+                      <i
+                        class="fa-solid fa-xmark fa-lg"
+                        style="color: #f20707"
+                      ></i>
+                      {% endif %}
+                    </td>
+                    <td>
+                      <a href="{{ s.marksheet1.url }}" target="_blank" class="img-view">Show image</a>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Marksheet 2</td>
+                    <td>
+                      {% if not s.marksheet2 == "NA" %}
+                      <i
+                        class="fa-solid fa-check fa-lg"
+                        style="color: #08e717"
+                      ></i>
+                      {% else %}
+
+                      <i
+                        class="fa-solid fa-xmark fa-lg"
+                        style="color: #f20707"
+                      ></i>
+                      {% endif %}
+                    </td>
+                    <td>
+                      <a href="{{ s.marksheet2.url }}" target="_blank" class="img-view">Show image</a>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Domacile</td>
+                    <td>
+                      {% if not s.Domacile == "NA" %}
+                      <i
+                        class="fa-solid fa-check fa-lg"
+                        style="color: #08e717"
+                      ></i>
+                      {% else %}
+                      <i
+                        class="fa-solid fa-xmark fa-lg"
+                        style="color: #f20707"
+                      ></i>
+                      {% endif %}
+                    </td>
+                    <td>
+                      <a href="{{ s.Domacile.url }}" target="_blank" class="img-view">Show image</a>
+                    </td>
+                  </tr>
+                  {% if not s.cast == 'OPEN' or s.cast == 'SC' or s.cast == 'ST' %}
+                  <tr>
+                    <td>Non-Creamy Layer</td>
+                    <td>
+                      {% if s.Domacile %}
+                      <i
+                        class="fa-solid fa-check fa-lg"
+                        style="color: #08e717"
+                      ></i>
+                      {% else %}
+                      <i
+                        class="fa-solid fa-xmark fa-lg"
+                        style="color: #f20707"
+                      ></i>
+                      {% endif %}
+                    </td>
+                    <td>
+                      <a href="{{ s.ncl.url }}" target="_blank" class="img-view">Show image</a>
+                    </td>
+                  </tr>
+                  {% endif %}
+                  {% if  not s.cast == 'OPEN' %}
+                  <tr>
+                    <td>Caste</td>
+                    <td>
+                      {% if not s.castecert == "NA" %}
+                      <i
+                        class="fa-solid fa-check fa-lg"
+                        style="color: #08e717"
+                      ></i>
+                      {% else %}
+                      <i
+                        class="fa-solid fa-xmark fa-lg"
+                        style="color: #f20707"
+                      ></i>
+                      {% endif %}
+                    </td>
+                    <td>
+                      <a href="{{ s.castecert.url }}" target="_blank" class="img-view">Show image</a>
+                    </td>
+                  </tr>
+                  {% endif %}
+                  <tr>
+                    <td>Allotment Letter</td>
+                    <td>
+                      {% if not s.Allotment == "NA" %}
+                      <i
+                        class="fa-solid fa-check fa-lg"
+                        style="color: #08e717"
+                      ></i>
+                      {% else %}
+                      <i
+                        class="fa-solid fa-xmark fa-lg"
+                        style="color: #f20707"
+                      ></i>
+                      {% endif %}
+                    </td>
+                    <td>
+                      <a href="{{ s.Allotment.url }}" target="_blank" class="img-view">Show image</a>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Addmission Receipt</td>
+                    <td>
+                      {% if not s.Addmission == "NA" %}
+                      <i
+                        class="fa-solid fa-check fa-lg"
+                        style="color: #08e717"
+                      ></i>
+                      {% else %}
+                      <i
+                        class="fa-solid fa-xmark fa-lg"
+                        style="color: #f20707"
+                      ></i>
+                      {% endif %}
+                    </td>
+                    <td>
+                      <a href="{{ s.Addmission.url }}" target="_blank" class="img-view">Show image</a>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Course Registration Receipt</td>
+                    <td>
+                      {% if not s.Course_Registration == "NA" %}
+                      <i
+                        class="fa-solid fa-check fa-lg"
+                        style="color: #08e717"
+                      ></i>
+                      {% else %}
+                      <i
+                        class="fa-solid fa-xmark fa-lg"
+                        style="color: #f20707"
+                      ></i>
+                      {% endif %}
+                    </td>
+                    <td>
+                      <a href="{{ s.Registration.url }}" target="_blank" class="img-view">Show image</a>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Payment Receipt</td>
+                    <td>
+                      {% if not s.payment_ss == "NA" %}
+                      <i
+                        class="fa-solid fa-check fa-lg"
+                        style="color: #08e717"
+                      ></i>
+                      {% else %}
+                      <i
+                        class="fa-solid fa-xmark fa-lg"
+                        style="color: #f20707"
+                      ></i>
+                      {% endif %}
+                    </td>
+                    <td>
+                      <a href="{{ s.payment_ss.url }}" target="_blank" class="img-view">Show image</a>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div id="imageModal" class="modal">
+              <span class="close" onclick="closeModal()"
+                ><i class="fa-solid fa-xmark fa-lg" style="color: #f20707"></i
+              ></span>
+              <img class="modal-content" id="modalImage" />
+            </div>
+
+            <div class="remark-sec">
+              <table border="" cellpadding="10" cellspacing="0">
+                <tr>
+                    <form action="{% url 'admin_preview2' s.fno%}" method="post">
+                    <td>Application</td>
+                    <td style="color:green;">
+                        Accepted
+                        <input type="radio" name="application_status" value="accepted">
+                    </td>
+                    <td style="color:red;">
+                        Not-Accepted
+                        <input type="radio" name="application_status" value="not_accepted">
+                    </td>
+                    <td><input type="text" name="remark" class="in-field" placeholder="Remark"></input></td>
+                </tr>
+              </table>
+              <button type="submit" class="submit">Submit</button>
+            </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script>
+      function closeModal() {
+        const modal = document.getElementById("imageModal");
+        modal.style.display = "none";
+      }
+
+      function showImage(imageUrl) {
+        const modal = document.getElementById("imageModal");
+        const modalImage = document.getElementById("modalImage");
+        modal.style.display = "flex";
+        modalImage.src = imageUrl;
+      }
+
+      window.onclick = function (event) {
+        const modal = document.getElementById("imageModal");
+        if (event.target === modal) {
+          closeModal();
+        }
+      };
+    </script>
+  </body>
+</html>
