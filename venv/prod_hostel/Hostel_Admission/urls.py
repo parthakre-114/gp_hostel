@@ -75,7 +75,7 @@ urlpatterns = [
         path('important_datea2/',views.important_dates2,name='imp_dates2'),
         path('important_datea1/',views.important_dates1,name='imp_dates1'),
 
-        path('Up_Date/',views.up_date,name='up_date'),
+        path('Up_Date/',views.up_date,name='up_date'), 
         path('Up_Date2/',views.up_date2,name='up_date2'),
         path('Up_Date1/',views.up_date1,name='up_date1'),
 

@@ -6,6 +6,7 @@ from .models import HostelData1
 from .models import Lists
 from .models import Year
 from .models import Students_login
+from .models import Admin_login
 import datetime 
 import re
 from . import form
@@ -105,6 +106,7 @@ def admin_log(request):
     if request.method == "POST":
         username = request.POST['username']
         password = request.POST['password']
+        
         if(username == 'gp' and password == 'gp'):
             msg = "Successfull"
             request.session['username'] = username
@@ -273,7 +275,9 @@ def admin_log(request):
     if request.method == "POST":
         username = request.POST['username']
         password = request.POST['password']
-        if(username == 'gp' and password == 'gp'):
+        exist = Admin_login.objects.filter(username=username,passwd=password).exists()
+
+        if(exist):
             msg = "Successfull"
             request.session['username'] = username
             request.session['password'] = password
@@ -2024,8 +2028,7 @@ def plistUP1(request):
         if p1:
             s.p1 = p1
         s.save()
-        return render(request , 'Admin_OP/lists/plist1.html', {'message':'Provisional List uploaded successfully'})
-            
+        return render(request , 'Admin_OP/lists/plist1.html', {'message':'Provisional List uploaded successfully'})            
     return render(request , 'Admin_OP/lists/plist1.html')
 
 
@@ -2225,9 +2228,9 @@ def admin_Preview2(request, fno):
         s.remark = remark
         print(s.remark)
         s.save()
+        return redirect('report2')
         return render(request, 'Admin_OP/reports/year2.html', {'s': s})
     return render(request, 'Admin_OP/form_Preview/formview1.html', {'s': s})
-
 
 def admin_Preview1(request, fno):
     print("hello")
@@ -2240,8 +2243,6 @@ def admin_Preview1(request, fno):
         s.save()
         return render(request, 'Admin_OP/reports/year1.html', {'s': s})
     return render(request, 'Admin_OP/form_Preview/formview.html', {'s': s})
-
-
 
 def student_Preview(request):
         fno = request.session.get('fno')
