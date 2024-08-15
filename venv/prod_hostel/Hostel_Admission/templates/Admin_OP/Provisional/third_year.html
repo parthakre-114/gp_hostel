@@ -132,8 +132,7 @@
     <thead>
         <tr>
             <th scope="col">Sr.No</th>
-            <th scope="col">Enrollment No.</th>
-            <th scope="col">Form.No</th>
+            <th scope="col">ID</th>
             <th scope="col">Name</th>
             <th scope="col">Branch</th>
             <th scope="col">Category</th>
@@ -147,44 +146,54 @@
         {% for student in Allocated_students %}
         <tr>
             <td>{{ forloop.counter}}</td>
-            <td>{{ student.Enroll }}</td>
-
             <td>{{ student.fno }}</td>
             <td>{{ student.name }}</td>
             <td>{{ student.Branch }}</td>
             <td>{{ student.cast }}</td>
-            <td>{{ student.percentage }}</td>
-            <td>{{ forloop.counter}}</td>
+            <td>{{ student.percentage|floatformat:2 }}</td>
+            <td>{{ student.pmerit }}</td>
             <td>{{ student.merit_no }}</td>
             <td> {{ student.quota }} </td>
     {% endfor  %}
     
         </div>   
         </table>
-        <table class="table table-bordered border-primary">
-            <thead>
-                <tr>
-                    <th scope="col">Name</th>
-                    <th scope="col">Branch</th>
-                    <th scope="col">Cast</th>
-                    <th scope="col">Percentage</th>
-                    <th scope="col">Backlogs</th>
-                    <th scope="col">Cast-Merit NO</th>
-                </tr>
-            </thead>
-            <tbody>
-                <h1> Backlog </h1>
-                {% for i in BACKLOG_YES%}
-                <tr>
-                    <td>{{ i.name }}</td>
-                    <td>{{ i.Branch }}</td>
-                    <td>{{ i.cast }}</td>
-                    <td>{{ i.percentage }}</td>
-                    <td>{{ i.Nu_Backlog }}</td>
-                    <td>Awaited</td>
-                </tr>
-                {% endfor %}
-            </tbody>
+
+
+
+        <h4 style="margin-top:30px">
+            Boys Hostel {{ request.session.year }} Year Waiting List
+        </h4>
+          
+<table id="Page" class="styled-table">
+    <thead>
+        <tr>
+            <th scope="col">Sr.No</th>
+            <th scope="col">ID</th>
+            <th scope="col">Name</th>
+            <th scope="col">Branch</th>
+            <th scope="col">Category</th>
+            <th scope="col">Percentage</th>
+            <th scope="col">General Merit No</th>
+            <th scope="col">Category-Merit No</th>
+            <th scope="col">Quota</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for student in waiting %}
+        <tr>
+            <td>{{ forloop.counter}}</td>
+            <td>{{ student.fno }}</td>
+            <td>{{ student.name }}</td>
+            <td>{{ student.Branch }}</td>
+            <td>{{ student.cast }}</td>
+            <td>{{ student.percentage|floatformat:2 }}</td>
+            <td>{{ forloop.counter}}</td>
+            <td>{{ student.merit_no }}</td>
+            <td> {{ student.quota }} </td>
+    {% endfor  %}
+    
+        </div>   
         </table>
     </div>   
 </body>
