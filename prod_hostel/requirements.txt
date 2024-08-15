@@ -5,3 +5,5 @@ whitenoise
 row = table.objects().get(fno=request.POST.get('fno')) 
 
 oonly requirements
+gjf gerhkjj
+ejgnjgb
