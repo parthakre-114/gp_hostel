@@ -46,6 +46,7 @@ class HostelData1(models.Model):
     trans_id = models.CharField(max_length=255,default=0)
     Backlog = models.CharField(max_length=3,default='NO')
     # a = models.IntegerField(default=0)
+    pmerit = models.IntegerField(default=0)
 
 class HostelData2(models.Model):
     id = models.AutoField(primary_key=True)
@@ -92,6 +93,8 @@ class HostelData2(models.Model):
     remark = models.CharField(max_length=200, default='NA')
     payment_ss = models.FileField(upload_to='payment/', default='NA')
     trans_id = models.CharField(max_length=255,default=0)
+    pmerit = models.IntegerField(default=0)
+
 
 class HostelData3(models.Model):
     id = models.AutoField(primary_key=True)
@@ -139,6 +142,8 @@ class HostelData3(models.Model):
     remark = models.CharField(max_length=200, default='NA')
     payment_ss = models.FileField(upload_to='payment/', default='NA')
     trans_id = models.CharField(max_length=255,default=0)
+    pmerit = models.IntegerField(default=0)
+
 
 
 
