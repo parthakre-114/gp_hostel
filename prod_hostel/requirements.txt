@@ -2,19 +2,6 @@
 reportlab
 whitenoise
 
-
-hello world  jkndjknkbdh
-
-
-
-
-
-
-lhkjgdhvhmvhjvcbhjdsbs
-
-
-
-
-hvghcc bv bv vnvg
-
 row = table.objects().get(fno=request.POST.get('fno')) 
+
+oonly requirements
