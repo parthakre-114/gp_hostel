@@ -493,7 +493,6 @@ def Second_year(request):
                         
             if obtain2 == 0 and total2 == 0: 
                sem2 = 0
-               per = sem1
             else: 
                 sem2 = (obtain2/total2)*100
                 per = (sem1+sem2)/2 

@@ -934,7 +934,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
     integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
-0
+
 <body>
 
     <body class="body">
@@ -964,31 +964,43 @@
                                     <p style="margin-top:0;margin-bottom:0;font-size:26px">(Online Hostel Admission)</p>
                                 </div>
 
-                                <div class="MenuItemDivbar"><a href="{% url 'logged_home' %}">
+                                <div class="MenuItemDivbar"><a href="{% url 'secondyrdes' %}">
                                        <box-icon type='solid' name='home' style="width:30px;height:30px"></box-icon>
                                    </a> 
                                 </div>
                             {% comment %} <div class="MenuItemDivbar"><a href="{% url 'logged_home' %}">
                                 <box-icon type='solid' name='home'></box-icon>
                             </a> {% endcomment %}
-                        
+                      
                     </div>
                 </div>
             </div>
             <div class="HeaderColorDiv">
             </div>
         </div>
-  <!--Test Menu Div Start-->
+
+
+
+        <!--Test Menu Div Start-->
         <div class="stylecleardiv">
         </div>
         <div align="center">
+
         </div>
+
+
         <div class="stylecleardiv">
         </div>
         <div class="Height10pxdiv">
         </div>
+
+
+
+
         <div align="center">
+
             <div class="event-section">
+
                 <div class="secondyear-form">
                     <p style="margin: 0; padding-left: 20px;">
                     <h2> Second Year Students</h2>
@@ -997,6 +1009,8 @@
                 <div class="container">
                     <form action="{% url 'Second_year' %}" method="post" enctype="multipart/form-data">
                         {% csrf_token %}
+
+
                         <div class="content_wrapper">
                             <div class="instructions_ribbon">
                                 <ul>
@@ -1391,7 +1405,7 @@
 
                                     </tr>
                                     <td>
-                                        1. Students's Passport-Size Photo<span style="color: Red">
+                                         Students's Passport-Size Photo<span style="color: Red">
                                             <sup><b>*</b></sup></span><br />
                                     </td>
 
@@ -1409,7 +1423,7 @@
 
                                     <tr>
                                         <td>
-                                            2.Students's Signature <span style="color: Red"><sup><b>*</b></sup></span>
+                                            Students's Signature <span style="color: Red"><sup><b>*</b></sup></span>
                                         </td>
                                         <td>
                                             <input type="file" name="Signature" id="photo2" class="input-file" required>
@@ -1777,7 +1791,8 @@
 
                     
 
-                    <label> GOVERNMENT POLYTECHNIC NAGPUR </label>
+                            <label> GOVERNMENT POLYTECHNIC NAGPUR BOYS HOSTEL</label>
+
 
     </body>
     {% if msg %}

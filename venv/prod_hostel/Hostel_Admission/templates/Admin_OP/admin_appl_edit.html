@@ -1262,26 +1262,7 @@
                                 <td>
                                 </td>
                             </tr>
-        {% if data.Year == 'First' %}
-
-
-        <tr>
-            <td id="yearmarks2">
-                5. Marks Obtained in 10th    <span style="color: Red"><sup><b>*</b></sup></span>
-            </td>
-            <td>
-                <input type="number" value="{{data.mark1}}"name="Obtained1" placeholder="Marks Obtain">
-            </td>
-        </tr>
-  
-        <tr>
-            <td>
-                  6. OutOff     <span style="color: Red"><sup><b>*</b></sup></span>          
-            </td>
-            <td><input type="number"  value="{{data.outoff1}}"name="Total1" placeholder="OutOff"></td>
-
-        </tr>
-        {% else %}
+        
         
                             <tr>
                                 <td id="yearmarks2">
@@ -1325,7 +1306,7 @@
                                 <td><input type="number"  value="{{data.outoff2}}" name="Total2" placeholder="OutOff"></td>
                 
                             </tr>
-{% endif %}
+
                            
                         </table>
         
@@ -1352,15 +1333,14 @@
         
                                 </tr>
                                 <td>
-                                    1. Students's Passport-Size Photo  {{ data.SPhoto.url }}<span style="color: Red">
+                                    1. Students's Passport-Size Photo<span style="color: Red">
                                         <sup><b>*</b></sup></span><br />
                                 </td>
                                 <td>
-                                    <input type="file"accept="image/*" name="photo" id="photo1" class="input-file" >
+                                    <input type="file"accept="image/*" name="photo" id="photo1" class="input-file" required>
                                 </td>
                                 <td>
-                                    <a href="{{ data.SPhoto.url }}" target="_blank" class="img-view"> Show Image </a>
-
+                                    <a href="{{ s.SPhoto.url }}" target="_blank" class="img-view">Show image</a>
 
                                   </td>
                             </tr>
@@ -1370,11 +1350,15 @@
                                     2.Students's Signature <span style="color: Red"><sup><b>*</b></sup></span>
                                 </td>
                                 <td>
-                                    <input type="file" name="Signature" id="photo2" class="input-file" >
+                                    <input type="file" name="Signature" id="photo2" class="input-file" required>
                                 </td>
                                 <td>
-                                    <a href="{{ data.student_signature.url }}" target="_blank" class="img-view"> Show Image </a>
-
+                                    <button
+                                      class="btn btn-primary btn-show-image"
+                                      onclick="showImage('photo2')" class="input-but"
+                                    >
+                                      Show Image
+                                    </button>
                                   </td>
                             </tr>
         
@@ -1383,11 +1367,15 @@
                                     3.Father Signature<span style="color: Red"><sup><b>*</b></sup></span>
                                 </td>
                                 <td>
-                                    <input type="file" name="fSignature" id="photo3" class="input-file" >
+                                    <input type="file" name="fSignature" id="photo3" class="input-file" required>
                                 </td>
                                 <td>
-                                    <a href="{{ data.father_signature.url }}" target="_blank" class="img-view"> Show Image </a>
-
+                                    <button
+                                      class="btn btn-primary btn-show-image"
+                                      onclick="showImage('photo3')" class="input-but"
+                                    >
+                                      Show Image
+                                    </button>
                                   </td>
                             </tr>
     {% comment %} {% with year=2 %}
@@ -1410,49 +1398,41 @@
                                   </td>
                             </tr> {% endcomment %}
                             {% comment %} {% elif 2==2 %}  {% endcomment %}
-                            {% if data.Year == 'First' %}
                             <tr>
                                 <td id="semmarksheet"> 
-                                    4. 10th Marksheet  <span style="color: Red">
+                                    4.1 sem Marksheet  <span style="color: Red">
                                         <sup><b>*</b></sup></span><br />
                                 </td>
                                 <td>
                                     <input type="file" name="Marksheet1" id="photo4"class="input-file" >
                                 </td>
                                 <td>
-                                    <a href="{{ data.marksheet1.url }}" target="_blank" class="img-view"> Show Image </a>
-
-                                  </td>
-                            </tr>
-                            {% else %}
-                            <tr>
-                                <td id="semmarksheet"> 
-                                    4. 1 sem Marksheet  <span style="color: Red">
-                                        <sup><b>*</b></sup></span><br />
-                                </td>
-                                <td>
-                                    <input type="file" name="Marksheet1" id="photo4"class="input-file" >
-                                </td>
-                                <td>
-                                    <a href="{{ data.marksheet1.url }}" target="_blank" class="img-view"> Show Image </a>
-
+                                    <button
+                                      class="btn btn-primary btn-show-image"
+                                      onclick="showImage('photo4')" class="input-but"
+                                    >
+                                      Show Image
+                                    </button>
                                   </td>
                             </tr>
 
                             <tr id="blockmarksheet">
                                 <td>
-                                    4. 2 sem  Marksheet  <span style="color: Red">
+                                    4.2sem  Marksheet  <span style="color: Red">
                                         <sup><b>*</b></sup></span><br />
                                 </td>
                                 <td>
                                     <input type="file" name="Marksheet2" id="photo4"class="input-file">
                                 </td>
                                 <td>
-                                    <a href="{{ data.marksheet2.url }}" target="_blank" class="img-view"> Show Image </a>
-
+                                    <button
+                                      class="btn btn-primary btn-show-image"
+                                      onclick="showImage('photo4')" class="input-but"
+                                    >
+                                      Show Image
+                                    </button>
                                   </td>
                             </tr>
-                            {% endif %}
                              {% comment %} {% elif 3 == 2 %}
                             <tr>
                                 <td id="semmarksheet">
@@ -1497,11 +1477,15 @@
                                     5.Allotment Letter<span style="color: Red"><sup><b>*</b></sup></span>
                                 </td>
                                 <td>
-                                    <input type="file" name="Allotment" id="photo5"class="input-file" >
+                                    <input type="file" name="Allotment" id="photo5"class="input-file" required>
                                 </td>
                                 <td>
-                                    <a href="{{ data.Allotment.url }}" target="_blank" class="img-view"> Show Image </a>
-
+                                    <button
+                                      class="btn btn-primary btn-show-image"
+                                      onclick="showImage('photo5')" class="input-but"
+                                    >
+                                      Show Image
+                                    </button>
                                   </td>
                 
                             </tr>
@@ -1514,8 +1498,12 @@
                                     <input type="file" name="Domacile" id="photo6" class="input-file" >
                                 </td>
                                 <td>
-                                    <a href="{{ data.Domacile.url }}" target="_blank" class="img-view"> Show Image </a>
-
+                                    <button
+                                      class="btn btn-primary btn-show-image"
+                                      onclick="showImage('photo6')" class="input-but"
+                                    >
+                                      Show Image
+                                    </button>
                                   </td>
                             </tr>
                             <tr  id="caste-file-block">
@@ -1526,8 +1514,10 @@
                                     <input type="file" name="cast_cert" id="photo9" class="input-file" >
                                 </td>
                                 <td>
-                                    <a href="{{ data.castecert.url }}" target="_blank" class="img-view"> Show Image </a>
-
+                                    <button class="btn btn-primary btn-show-image" onclick="showImage('photo9')"
+                                        class="input-but">
+                                        Show Image
+                                    </button>
                                 </td>
 
                             </tr>
@@ -1540,8 +1530,10 @@
                                         >
                                 </td>
                                 <td>
-                                    <a href="{{ data.ncl.url }}" target="_blank" class="img-view"> Show Image </a>
-
+                                    <button class="btn btn-primary btn-show-image"
+                                        onclick="showImage('photo10')" class="input-but">
+                                        Show Image
+                                    </button>
                                 </td>
 
                             </tr>
@@ -1552,11 +1544,15 @@
                                     7.Admission Receipt<span style="color: Red"><sup><b>*</b></sup></span>
                                 </td>
                                 <td>
-                                    <input type="file" name="Addmission" id="photo7"class="input-file" >
+                                    <input type="file" name="Addmission" id="photo7"class="input-file" required>
                                 </td>
                                 <td>
-                                    <a href="{{ data.Addmission.url }}" target="_blank" class="img-view"> Show Image </a>
-
+                                    <button
+                                      class="btn btn-primary btn-show-image"
+                                      onclick="showImage('photo7')" class="input-but"
+                                    >
+                                      Show Image
+                                    </button>
                                   </td>
                 
                             </tr>
@@ -1568,11 +1564,15 @@
                                    8. Course Registration Receipt<span style="color: Red"><sup><b>*</b></sup></span>
                                 </td>
                                 <td>
-                                    <input type="file" name="Registration" id="photo8"class="input-file" >
+                                    <input type="file" name="Registration" id="photo8"class="input-file" required>
                                 </td>
                                 <td>
-                                    <a href="{{ data.Registration.url }}" target="_blank" class="img-view"> Show Image </a>
-
+                                    <button
+                                      class="btn btn-primary btn-show-image"
+                                      onclick="showImage('photo8')" class="input-but"
+                                    >
+                                      Show Image
+                                    </button>
                                   </td>
                 
                             </tr>
@@ -1583,11 +1583,15 @@
                                    9. Payment Receipt<span style="color: Red"><sup><b>*</b></sup></span>
                                 </td>
                                 <td>
-                                    <input type="file" name="payment_ss" id="photo9"class="input-file" >
+                                    <input type="file" name="payment_ss" id="photo9"class="input-file" required>
                                 </td>
                                 <td>
-                                    <a href="{{ data.payment_ss.url }}" target="_blank" class="img-view"> Show Image </a>
-
+                                    <button
+                                      class="btn btn-primary btn-show-image"
+                                      onclick="showImage('photo9')" class="input-but"
+                                    >
+                                      Show Image
+                                    </button>
                                   </td>
                 
                             </tr>
@@ -1745,7 +1749,7 @@
                             </pre>
                         </td>
                         <td>
-                            <input type="checkbox" ><span>Agree to terms and conditions</span>
+                            <input type="checkbox" required><span>Agree to terms and conditions</span>
                         </td>
                         <td>
                         </td>
@@ -1766,7 +1770,7 @@
                             </pre>
                         </td>
                         <td>
-                            <input type="checkbox" ><span>Agree to terms and conditions</span>
+                            <input type="checkbox" required><span>Agree to terms and conditions</span>
                         </td>
                         <td>
                         </td>

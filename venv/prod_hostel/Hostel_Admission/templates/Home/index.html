@@ -574,7 +574,16 @@
 
 
 
-     
+      .slider{
+          width: 1000px;
+          height: 300px;
+          align-items: center;
+          background-size: 100% 100%;
+          
+          background-image: url({% static 'img/g1.png' %});
+          animation: changeImage 20s linear infinite;
+      
+      }
 
       .event-section{
           width: 1000px;
@@ -1165,58 +1174,12 @@
     .prev:hover, .next:hover {
         background-color: rgba(0,0,0,0.8);
     }
-    
-    .slider2 {
-        position: relative;
-        width:1000px;
-        height: 500px;
-        margin: auto;
-        overflow: hidden;
-        display: flex;
-        transition: transform 0.5s ease-in-out;
-
-    }
-    
-    .slide {
-        min-width: 100%;
-        box-sizing: border-box;
-
-    }
-    
-    .slide img {
-        width: 100%;
-        height: auto;
-        display: block;
-        /* object-fit: cover; Ensures the image covers the container without distortion */
-        /* height: 100%; Adjust to fit the height of the container */
-
-    }
-    
-    button {
-        position: absolute;
-        top: 50%;
-        transform: translateY(-50%);
-        background-color: rgba(0, 0, 0, 0.5);
-        color: white;
-        border: none;
-        cursor: pointer;
-        padding: 10px;
-        font-size: 18px;
-    }
-    
-    .prev {
-       
-    }
-    
-    #next{
-        right: 10px;
-    }
-    
   </style>
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/fontawesome.min.css" integrity="sha512-B46MVOJpI6RBsdcU307elYeStF2JKT87SsHZfRSkjVi4/iZ3912zXi45X5/CBr/GbCyLx6M1GQtTKYRd52Jxgw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body class="body">
+  <form method="post" action="./" id="form1">
       <div class="aspNetHidden">
           <input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="/wEPDwUKMTY1NDU2MTA1MmRkbjd70GvCgYa1qGR9qPa5YVU5Ob5/RvTygev3Ex0QTSk=">
           </div>
@@ -1403,7 +1366,7 @@
                   </div>
               <br>
                   <div class="staff-card">
-                      <img class="staff-image" src="{% static 'img/bhadekarsir.jpg' %}" alt="Staff 3">
+                      <img class="staff-image" src="{% static 'img/bhadekarsir.png' %}" alt="Staff 3">
                       <div class="staff-name"> Prof.Lokesh L.Bhadekar</div>
                       <div class="staff-post"> Warden 1<br>Government Polytechnic Nagpur<br></div>
                   </div>
@@ -1533,7 +1496,36 @@
                   <span class="dot" onclick="currentSlide(9)"></span>
               </div> {% endcomment %}
           
-              
+              <script>
+                  let slideIndex = 1;
+                  showSlides(slideIndex);
+          
+                  // Next/previous controls
+                  function plusSlides(n) {
+                      showSlides(slideIndex += n);
+                  }
+          
+                  // Thumbnail image controls
+                  function currentSlide(n) {
+                      showSlides(slideIndex = n);
+                  }
+          
+                  function showSlides(n) {
+                      let i;
+                      let slides = document.getElementsByClassName("mySlides");
+                      let dots = document.getElementsByClassName("dot");
+                      if (n > slides.length) {slideIndex = 1}    
+                      if (n < 1) {slideIndex = slides.length}
+                      for (i = 0; i < slides.length; i++) {
+                          slides[i].style.display = "none";  
+                      }
+                      for (i = 0; i < dots.length; i++) {
+                          dots[i].className = dots[i].className.replace(" active", "");
+                      }
+                      slides[slideIndex-1].style.display = "block";  
+                      dots[slideIndex-1].className += " active";
+                  }
+              </script>
               
       </div>
   </div>
@@ -1606,39 +1598,6 @@
   </div>
 </div>
 </div>
+  </form>
 
-<script>
-    let currentSlide = 0;
-
-    function showSlide(index) {
-        const slides = document.querySelectorAll('.slide');
-        const totalSlides = slides.length;
-        if (index >=  totalSlides) {
-            currentSlide = 0;
-        } else if (index < 0) {
-            currentSlide = totalSlides - 1;
-        } else {
-            currentSlide = index;
-        }
-        slides.forEach((slide, i) => {
-            slide.style.display = i === currentSlide ? 'block' : 'none';
-            slide.style.transition="transform 0.5s ease-in-out";
-        });
-        //slides.style.display = "none";
-    }
-    
-    function nextSlide() {
-        showSlide(currentSlide + 1);
-    }
-    
-    function prevSlide() {
-        showSlide(currentSlide - 1);
-    }
-    showSlide(currentSlide);
-
-    setInterval(nextSlide, 1500);
-  </script>
-
-
-</body>
-</html>
+</body></html>
