@@ -1169,7 +1169,7 @@ def logout(request):
     return render(request , 'Admin_OP/login.html')
 
 def Year3_report(request):
-    data = HostelData3.objects.all().filter(status="accepted")
+    data = HostelData3.objects.filter(status="accepted")
     if request.method == 'POST':
         tseets = int(request.POST['Tseats'])
         print(str(tseets) + "tseats")
@@ -1177,12 +1177,13 @@ def Year3_report(request):
         OBCseets = int(request.POST['OBC'])
         SCseets = int(request.POST['SC'])
         STseets = int(request.POST['ST'])
-        NTseets = int(request.POST['NT'])
+        # NTseets = int(request.POST['NT'])
         SBCseets = int(request.POST['SBC'])
         
         data_dict = {}
         for key, value in request.POST.items():
             try:
+                print(key)
                 data_dict[key] = int(value)
             except ValueError:
                 data_dict[key] = value
@@ -1198,11 +1199,13 @@ def Year3_report(request):
             'OBC': OBCseets,
             'SC': SCseets,
             'ST': STseets,
-            'NT': NTseets,
+            # 'NT': NTseets,
             'SBC':SBCseets
         }
         
         Backlog_NO_students = sorted(backlog_NO_students ,key=lambda x:(-x.percentage))
+        for index, student in enumerate(Backlog_NO_students):
+           student.pmerit = index + 1
         Backlog_Yes_students = sorted(backlog_YES_students ,key=lambda x:( x.Nu_Backlog , -x.percentage))
         
         print(data_dict)       
@@ -1214,10 +1217,10 @@ def Year3_report(request):
             'OBC':0,
             'SC':0,
             'SBC':0,
-            'NT':0,
+            'DT/NT/VJ':0,
             'ST':0
         }
-        ls = ['OBC','SC','SBC','NT','ST']
+        ls = ['OBC','SC','SBC','DT/NT/VJ','ST']
         
         # for OPENs
         for i in range(OPENseets):
@@ -1231,12 +1234,15 @@ def Year3_report(request):
             csmerit[student.cast] += 1
             # print(csmerit[student.cast])
             seat = student.cast+'-'+ str(csmerit[student.cast]) #merit no
-            stud['merit_no'] = ''
+            if student.cast != "OPEN":
+                stud['merit_no'] = seat
+            else:
+                stud['merit_no'] = ''         
             stud['quota'] = 'OPEN'
             Allocated_students.append(stud)
             data_dict['OPEN'] -= 1
             
-            print(stud['name'])
+            # print(stud['name'])
             # tseets -= 1 
             open_student_seat[student.name] = seat
             count += 1
@@ -1262,6 +1268,7 @@ def Year3_report(request):
                     stud['merit_no'] = seat
                     stud['quota'] = student.cast
                     Allocated_students.append(stud)
+                    
                     # print (student.name +'  '+ seat)
                 else:
                     # obc to sbc
@@ -1274,11 +1281,10 @@ def Year3_report(request):
                       stud['quota'] = 'OBC'
                       Allocated_students.append(stud)
                       
-                      print(stud['name'])
-                      rac.append(stud)
-                      
+                    #   print(stud['name'])
+                    #   rac.append(stud) 
                       # sc to st
-                    if student_category == 'ST' and data_dict.get('SC',0) > 0 :
+                    elif student_category == 'ST' and data_dict.get('SC',0) > 0 :
                       csmerit['SC'] += 1
                       seat = student.cast+'-'+''+str(csmerit[student.cast])
                     #   student_seat[student.name] = seat
@@ -1287,7 +1293,7 @@ def Year3_report(request):
                       stud['quota'] = 'SC'
                       Allocated_students.append(stud)
                      ##  st to sc
-                    if student_category == 'SC' and data_dict.get('ST',0) > 0 :
+                    elif student_category == 'SC' and data_dict.get('ST',0) > 0 :
                       csmerit['ST'] += 1
                       seat = student.cast+'-'+''+str(csmerit[student.cast])
                     #   student_seat[student.name] = seat
@@ -1295,33 +1301,39 @@ def Year3_report(request):
                       stud['merit_no'] = seat
                       stud['quota'] = 'ST'
                       Allocated_students.append(stud)
-                      
-                    print(stud['name'])
-                    rac.append(stud)  
+                    else:  
+                    #   print(stud['name'])
+                      rac.append(stud)  
              #rac       
-                # print(rac)
-                for i in range(len(rac)):
+        print(rac[1])
+        # print(Allocated_students)
+        rac = sorted(rac ,key=lambda x: x['percentage'])
+        fn_available_seats = tseets - len(Allocated_students) 
+        # i = fn_available_seats
+        for i in range(fn_available_seats,0,-1):
                     #   print(i)
-                      print(tseets)
-                      fn_available_seats = tseets - len(Allocated_students) 
+                    #   print(fn_available_seats)
+                    #   print(rac[i]['name'])
                       if fn_available_seats > 0:
-                            
-                            print("in rac")
-                            rac[i]['merit_no'] = ''
-                            rac[i]['quota'] = 'RAC'
-                            if data_dict.get(rac[i]['cast'], 0) > 0:
-                                csmerit[rac[i]['cast']] += 1
+                            # print(i)
+                            # print(rac[i]['name'])
+                            # rac
+                            rac[-1]['merit_no'] = ''
+                            rac[-1]['quota'] = 'General Merit Against Vacancy'
+                            if data_dict.get(rac[-1]['cast'], 0) > 0:
+                                csmerit[rac[-1]['cast']] += 1
                             else:
                                 data_dict['OPEN'] -= 1
-                            Allocated_students.append(rac[i])
-                            rac.pop(0)
-                             
-                                                  
+                            Allocated_students.append(rac[-1])
+                            # print(rac)
+                            rac.pop()                      
                       else:
                             break  
                     #  print(type(Allocated_students))
-        # print(rac)        
+        # print(rac)    
+            
         Allocated = sorted(Allocated_students ,key=lambda x:(-x['percentage']))
+        rac = sorted(rac ,key=lambda x:(-x['percentage']))
         
         return render(request , 'Admin_OP/Provisional/third_year.html',{
             'BACKLOG_YES':Backlog_Yes_students , 
@@ -1523,7 +1535,7 @@ def Year2_report(request):
 
 
 def Year1_report(request):
-    data = HostelData3.objects.filter(status="accepted")
+    data = HostelData1.objects.filter(status="accepted")
     if request.method == 'POST':
         tseets = int(request.POST['Tseats'])
         print(str(tseets) + "tseats")
@@ -1531,12 +1543,13 @@ def Year1_report(request):
         OBCseets = int(request.POST['OBC'])
         SCseets = int(request.POST['SC'])
         STseets = int(request.POST['ST'])
-        NTseets = int(request.POST['NT'])
+        # NTseets = int(request.POST['NT'])
         SBCseets = int(request.POST['SBC'])
         
         data_dict = {}
         for key, value in request.POST.items():
             try:
+                print(key)
                 data_dict[key] = int(value)
             except ValueError:
                 data_dict[key] = value
@@ -1552,11 +1565,13 @@ def Year1_report(request):
             'OBC': OBCseets,
             'SC': SCseets,
             'ST': STseets,
-            'NT': NTseets,
+            # 'NT': NTseets,
             'SBC':SBCseets
         }
         
         Backlog_NO_students = sorted(backlog_NO_students ,key=lambda x:(-x.percentage))
+        for index, student in enumerate(Backlog_NO_students):
+           student.pmerit = index + 1
         Backlog_Yes_students = sorted(backlog_YES_students ,key=lambda x:( x.Nu_Backlog , -x.percentage))
         
         print(data_dict)       
@@ -1568,10 +1583,10 @@ def Year1_report(request):
             'OBC':0,
             'SC':0,
             'SBC':0,
-            'NT':0,
+            'DT/NT/VJ':0,
             'ST':0
         }
-        ls = ['OBC','SC','SBC','NT','ST']
+        ls = ['OBC','SC','SBC','DT/NT/VJ','ST']
         
         # for OPENs
         for i in range(OPENseets):
@@ -1585,12 +1600,15 @@ def Year1_report(request):
             csmerit[student.cast] += 1
             # print(csmerit[student.cast])
             seat = student.cast+'-'+ str(csmerit[student.cast]) #merit no
-            stud['merit_no'] = ''
+            if student.cast != "OPEN":
+                stud['merit_no'] = seat
+            else:
+                stud['merit_no'] = ''         
             stud['quota'] = 'OPEN'
             Allocated_students.append(stud)
             data_dict['OPEN'] -= 1
             
-            print(stud['name'])
+            # print(stud['name'])
             # tseets -= 1 
             open_student_seat[student.name] = seat
             count += 1
@@ -1616,6 +1634,7 @@ def Year1_report(request):
                     stud['merit_no'] = seat
                     stud['quota'] = student.cast
                     Allocated_students.append(stud)
+                    
                     # print (student.name +'  '+ seat)
                 else:
                     # obc to sbc
@@ -1628,11 +1647,10 @@ def Year1_report(request):
                       stud['quota'] = 'OBC'
                       Allocated_students.append(stud)
                       
-                      print(stud['name'])
-                      rac.append(stud)
-                      
+                    #   print(stud['name'])
+                    #   rac.append(stud) 
                       # sc to st
-                    if student_category == 'ST' and data_dict.get('SC',0) > 0 :
+                    elif student_category == 'ST' and data_dict.get('SC',0) > 0 :
                       csmerit['SC'] += 1
                       seat = student.cast+'-'+''+str(csmerit[student.cast])
                     #   student_seat[student.name] = seat
@@ -1641,7 +1659,7 @@ def Year1_report(request):
                       stud['quota'] = 'SC'
                       Allocated_students.append(stud)
                      ##  st to sc
-                    if student_category == 'SC' and data_dict.get('ST',0) > 0 :
+                    elif student_category == 'SC' and data_dict.get('ST',0) > 0 :
                       csmerit['ST'] += 1
                       seat = student.cast+'-'+''+str(csmerit[student.cast])
                     #   student_seat[student.name] = seat
@@ -1649,35 +1667,41 @@ def Year1_report(request):
                       stud['merit_no'] = seat
                       stud['quota'] = 'ST'
                       Allocated_students.append(stud)
-                      
-                    print(stud['name'])
-                    rac.append(stud)  
+                    else:  
+                    #   print(stud['name'])
+                      rac.append(stud)  
              #rac       
-                # print(rac)
-                for i in range(len(rac)):
+        print(rac[1])
+        # print(Allocated_students)
+        rac = sorted(rac ,key=lambda x: x['percentage'])
+        fn_available_seats = tseets - len(Allocated_students) 
+        # i = fn_available_seats
+        for i in range(fn_available_seats,0,-1):
                     #   print(i)
-                      print(tseets)
-                      fn_available_seats = tseets - len(Allocated_students) 
+                    #   print(fn_available_seats)
+                    #   print(rac[i]['name'])
                       if fn_available_seats > 0:
-                            
-                            print("in rac")
-                            rac[i]['merit_no'] = ''
-                            rac[i]['quota'] = 'General Merit Against Vacancy'
-                            if data_dict.get(rac[i]['cast'], 0) > 0:
-                                csmerit[rac[i]['cast']] += 1
+                            # print(i)
+                            # print(rac[i]['name'])
+                            # rac
+                            rac[-1]['merit_no'] = ''
+                            rac[-1]['quota'] = 'General Merit Against Vacancy'
+                            if data_dict.get(rac[-1]['cast'], 0) > 0:
+                                csmerit[rac[-1]['cast']] += 1
                             else:
                                 data_dict['OPEN'] -= 1
-                            Allocated_students.append(rac[i])
-                            rac.pop(0)
-                             
-                                                  
+                            Allocated_students.append(rac[-1])
+                            # print(rac)
+                            rac.pop()                      
                       else:
                             break  
                     #  print(type(Allocated_students))
-        # print(rac)        
+        # print(rac)    
+            
         Allocated = sorted(Allocated_students ,key=lambda x:(-x['percentage']))
+        rac = sorted(rac ,key=lambda x:(-x['percentage']))
         
-        return render(request , 'Admin_OP/Provisional/first_year.html',{
+        return render(request, 'Admin_OP/Provisional/second_year.html',{
             'BACKLOG_YES':Backlog_Yes_students , 
             'BACKLOG_NO':Backlog_NO_students ,
             'Allocated_students':Allocated,
