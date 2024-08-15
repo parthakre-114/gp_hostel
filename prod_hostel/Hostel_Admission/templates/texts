@@ -1,0 +1,17 @@
+document.getElementById("cast").addEventListener("change", (event)=> {
+    let selectedcaste = event.target.value;
+    console.log(selectedcaste);
+    if (selectedcaste === 'SC' || selectedcaste === 'ST') {
+        noncreamylayerblock.style.display = "none";
+        casteblock.style.display = "";
+    }
+    else if (selectedcaste === "OPEN") {
+        noncreamylayerblock.style.display = "none";
+        casteblock.style.display = "none";
+    }
+    else {
+        noncreamylayerblock.style.display = "";
+        casteblock.style.display = "";
+    }
+});
+

@@ -1,0 +1,661 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Schedule</title>
+    <style>
+      .HeaderColorDiv {
+        /* background-color: #394b71; */
+        background-color: #0077b6;
+        height: 30px;
+        width: 1000px;
+        /* background-image: linear-gradient(-90deg,#000080, #0077b6, green,yellow, orange); */
+    }
+    .width1000pxdiv {
+        width: 100%;
+    }
+    .headerribbon_content {
+        width: 100%;
+    }
+    .headerribbon {
+        width: 100%;
+        background-color: #FFF;
+        display: flex;
+        flex-direction: row;
+        
+        
+    }
+    .headerribbon_title_text {
+        /* height: 100px; */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        /* float: left; */
+        font-family: Georgia;
+        font-size: min(38px, max(30px, 3vw));
+        /* font: 3vw Georgia; */
+        /* line-height: 100px; */
+        color: #281d82;
+        margin-left: 3%;
+    }
+    .MenuItemDivbar
+    {
+        width: fit-content;
+        float: left;
+        text-align: center;
+        margin-left: 60px;
+        background: white;
+        font-family: Calibri;
+        color: black;
+        {% comment %} font-weight: bold; {% endcomment %}
+        padding-top: 5px;
+        padding-bottom: 5px;
+        {% comment %} box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); {% endcomment %}
+        position: relative; /*pointer-events: none;*/
+        
+    }
+    .image1{
+        margin-left: 10%;
+        padding: 10px auto;
+    }
+    
+    .HeaderColorDiv {
+        /* background-color: #394b71; */
+        background-color: #0077b6;
+        height: 30px;
+        width: 1000px;
+        /* background-image: linear-gradient(-90deg,#000080, #0077b6, green,yellow, orange); */
+    }
+    
+    .body
+    {
+        background-image: url({% static 'img/bg1.png' %});
+    }
+    .avoidclick
+    {
+        pointer-events: none;
+    }
+    .spacediv
+    {
+        height: 70px;
+        width: 10px;
+        background: #E6E6E6;
+    }
+    
+    .btn
+    {
+        width: 135px;
+        height: 40px;
+        max-height: 40px;
+        max-width: 150px; /* border: solid 2px #b62a26;     color: #b62a26; */
+        border: solid 2px #0077B6;
+        color: #0077B6;
+        background: white;
+        border-radius: 6px;
+        cursor: pointer;
+        font-family: Calibri;
+        font-size: medium;
+        margin-right: 20px;
+        padding: 8px;
+    }
+    
+    .btn:hover
+    {
+        border: solid 2px white;
+        color: white; /*background: #b62a26;*/
+        background: #0077B6;
+    }
+    
+    .btnclick
+    {
+        width: 100px; /*height: 25px;     max-height: 25px;     max-width: 150px;*/ /* border: solid 2px #b62a26;     color: #b62a26; */
+        border: solid 2px #0077B6;
+        color: #0077B6;
+        background: white;
+        border-radius: 6px;
+        cursor: pointer;
+        font-family: Calibri;
+        font-size: medium;
+        margin-right: 20px;
+        padding: 2px;
+    }
+    
+    .btnclick:hover
+    {
+        border: solid 2px white;
+        color: white; /*background: #b62a26;*/
+        background: #0077B6;
+    }
+    
+    
+      
+    .hplinkhome
+    {
+        color: white;
+        text-decoration: none;
+        font-weight: bold;
+        font-size: 15px;
+        position: relative;
+    }
+    
+    .hplinkhome:hover
+    {
+        color: yellow;
+    }
+   
+
+    .headingdivupdate
+    {
+        /*background:#b62a26;*/ /*background:#73D674;*/ /*background: #0074b3;*/
+        background: white; /*color: White;*/
+        color: black; /*color:#145B9B;*/
+        font-size: min(max(1.4vw, 12px), 16px);
+        font-family: Calibri;
+        margin: 3px;
+        border: 2px solid #00A4BE;
+        font-weight: bold;
+        border-radius: 6px;
+        text-align: justify;
+        padding-left: 20px;
+        padding-right: 20px; 
+     max-height:250px;
+    
+    }
+    .headingdiv
+    {
+        text-align: center; /*background:#b62a26;*/ /*background:#73D674;*/
+        background: #0074b3;
+        color: White; /*color:#145B9B;*/
+        font-size: large;
+        font-family: Calibri;
+        margin: 3px;
+        border: 2px solid #00A4BE;
+        font-weight: bold;
+        border-radius: 6px;
+    }
+    .centermsgdiv
+    {
+        width: 1000px;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        font-family: Calibri;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        background-color: white;
+        font-size: medium;
+        font-weight: bold;
+        max-height: 70px;
+        border-radius: 6px;
+        border: 1px solid #0077b6;
+    }
+
+    .hoverdiv
+    {
+        font-family: Calibri;
+        text-align: center;
+        color: #b62a26;
+        margin-top: 3px;
+        margin-bottom: 3px;
+        font-weight: bold;
+        position: relative;
+        text-decoration: none;
+    }
+    .hoverdivbar
+    {
+        font-family: Calibri;
+        text-align: center;
+        color: #0077b6;
+        margin-top: 3px;
+        margin-bottom: 3px;
+        font-weight: bold;
+        position: relative;
+        text-decoration: none;
+    }
+  
+
+    
+
+    
+    
+    
+    .HeaderColorDiv
+    {
+        /*background-color:#394b71;*/
+        background-color: #0077b6;
+        height: 30px;
+        width: 1000px; /*background-image: linear-gradient(-90deg,#000080, #0077b6, green,yellow, orange);*/
+    }
+   
+  
+    .MenuItemDivbar a{
+        text-decoration:none;
+        font-size:60px;
+    }
+    .MenuItemDivbar:hover .NotificationSpan
+    {
+        /*If you hover over the help icon, show the help_popup span*/
+        display: block;
+    }
+    .MenuItemLastDivbar
+    {
+        width: 490px;
+        float: left;
+        text-align: center;
+        background: white;
+        font-family: Calibri;
+        color: #0077b6;
+        font-weight: bold;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        position: relative;
+    }
+    
+    .MenuItemLastDivbar:hover .NotificationSpan
+    {
+        /*If you hover over the help icon, show the help_popup span*/
+        display: block;
+    }
+    
+    .MenuItemDivHome
+    {
+        width: 240px;
+        float: left; /*text-align: center;*/
+        border-bottom-color: #e6e6e6; /*border-bottom-color:#FFD700;*/
+        border-bottom-style: solid;
+        margin-left: 15px;
+        margin-right: 10px;
+        background: white;
+        font-family: Calibri; /*color:#b62a26;*/
+        color: #0077b6;
+        font-weight: bold;
+        padding-top: 5px;
+        padding-bottom: 5px; /*box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);*/
+        position: relative;
+        top: 1px;
+        left: -1px;
+        border-bottom-style: solid; /*border-bottom-color: inherit;*/
+        border-bottom-width: medium;
+    }
+    
+    .MenuItemDivHome:hover .NotificationSpan
+    {
+        /*If you hover over the help icon, show the help_popup span*/
+        display: block;
+        left: 100px;
+    }
+    
+    .MenuItemDivHomeLast
+    {
+        width: 240px;
+        float: left; /*text-align: center;*/
+        margin-left: 15px;
+        margin-right: 10px;
+        background: white;
+        font-family: Calibri; /*color:#b62a26;*/
+        color: #0077b6;
+        font-weight: bold;
+        padding-top: 5px;
+        padding-bottom: 5px; /*box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);*/
+        position: relative;
+        top: 1px;
+        left: -1px;
+    }
+    
+    .MenuItemDivHomeLast:hover .NotificationSpan
+    {
+        /*If you hover over the help icon, show the help_popup span*/
+        display: block;
+        left: 100px;
+    }
+    
+    .MenuItemDiv
+    {
+        width: 240px;
+        float: left; /*text-align: center;*/
+        margin-left: 15px;
+        margin-right: 10px;
+        background: white;
+        font-family: Calibri; /*color:#b62a26;*/
+        color: #0077b6;
+        font-weight: bold;
+        padding-top: 5px;
+        padding-bottom: 5px; /*box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);*/
+        position: relative;
+    }
+    
+    .MenuItemLastDiv
+    {
+        width: 240px;
+        float: left;
+        text-align: center;
+        background: white;
+        font-family: Calibri;
+        color: #b62a26;
+        font-weight: bold;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        position: relative;
+    }
+    
+    .MenuItemDiv:hover .NotificationSpan
+    {
+        /*If you hover over the help icon, show the help_popup span*/
+        display: block;
+        left: 100px;
+    }
+
+    .MenuItemLastDiv:hover .NotificationSpan
+    {
+        /*If you hover over the help icon, show the help_popup span*/
+        display: block;
+    }
+    
+    .NotificationSpan
+    {
+        /*Normally, hide this span*/
+        display: none;
+        position: absolute;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        color: red;
+        width: 240px; /*text-align: center;*/
+        top: 30px;
+        background: white;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        z-index: 99; /*360px; is around the position I want*/
+    }
+    
+    .MenuSubitemHome
+    {
+        text-decoration: none;
+        line-height: 30px; /*color:#b62a26;*/ /*color:#8CC739;*/
+        color: #628b27;
+        width: 240px;
+        float: left;
+        margin-left: 10px;
+    }
+
+
+    
+    .MenuSubitem
+    {
+        text-decoration: none;
+        line-height: 20px; /*color:#b62a26;*/ /*color:#8CC739;*/ /*color: #628b27;*/
+        color: #0077b6;
+        width: 240px;
+        float: left;
+        cursor: pointer; /*leftbar*/
+        border-radius: 10px;
+        -webkit-border-radius: 10px;
+        -moz-border-radius: 10px;
+        vertical-align: middle;
+        text-align: center;
+        font-weight: normal;
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+    
+
+    
+    .MenuSubitemBlue
+    {
+        text-decoration: none;
+        line-height: 30px;
+        color: Blue;
+        width: 240px;
+    }
+    
+    .MenuItemDiv:hover
+    {
+        /*color:Black;*/
+        color: #628b27;
+    }
+    
+    .MenuSubitem:hover
+    {
+        /*color:Black;*/ /*color: #628b27;*/
+        background-color: #0077b6;
+        color: yellow;
+    }
+
+    .Height5pxdiv
+    {
+        height: 5px;
+    }
+    
+    .Height10pxdiv
+    {
+        height: 10px;
+    }
+    
+    .Height20pxdiv
+    {
+        height: 20px;
+    }
+    
+    .Height30pxdiv
+    {
+        height: 30px;
+    }
+    
+    .Height40pxdiv
+    {
+        height: 40px;
+    }
+    
+    .Height50pxdiv
+    {
+        height: 50px;
+        width: 192px;
+    }
+    
+    .Height60pxdiv
+    {
+        height: 60px;
+        width: 192px;
+    }
+    
+    .width5pxdiv
+    {
+        width: 5px;
+        height: 12px;
+        float: left;
+    }
+    
+    .width10pxdiv
+    {
+        width: 10px;
+        height: 12px;
+        float: left;
+    }
+    .width20pxdiv
+    {
+        width: 20px;
+        height: 12px;
+        float: left;
+    }
+    .width1000pxdiv
+    {
+        width: 1000px;
+    
+    }
+    
+    .width1000pxdivcolornone
+    {
+        width: 1000px;
+        height: auto;
+        background-color: none;
+    }
+    
+    .stylecleardiv
+    {
+        clear: both;
+        height: 0px;
+    }
+    
+    .spacebetweendiv
+    {
+        width: 10px;
+        height: 1px;
+        float: left;
+    }
+
+    
+ 
+    /*new css for left DIV Ends*/
+    
+    /* Instructions CSS classes starts*/
+    
+    .headinstructions
+    {
+        background-color: #206ba4;
+        color: white;
+        height: 25px;
+        width: 1000px;
+        font-family: Calibri;
+        font-weight: bold;
+        text-align: center;
+    }
+    
+    .instrctions
+    {
+        text-align: left;
+        font-family: Calibri;
+        font-size: medium;
+    }
+    
+    .redinstrctions
+    {
+        text-align: left;
+        font-family: Calibri;
+        font-size: medium;
+        color: Red;
+    }
+
+
+
+
+
+    .event-section{
+      width: 1000px;
+      
+  }
+
+
+    .event-section .heading1{
+      border-bottom: 1px solid #46b7c1;
+      padding: 5px;
+      color: #fff;
+      background: #46b7c1;
+      margin-top: 2%;
+    }
+    .list-show-button{
+        width:350px;
+        height:50px;
+        background-color:lightblue;
+        color:white;
+        font-size:24px;
+        font-weight:bolder;
+        border-radius:10px;
+        box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.3);
+        padding-top:10px;
+        box-sizing:border-box;
+        margin-top:60px;
+
+    }
+    .list-show-button a{
+        text-decoration:none;
+    }
+    .list-show-button a:hover{
+        color:red;
+        font-size:26px;
+    }
+
+    </style>
+    <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+<body class="body">
+
+
+    {% if messages %}
+    <script>
+        {% for message in messages %}
+            alert("{{ message }}");
+             {% endfor %}
+            </script>
+    {% endif %}
+  <form method="post" action="./" id="form1">
+    <div class="aspNetHidden">
+        <input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="/wEPDwUKMTY1NDU2MTA1MmRkbjd70GvCgYa1qGR9qPa5YVU5Ob5/RvTygev3Ex0QTSk=">
+        </div>
+        
+        <div class="aspNetHidden">
+        
+            <input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="8D0E13E6">
+        </div>
+                <div align="center">
+                    <div class="HeaderColorDiv">
+                    </div>
+                    <div class="width1000pxdiv">
+                        
+                        <div class="headerribbon_content">
+                            <div class="headerribbon">
+                                <div class="image1">
+                                    <img id="Image1" src="{% static 'img/gpn_logo.jpg' %}" style="height:100px;">
+                                </div>
+                                <div class="headerribbon_title_text">
+                                        <div style="margin-top:-50px;">
+                                            <h5 style="margin-bottom:0">Government Polytechnic Nagpur</h5>     
+                                            <p style="margin-top:0;margin-bottom:0;font-size:26px">(Online Hostel Admission)</p>
+                                        </div>
+        
+                                        <div class="MenuItemDivbar"><a href="{% url 'logged_home' %}">
+                                               <box-icon type='solid' name='home' style="width:30px;height:30px"></box-icon>
+                                           </a> 
+                                        </div>
+                                    {% comment %} <div class="MenuItemDivbar"><a href="{% url 'logged_home' %}">
+                                        <box-icon type='solid' name='home'></box-icon>
+                                    </a> {% endcomment %}
+                              
+                            </div>
+                        </div>
+                    </div>
+                    <div class="HeaderColorDiv">
+                    </div>
+                </div>
+
+
+
+    <!--Test Menu Div Start-->
+    <div class="stylecleardiv">
+    </div>
+    <div align="center">
+       
+    </div>
+
+
+    <div class="stylecleardiv">
+    </div>
+    <div class="Height10pxdiv">
+    </div>
+
+
+
+<div align="center">
+<div class="event-section">
+  
+<h1 class="heading1"><center>Merit List Of First Year</center></h1>
+
+<div>
+    <ul>  
+     {% for i in data %}
+        <li class="list-show-button"><a href="{{ i.f1.url }}" target="_blank" >First Year Merit List</a></li>
+     {% endfor %}
+ </ul>
+</div> 
+
+
+</body>
+</html>
