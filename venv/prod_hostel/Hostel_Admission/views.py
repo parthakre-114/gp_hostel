@@ -2229,44 +2229,52 @@ def Search1(request):
     return render(request , 'Admin_OP/search1.html')
 
 def admin_Preview3(request, fno):
-    s = HostelData3.objects.get(fno=fno)
-    if request.method == "POST":
-        print("hell")
-        remark = request.POST["remark"]
-        s.status = request.POST['application_status']
-        s.remark = remark
-        print(s.remark)
-        s.save()
-        return render(request, 'Admin_OP/reports/year3.html', {'s': s})
-
-
-    return render(request, 'Admin_OP/form_Preview/formview2.html', {'s': s})
+    try:
+        s = HostelData3.objects.get(fno=fno)
+        if request.method == "POST":
+            print("hell")
+            remark = request.POST["remark"]
+            s.status = request.POST['application_status']
+            s.remark = remark
+            print(s.remark)
+            s.save()
+            return render(request, 'Admin_OP/reports/year3.html', {'s': s})
+        return render(request, 'Admin_OP/form_Preview/formview2.html', {'s': s})
+    except:
+        return HttpResponse("Data Does not found!")
 
 
 def admin_Preview2(request, fno):
-    print("hellloo")
-    s = HostelData2.objects.get(fno=fno)
-    if request.method == "POST":
-        remark = request.POST["remark"]
-        s.status = request.POST['application_status']
-        s.remark = remark
-        print(s.remark)
-        s.save()
-        return redirect('report2')
-        return render(request, 'Admin_OP/reports/year2.html', {'s': s})
-    return render(request, 'Admin_OP/form_Preview/formview1.html', {'s': s})
+    # print("hellloo")
+    try:
+       s = HostelData2.objects.get(fno=fno)
+       if request.method == "POST":
+           remark = request.POST["remark"]
+           s.status = request.POST['application_status']
+           s.remark = remark
+           print(s.remark)
+           s.save()
+           return redirect('report2')
+           return render(request, 'Admin_OP/reports/year2.html', {'s': s})
+       return render(request, 'Admin_OP/form_Preview/formview1.html', {'s': s})
+    except:
+       return HttpResponse("Data Does not found!")
 
 def admin_Preview1(request, fno):
     print("hello")
-    s = HostelData1.objects.get(fno=fno)
-    if request.method == "POST":
-        remark = request.POST["remark"]
-        s.status = request.POST['application_status']
-        s.remark = remark
-        print(s.remark)
-        s.save()
-        return render(request, 'Admin_OP/reports/year1.html', {'s': s})
-    return render(request, 'Admin_OP/form_Preview/formview.html', {'s': s})
+    try:
+       s = HostelData1.objects.get(fno=fno)
+       if request.method == "POST":
+           remark = request.POST["remark"]
+           s.status = request.POST['application_status']
+           s.remark = remark
+           print(s.remark)
+           s.save()
+           return render(request, 'Admin_OP/reports/year1.html', {'s': s})
+       return render(request, 'Admin_OP/form_Preview/formview.html', {'s': s})
+    except:
+       return HttpResponse("Data Does not found!")
+
 
 def student_Preview(request):
         fno = request.session.get('fno')
