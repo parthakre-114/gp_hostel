@@ -521,16 +521,21 @@
                     </div>
 
                 </div>
-                <div class="floater" style="width:400px; height:200px;background:white; border:1px solid grey; border-radius:20px; position:fixed; right:0; top:70%;">
+                <div class="floater" style="width:400px; height:200px;background:white; border:1px solid grey; border-radius:20px; position:fixed; right:0; top:70%;margin-right:10px;">
                     <div class="headerrr" style="width:100%; background:green; height:25%; border-radius:20px; display:flex; justify-content:center; align-items:center;">
                         <h3>Change Password</h3>
                     </div>
-                    <div class="headerrr" style="width:100%; background:white; height:75%; border-radius:20px; display:flex; justify-content:center; align-items:center;">
+                    <div class="headerrr" style="width:100%; background:white; height:75%; border-radius:20px; display:flex; justify-content:center; align-items:center;margin-left: 20px;">
                         <form method="post" action="{% url 'pass_edit' %}">
-                            <input type"number" name="oldenroll" placeholder="Old Enrollment No.">
-                            <input type"number" name="enroll" placeholder="Enrollment No.">
-                            <input type"text" name="passwd" placeholder="Password">
-                            <button class="big-button" type="submit" >Change</submit>
+                            <input type"number" name="oldenroll" placeholder="Old Enrollment No." style="width:90%;border-radius:10px;margin-bottom:5px;">
+                            <input type"number" name="enroll" placeholder="Enrollment No." style="width:90%;border-radius:10px;margin-bottom:5px;">
+                            <input type"text" name="passwd" placeholder="Password" style="width:90%;border-radius:10px;margin-bottom:5px;">
+                            <button class="big-button" type="submit" style="background-color:purple;
+                            color:white;
+                            border-radius:10px;
+                            padding:5px;
+                            width:90%;
+                            321">Change</submit>
                         </form>
                     </div>
                      
@@ -547,7 +552,11 @@
                         <form method="post" action="{% url 'del_form' %}">
                             <input type"text" name="fno" placeholder="Form No.">
                            
-                            <button class="big-button" type="submit" >Change</submit>
+                            <button class="big-button" type="submit" style="background-color:purple;
+                            color:white;
+                            border-radius:10px;
+                            padding:5px;
+                            width:100px">Delete</submit>
                         </form>
                     </div>
                      

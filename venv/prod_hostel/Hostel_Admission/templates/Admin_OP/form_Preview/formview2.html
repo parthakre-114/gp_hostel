@@ -25,10 +25,10 @@
     referrerpolicy="no-referrer"
   />
   <style>
-        .resized-image {
+        {% comment %} .resized-image {
         max-width: 50%;
         max-height: 150px;
-    }
+    } {% endcomment %}
     body{
         box-sizing:border-box;
         padding:0;
@@ -81,8 +81,9 @@
         position
     }
     .resized-image {
-        max-width: 200px; /* Adjust size as needed */
-        height: auto;
+        width: 200px; /* Adjust size as needed */
+        height: 100px;
+        margin-bottom:0px;
     }
     .btn-show-image {
         cursor: pointer;
@@ -164,6 +165,31 @@
       text-decoration:none;
       color:purple;
     }
+    .images{
+      width:150px;
+      height:150px;
+      {% comment %} background-color:red; {% endcomment %}
+      float:right;
+      margin-top:-16%;
+      {% comment %} background:tansparent;
+       {% endcomment %}
+    }
+    .photo-img{
+      width:100%;
+      height:120px;
+    }
+    .signature-img{
+      width:100%;
+      height:50px;
+    }
+    .photo-img img{
+      width:100%;
+      height:100%;
+    }
+    .signature-img img{
+      width:100%;
+      height:100%;
+    }
     
   </style>
   <link
@@ -191,6 +217,14 @@
               <h3 class="text-center" style="font-size: 20px">
                 Hostel Addmission Form
               </h3>
+            </div>
+            <div class="images">
+              <div class="photo-img">
+                <img src="{{ s.SPhoto.url }}">
+              </div>
+              <div class="signature-img">
+                <img src="{{ s.student_signature.url }}">
+              </div>
             </div>
 
             <div class="info-title">
@@ -243,22 +277,28 @@
                     <th>Branch</th>
                     <td>{{ s.Branch }}</td>
                   </tr>
-                
+                  {% if s.Backlog is 'YES' %}
                   <tr>
                     <th>Number Of Backlog</th>
                     <td>{{ s.Nu_Backlog }}</td>
                   </tr>
+                  {%endif%}
 
-
-                  <tr>
-                    <td class="label">ODD SEM Marksheet</td>
-                    <td>{{s.mark1}}/{{s.outoff1}}</td>
-                </tr>
-                <tr>
-                    <td class="label">EVEN SEM Marksheet</td>
-                    <td>{{s.mark2}}/{{s.outoff2}}</td>
-                </tr>
-
+                  {% if s.Branch != "Mining & Mine Surveying" %}
+                      <tr>
+                          <th class="label">ODD SEM Marksheet</th>
+                          <td>{{ s.mark1 }}<strong><b> / </b></strong>{{ s.outoff1 }}</td>
+                      </tr>
+                      <tr>
+                          <th class="label">EVEN SEM Marksheet</th>
+                          <td>{{ s.mark2 }}<strong><b> / </b></strong>{{ s.outoff2 }}</td>
+                      </tr>
+                  {% else %}
+                      <tr>
+                          <th class="label">Last Year Marksheet</th>
+                          <td>{{ s.mark1 }}<strong><b> / </b></strong>{{ s.outoff1 }}</td>
+                      </tr>
+                  {% endif %}
                   <tr>
                     <th>Percentage</th>
                     <td>{{ s.percentage|floatformat:2 }}</td>
@@ -299,13 +339,19 @@
             <div>
               <div class="shadow-sm p-3 mb-5 bg-body-tertiary rounded">
                 <pre style="font-size: 13px;">
-                  By submitting this form, I hereby declare that all the information provided is accurate and true to the best of my knowledge.
-                 I also confirm that I have filled out this form with the full knowledge and consent of my parents or guardians.
-                  I understand that any false information provided may lead to the rejection of my application and other administrative actions.
+                  "I, <b>{{s.name}}</b>, hereby declare that I understand and accept the rules,
+regulations, and code of conduct set
+forth by [Institution Name] for hostel residents. I solemnly undertake to abide
+ by these regulations during my stay
+at the hostel .I am aware tat any violation of these rules may lead to disciplinary
+ action, which could result in 
+expulsion from the hostel or the institution.  I pledge to contribute positively to 
+the hostel community and uphold
+the values of mutual respect, cooperation, and academic integrity.
 
-                    <img src="{{ s.student_signature.url }}" class="" />  
+                    <img src="{{ s.student_signature.url }}" class="rounded resized-image" />  
                 </pre>
-                <h4 style="margin-left: 15%">Student Signature</h4>
+                <h4 style="margin-left: 15%;margin-top:-20px;">Student Signature</h4>
               </div>
             </div>
 
@@ -316,14 +362,14 @@
               <div class="shadow-sm p-3 mb-5 bg-body-tertiary rounded">
                 <pre>
                                   
-                  By submitting this form, I hereby declare that all the information provided is accurate and true to the best of my knowledge.
-                  I also confirm that I have filled out this form with the full knowledge and consent of my parents or guardians.
-                   I understand that any false information provided may lead to the rejection of my application and other administrative actions.
+                  I <b>{{s.Father_name}}</b> undertake fully responsibility for any misbehavior and act of
+                  discipline of my son / daughter for which have no objection to 
+                  remove him /her from the hostel without notice.
  
 
                     <img src="{{ s.father_signature.url }}" class="rounded resized-image" />  
                 </pre>
-                <h4 style="margin-left: 15%">Parents Signature</h4>
+                <h4 style="margin-left: 15%;margin-top:-20px;">Parents Signature</h4>
               </div>
             </div>
             <div class="info-title">
@@ -354,7 +400,7 @@
                   <tr>
                     <td>Marksheet 1</td>
                     <td>
-                      {% if s.marksheet1 %}
+                      {% if not s.marksheet1 == "NA" %}
                       <i
                         class="fa-solid fa-check fa-lg"
                         style="color: #08e717"
@@ -373,7 +419,7 @@
                   <tr>
                     <td>Marksheet 2</td>
                     <td>
-                      {% if s.marksheet2 %}
+                      {% if not s.marksheet2 == "NA" %}
                       <i
                         class="fa-solid fa-check fa-lg"
                         style="color: #08e717"
@@ -390,11 +436,10 @@
                       <a href="{{ s.marksheet2.url }}" target="_blank" class="img-view">Show image</a>
                     </td>
                   </tr>
-                  {% if s.cast %}
                   <tr>
                     <td>Domacile</td>
                     <td>
-                      {% if s.Domacile %}
+                      {% if not s.Domacile == "NA" %}
                       <i
                         class="fa-solid fa-check fa-lg"
                         style="color: #08e717"
@@ -410,8 +455,7 @@
                       <a href="{{ s.Domacile.url }}" target="_blank" class="img-view">Show image</a>
                     </td>
                   </tr>
-                  {% endif %}
-                  {% if s.cast %}
+                  {% if not s.cast == 'OPEN' or s.cast == 'SC' or s.cast == 'ST' %}
                   <tr>
                     <td>Non-Creamy Layer</td>
                     <td>
@@ -432,11 +476,11 @@
                     </td>
                   </tr>
                   {% endif %}
-                  {% if s.cast %}
+                  {% if  not s.cast == 'OPEN' %}
                   <tr>
                     <td>Caste</td>
                     <td>
-                      {% if s.cast %}
+                      {% if not s.castecert == "NA" %}
                       <i
                         class="fa-solid fa-check fa-lg"
                         style="color: #08e717"
@@ -456,7 +500,7 @@
                   <tr>
                     <td>Allotment Letter</td>
                     <td>
-                      {% if s.Allotment %}
+                      {% if not s.Allotment == "NA" %}
                       <i
                         class="fa-solid fa-check fa-lg"
                         style="color: #08e717"
@@ -475,7 +519,7 @@
                   <tr>
                     <td>Addmission Receipt</td>
                     <td>
-                      {% if s.Addmission %}
+                      {% if not s.Addmission == "NA" %}
                       <i
                         class="fa-solid fa-check fa-lg"
                         style="color: #08e717"
@@ -494,7 +538,7 @@
                   <tr>
                     <td>Course Registration Receipt</td>
                     <td>
-                      {% if s.Course_Registration %}
+                      {% if not s.Course_Registration == "NA" %}
                       <i
                         class="fa-solid fa-check fa-lg"
                         style="color: #08e717"
@@ -507,13 +551,13 @@
                       {% endif %}
                     </td>
                     <td>
-                      <a href="{{ Registration.url }}" target="_blank" class="img-view">Show image</a>
+                      <a href="{{ s.Registration.url }}" target="_blank" class="img-view">Show image</a>
                     </td>
                   </tr>
                   <tr>
                     <td>Payment Receipt</td>
                     <td>
-                      {% if s.payment_ss %}
+                      {% if not s.payment_ss == "NA" %}
                       <i
                         class="fa-solid fa-check fa-lg"
                         style="color: #08e717"
@@ -526,7 +570,7 @@
                       {% endif %}
                     </td>
                     <td>
-                      <a href="{{ payment_ss.url }}" target="_blank" class="img-view">Show image</a>
+                      <a href="{{ s.payment_ss.url }}" target="_blank" class="img-view">Show image</a>
                     </td>
                   </tr>
                 </tbody>
@@ -543,21 +587,21 @@
             <div class="remark-sec">
               <table border="" cellpadding="10" cellspacing="0">
                 <tr>
-                    <form action="{% url 'admin_preview2' s.fno %}" method="post">
-                        <td>Application</td>
-                        <td style="color:green;">application_status
-                            Accepted
-                            <input type="radio" name="application_status" value="accepted">
-                        </td>
-                        <td style="color:red;">
-                            Not-Accepted
-                            <input type="radio" name="application_status" value="grivence">
-                        </td>
-                        <td><input type="text" name="remark" class="in-field" placeholder="Remark"></input></td>
-                    </tr>
-                  </table>
-                  <button type="submit" class="submit">Submit</button>
-                </form>
+                    <form action="{% url 'admin_preview3' s.fno%}" method="post">
+                    <td>Application</td>
+                    <td style="color:green;">
+                        Accepted
+                        <input type="radio" name="application_status" value="accepted" required>
+                    </td>
+                    <td style="color:red;">
+                        Not-Accepted
+                        <input type="radio" name="application_status" value="not_accepted">
+                    </td>
+                    <td><input type="text" name="remark" class="in-field" placeholder="Remark"></input></td>
+                </tr>
+              </table>
+              <button type="submit" class="submit">Submit</button>
+
             </div>
           </div>
         </div>

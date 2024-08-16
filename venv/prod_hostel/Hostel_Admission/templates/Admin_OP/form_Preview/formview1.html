@@ -25,10 +25,10 @@
     referrerpolicy="no-referrer"
   />
   <style>
-        .resized-image {
+        {% comment %} .resized-image {
         max-width: 50%;
         max-height: 150px;
-    }
+    } {% endcomment %}
     body{
         box-sizing:border-box;
         padding:0;
@@ -81,8 +81,8 @@
         position
     }
     .resized-image {
-        max-width: 200px; /* Adjust size as needed */
-        height: auto;
+      width: 200px; /* Adjust size as needed */
+      height: 100px;
     }
     .btn-show-image {
         cursor: pointer;
@@ -277,32 +277,31 @@
                     <td>{{ s.Branch }}</td>
                   </tr>
                   <tr>
+                 {% if s.Backlog is 'YES' %}
                   <tr>
                     <th>Number Of Backlog</th>
                     <td>{{ s.Nu_Backlog }}</td>
                   </tr>
+                  {%endif%}
                   <tr>
                     <th>Percentage</th>
                     <td>{{ s.percentage|floatformat:2 }}</td>
                   </tr>
-                    {% if s.Year != First %}
-                  <tr>
-                    <th class="label">ODD SEM Marksheet</th>
-                    <td>{{s.mark1}}<strong><b> / </b></strong>{{s.outoff1}}</td>
-                </tr>
-                <tr>
-                    <th class="label">EVEN SEM Marksheet</th>
-                    <td>{{s.mark2}}<strong><b> / </b> </strong>{{s.outoff2}}</td>
-                </tr>
-                {% else %}
-
-                <tr>
-                  <th class="label">10th Marks </th>
-                  <td>{{s.mark1}}<strong><b> / </b></strong>{{s.outoff1}}</td>
-              </tr>
-              {% endif%}
-
-                  
+                  {% if s.Branch != "Mining" %}
+                      <tr>
+                          <th class="label">ODD SEM Marksheet</th>
+                          <td>{{ s.mark1 }}<strong><b> / </b></strong>{{ s.outoff1 }}</td>
+                      </tr>
+                      <tr>
+                          <th class="label">EVEN SEM Marksheet</th>
+                          <td>{{ s.mark2 }}<strong><b> / </b></strong>{{ s.outoff2 }}</td>
+                      </tr>
+                  {% else %}
+                      <tr>
+                          <th class="label">Last Year Marksheet</th>
+                          <td>{{ s.mark1 }}<strong><b> / </b></strong>{{ s.outoff1 }}</td>
+                      </tr>
+                  {% endif %}
                 </table>
               </div>
             </div>
@@ -340,7 +339,7 @@
               <div class="shadow-sm p-3 mb-5 bg-body-tertiary rounded">
                 <pre>
                   
-"I, {{s.name}}, hereby declare that I understand and accept the rules,
+"I, <b>{{s.name}}</b>, hereby declare that I understand and accept the rules,
 regulations, and code of conduct set
 forth by [Institution Name] for hostel residents. I solemnly undertake to abide
  by these regulations during my stay
@@ -352,7 +351,7 @@ the values of mutual respect, cooperation, and academic integrity.
 
                     <img src="{{ s.student_signature.url }}"  class="rounded resized-image" />
                 </pre>
-                <h4 style="margin-left: 15%">Student Signature</h4>
+                <h4 style="margin-left: 15%;margin-top:-20px;">Student Signature</h4>
               </div>
             </div>
 
@@ -362,13 +361,13 @@ the values of mutual respect, cooperation, and academic integrity.
             <div>
               <div class="shadow-sm p-3 mb-5 bg-body-tertiary rounded">
                 <pre>
-                  I undertake fully responsibility for any misbehavior and act of
+                  I <b>{{s.Father_name}}</b> undertake fully responsibility for any misbehavior and act of
                   discipline of my son / daughter for which have no objection to 
                   remove him /her from the hostel without notice.
 
                     <img src="{{ s.father_signature.url }}" class="rounded resized-image" />  
                 </pre>
-                <h4 style="margin-left: 15%">Parents Signature</h4>
+                <h4 style="margin-left: 15%;margin-top:-20px;">Parents Signature</h4>
               </div>
             </div>
             <div class="info-title">
@@ -590,7 +589,7 @@ the values of mutual respect, cooperation, and academic integrity.
                     <td>Application</td>
                     <td style="color:green;">
                         Accepted
-                        <input type="radio" name="application_status" value="accepted">
+                        <input type="radio" name="application_status" value="accepted" required>
                     </td>
                     <td style="color:red;">
                         Not-Accepted
