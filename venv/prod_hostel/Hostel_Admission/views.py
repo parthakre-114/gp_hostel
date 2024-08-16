@@ -2441,7 +2441,6 @@ def edit1(request):
 
 
 def form_preview3(request,fno):
-    # try:
         # print(request)
         data = get_object_or_404(HostelData3, fno=fno)
         # 
@@ -2453,6 +2452,7 @@ def form_preview3(request,fno):
             data.save()
             return render(request ,'Admin_OP/form_Preview/formview2.html',{"s":data})
         return render(request ,'Admin_OP/form_Preview/formview2.html',{"s":data})
+    
 
 
 def form_preview(request, fno):

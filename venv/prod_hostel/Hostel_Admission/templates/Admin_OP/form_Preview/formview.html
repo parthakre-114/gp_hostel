@@ -25,10 +25,10 @@
     referrerpolicy="no-referrer"
   />
   <style>
-        .resized-image { 
+        {% comment %} .resized-image { 
         max-width: 50%;
         max-height: 150px;
-    }
+    } {% endcomment %}
     body{
         box-sizing:border-box;
         padding:0;
@@ -81,8 +81,8 @@
         position
     }
     .resized-image {
-        max-width: 200px; /* Adjust size as needed */
-        height: auto;
+      width: 200px; /* Adjust size as needed */
+      height: 100px;
     }
     .btn-show-image {
         cursor: pointer;
@@ -166,6 +166,32 @@
       text-decoration:none;
       color:purple;
     }
+    .images{
+      width:150px;
+      height:150px;
+      {% comment %} background-color:red; {% endcomment %}
+      float:right;
+      margin-top:-16%;
+      {% comment %} background:tansparent;
+       {% endcomment %}
+    }
+    .photo-img{
+      width:100%;
+      height:120px;
+    }
+    .signature-img{
+      width:100%;
+      height:50px;
+    }
+    .photo-img img{
+      width:100%;
+      height:100%;
+    }
+    .signature-img img{
+      width:100%;
+      height:100%;
+    }
+   
   </style>
   <link
     rel="stylesheet"
@@ -193,6 +219,14 @@
               <h3 class="text-center" style="font-size: 20px">
                 Hostel Addmission Form
               </h3>
+            </div>
+            <div class="images">
+              <div class="photo-img">
+                <img src="{{ s.SPhoto.url }}">
+              </div>
+              <div class="signature-img">
+                <img src="{{ s.student_signature.url }}">
+              </div>
             </div>
 
             <div class="info-title">
@@ -245,13 +279,15 @@
                     <th>Branch</th>
                     <td>{{ s.Branch }}</td>
                   </tr>
-                  <tr>
-                    <th>Shift</th>
-                    <td>{{ s.shift }}</td>
-                  </tr>
+                 {% if s.Backlog is 'YES' %}
                   <tr>
                     <th>Number Of Backlog</th>
                     <td>{{ s.Nu_Backlog }}</td>
+                  </tr>
+                  {% endif %}
+                  <tr>
+                    <th>10th Marks</th>
+                    <td>{{ s.mark1 }}<strong><b> / </b></strong>{{ s.outoff1 }}</td>
                   </tr>
                   <tr>
                     <th>Percentage</th>
@@ -292,9 +328,9 @@
             </div>
             <div>
               <div class="shadow-sm p-3 mb-5 bg-body-tertiary rounded">
-                <pre>
+                <p>
                   Undertaking by the student
-                  "I, _______________, hereby declare that I understand and accept the rules,
+                  "I, <b><i>{{s.name}}<i></b> hereby declare that I understand and accept the rules,
                   regulations, and code of conduct set
                   forth by [Institution Name] for hostel residents. I solemnly undertake to abide
                    by these regulations during my stay
@@ -304,9 +340,10 @@
                   the hostel community and uphold
                   the values of mutual respect, cooperation, and academic integrity.
 
-                    {% comment %} <img src="{{ s.student_signature.url }}" class="" />   {% endcomment %}
-                </pre>
-                <h4 style="margin-left: 15%">Student Signature</h4>
+                </p>
+                <img src="{{ s.student_signature.url }}" class="rounded resized-image" />  
+
+                <h4 style="margin-left: 15%;margin-top:-20px;">Student Signature</h4>
               </div>
             </div>
 
@@ -316,13 +353,12 @@
             <div>
               <div class="shadow-sm p-3 mb-5 bg-body-tertiary rounded">
                 <pre>
-                  I undertake fully responsibility for any misbehavior and act of
+                  I <b>{{s.Father_name}}</b> undertake fully responsibility for any misbehavior and act of
                   discipline of my son / daughter for which have no objection to 
                   remove him /her from the hostel without notice.
-
-                    {% comment %} <img src="{{ s.father_signature.url }}" class="rounded resized-image" />   {% endcomment %}
                 </pre>
-                <h4 style="margin-left: 15%">Parents Signature</h4>
+                <img src="{{ s.father_signature.url }}" class="rounded resized-image" />  
+                <h4 style="margin-left: 15%;margin-top:-20px;">Parents Signature</h4>
               </div>
             </div>
             <div class="info-title">
@@ -353,7 +389,7 @@
                   <tr>
                     <td>Marksheet 1</td>
                     <td>
-                      {% if s.marksheet1 %}
+                      {% if not s.marksheet1 == "NA" %}
                       <i
                         class="fa-solid fa-check fa-lg"
                         style="color: #08e717"
@@ -366,13 +402,13 @@
                       {% endif %}
                     </td>
                     <td>
-                      <a href="../{{ s.marksheet1.url }}" target="_blank" class="img-view">Show image</a>
+                      <a href="{{ s.marksheet1.url }}" target="_blank" class="img-view">Show image</a>
                     </td>
                   </tr>
-                  <tr>
+                  {% comment %} <tr>
                     <td>Marksheet 2</td>
                     <td>
-                      {% if s.marksheet2 %}
+                      {% if not s.marksheet2 == "NA" %}
                       <i
                         class="fa-solid fa-check fa-lg"
                         style="color: #08e717"
@@ -386,14 +422,13 @@
                       {% endif %}
                     </td>
                     <td>
-                      <a href="../{{ s.marksheet2.url }}" target="_blank" class="img-view">Show image</a>
+                      <a href="{{ s.marksheet2.url }}" target="_blank" class="img-view">Show image</a>
                     </td>
-                  </tr>
-                  {% if s.cast %}
+                  </tr> {% endcomment %}
                   <tr>
                     <td>Domacile</td>
                     <td>
-                      {% if s.Domacile %}
+                      {% if not s.Domacile == "NA" %}
                       <i
                         class="fa-solid fa-check fa-lg"
                         style="color: #08e717"
@@ -406,11 +441,10 @@
                       {% endif %}
                     </td>
                     <td>
-                      <a href="../{{ s.Domacile.url }}" target="_blank" class="img-view">Show image</a>
+                      <a href="{{ s.Domacile.url }}" target="_blank" class="img-view">Show image</a>
                     </td>
                   </tr>
-                  {% endif %}
-                  {% if s.cast %}
+                  {% if not s.cast == 'OPEN' or s.cast == 'SC' or s.cast == 'ST' %}
                   <tr>
                     <td>Non-Creamy Layer</td>
                     <td>
@@ -427,15 +461,15 @@
                       {% endif %}
                     </td>
                     <td>
-                      <a href="../{{ s.ncl.url }}" target="_blank" class="img-view">Show image</a>
+                      <a href="{{ s.ncl.url }}" target="_blank" class="img-view">Show image</a>
                     </td>
                   </tr>
                   {% endif %}
-                  {% if s.cast %}
+                  {% if  not s.cast == 'OPEN' %}
                   <tr>
                     <td>Caste</td>
                     <td>
-                      {% if s.cast %}
+                      {% if not s.castecert == "NA" %}
                       <i
                         class="fa-solid fa-check fa-lg"
                         style="color: #08e717"
@@ -448,14 +482,14 @@
                       {% endif %}
                     </td>
                     <td>
-                      <a href="../{{ s.caste.url }}" target="_blank" class="img-view">Show image</a>
+                      <a href="{{ s.castecert.url }}" target="_blank" class="img-view">Show image</a>
                     </td>
                   </tr>
                   {% endif %}
                   <tr>
                     <td>Allotment Letter</td>
                     <td>
-                      {% if s.Allotment %}
+                      {% if not s.Allotment == "NA" %}
                       <i
                         class="fa-solid fa-check fa-lg"
                         style="color: #08e717"
@@ -468,13 +502,13 @@
                       {% endif %}
                     </td>
                     <td>
-                      <a href="../{{ s.Allotment.url }}" target="_blank" class="img-view">Show image</a>
+                      <a href="{{ s.Allotment.url }}" target="_blank" class="img-view">Show image</a>
                     </td>
                   </tr>
                   <tr>
                     <td>Addmission Receipt</td>
                     <td>
-                      {% if s.Addmission %}
+                      {% if not s.Addmission == "NA" %}
                       <i
                         class="fa-solid fa-check fa-lg"
                         style="color: #08e717"
@@ -487,13 +521,14 @@
                       {% endif %}
                     </td>
                     <td>
-                      <a href="../{{ s.Addmission.url }}" target="_blank" class="img-view">Show image</a>
+                      <a href="{{ s.Addmission.url }}" target="_blank" class="img-view">Show image</a>
                     </td>
                   </tr>
+                  {% comment %} {% if not s.Course_Registration == "NA" %} {% endcomment %}
                   <tr>
                     <td>Course Registration Receipt</td>
                     <td>
-                      {% if s.Course_Registration %}
+                      {% if not s.Course_Registration == "NA" %}
                       <i
                         class="fa-solid fa-check fa-lg"
                         style="color: #08e717"
@@ -506,13 +541,13 @@
                       {% endif %}
                     </td>
                     <td>
-                      <a href="../{{ Registration.url }}" target="_blank" class="img-view">Show image</a>
+                      <a href="{{ s.Registration.url }}" target="_blank" class="img-view">Show image</a>
                     </td>
                   </tr>
                   <tr>
                     <td>Payment Receipt</td>
                     <td>
-                      {% if s.payment_ss %}
+                      {% if not s.payment_ss == "NA" %}
                       <i
                         class="fa-solid fa-check fa-lg"
                         style="color: #08e717"
@@ -525,19 +560,19 @@
                       {% endif %}
                     </td>
                     <td>
-                      <a href="../{{ payment_ss.url }}" target="_blank" class="img-view">Show image</a>
+                      <a href="{{ s.payment_ss.url }}" target="_blank" class="img-view">Show image</a>
                     </td>
                   </tr>
                 </tbody>
               </table>
             </div>
 
-            <div id="imageModal" class="modal">
+            {% comment %} <div id="imageModal" class="modal">
                 <span class="close" onclick="closeModal()"
                   ><i class="fa-solid fa-xmark fa-lg" style="color: #f20707"></i
                 ></span>
                 <img class="modal-content" id="modalImage" />
-            </div>
+            </div> {% endcomment %}
 
             <div class="remark-sec">
               <table border="" cellpadding="10" cellspacing="0">
@@ -546,7 +581,7 @@
                         <td>Application</td>
                         <td style="color:green;">
                             Accepted
-                            <input type="radio" name="application_status" value="accepted">
+                            <input type="radio" name="application_status" value="accepted" required>
                         </td>
                         <td style="color:red;">
                             Not-Accepted
