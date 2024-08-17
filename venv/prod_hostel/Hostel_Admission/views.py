@@ -1305,7 +1305,7 @@ def Year3_report(request):
                     #   print(stud['name'])
                       rac.append(stud)  
              #rac       
-        print(rac[1])
+        # print(rac[1])
         # print(Allocated_students)
         rac = sorted(rac ,key=lambda x: x['percentage'])
         fn_available_seats = tseets - len(Allocated_students) 
@@ -1314,6 +1314,8 @@ def Year3_report(request):
                     #   print(i)
                     #   print(fn_available_seats)
                     #   print(rac[i]['name'])
+                      if len(rac) == 0:
+                        break
                       if fn_available_seats > 0:
                             # print(i)
                             # print(rac[i]['name'])
@@ -1488,7 +1490,7 @@ def Year2_report(request):
                     #   print(stud['name'])
                       rac.append(stud)  
              #rac       
-        print(rac[1])
+        # print(rac[1])
         # print(Allocated_students)
         rac = sorted(rac ,key=lambda x: x['percentage'])
         fn_available_seats = tseets - len(Allocated_students) 
@@ -1671,7 +1673,7 @@ def Year1_report(request):
                     #   print(stud['name'])
                       rac.append(stud)  
              #rac       
-        print(rac[1])
+        # print(rac[1])
         # print(Allocated_students)
         rac = sorted(rac ,key=lambda x: x['percentage'])
         fn_available_seats = tseets - len(Allocated_students) 
@@ -1680,6 +1682,8 @@ def Year1_report(request):
                     #   print(i)
                     #   print(fn_available_seats)
                     #   print(rac[i]['name'])
+                      if len(rac) == 0:
+                        break
                       if fn_available_seats > 0:
                             # print(i)
                             # print(rac[i]['name'])
@@ -1701,7 +1705,7 @@ def Year1_report(request):
         Allocated = sorted(Allocated_students ,key=lambda x:(-x['percentage']))
         rac = sorted(rac ,key=lambda x:(-x['percentage']))
         
-        return render(request, 'Admin_OP/Provisional/second_year.html',{
+        return render(request, 'Admin_OP/Provisional/first_year.html',{
             'BACKLOG_YES':Backlog_Yes_students , 
             'BACKLOG_NO':Backlog_NO_students ,
             'Allocated_students':Allocated,
