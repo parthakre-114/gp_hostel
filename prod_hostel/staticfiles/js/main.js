@@ -19,6 +19,8 @@
       return document.querySelector(el)
     }
   }
+  //testing hostel
+  
 
   /**
    * Easy event listener function
