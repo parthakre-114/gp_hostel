@@ -9,10 +9,10 @@ from django.shortcuts import render
 
 
 
-def custom_404(request, exception):
-    return render(request, '404.html', status=404)
 
-handler404= 'Hostel_Admission.urls.custom_404'
+
+handler404= 'Hostel_Admission.views.custom_404'
+
 
 
 urlpatterns = [
@@ -172,3 +172,6 @@ urlpatterns = [
         # path('3rdYear_Report/newapplication/form_preview/<int:fno>',views.form_preview3,name="form_preview3"),
  
 ] 
+
+# if settings.DEBUG:
+#     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
