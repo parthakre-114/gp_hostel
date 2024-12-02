@@ -1971,7 +1971,7 @@ def plistshow(request):
         return render(request , 'studates/lists_show.html',{'data':data})
     else:
         messages.error(request,"Link is Disabled by Admin")
-        redirect('thirdyrdes')    
+        return redirect('thirdyrdes')    
     
 def flistshow(request):
     with open(file_path5 , 'r') as file:
@@ -1981,7 +1981,7 @@ def flistshow(request):
         return render(request , 'studates/list_show2.html',{'data':data})
     else:
         messages.error(request,"Link is Disabled by Admin")
-        redirect('thirdyrdes')
+        return redirect('thirdyrdes')
         
 def plistshow22(request):
     with open(file_path5 , 'r') as file:
@@ -1991,7 +1991,7 @@ def plistshow22(request):
         return render(request , 'studates/listyear2.html',{'data':data})
     else:
         messages.error(request,"Link is Disabled by Admin")
-        redirect('secondyrdes')
+        return redirect('secondyrdes')
         
         
 def flistshow22(request):
@@ -2002,7 +2002,7 @@ def flistshow22(request):
         return render(request , 'studates/listyears2.html',{'data':data})
     else:
         messages.error(request,"Link is Disabled by Admin")
-        redirect('secondyrdes')
+        return redirect('secondyrdes')
     
 def plistshow11(request):
     with open(file_path5 , 'r') as file:
@@ -2552,6 +2552,9 @@ def newapplication3(request):
     
 def error(req):
    return render(req,'404.html',{'msg':''}) 
+
+def custom_404(request, exception):
+    return render(request, '404.html', status=404)
 
 
 

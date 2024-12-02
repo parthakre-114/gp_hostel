@@ -56,7 +56,8 @@
         {% if msg %}
         <p>{{msg}}</p>
 {% endif %}
-        <button onclick="window.history.back()">   Go Back Home</button>
+       
+        <a href="{% url 'logged_home' %}"> <button>Go Back Home</button></a>
     </div>
 
     <!-- Include Three.js library -->

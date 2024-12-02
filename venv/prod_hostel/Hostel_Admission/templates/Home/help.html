@@ -10,14 +10,14 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            background-color: #007bff;
+            background-color: #f4f4f9;
             color: #495057;
             line-height: 1.6;
         }
 
         header {
             background-color: #007bff;
-            color: #d20a0a;
+            color: #fff;
             text-align: center;
             padding: 20px;
         }
@@ -28,26 +28,29 @@
             background-color: #fff;
             padding: 20px;
             border-radius: 10px;
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-            color: #495057;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            color: #333;
         }
 
         h1 {
-            color: white;
+            margin: 0;
+            font-size: 2rem;
         }
 
-        pre {
-            white-space: pre-wrap;
-            font-size: 16px;
-        }
-
-        h4, h3 {
+        h2, h3 {
             color: #007bff;
         }
 
-        ol, ul {
-            list-style: none;
-            padding: 0;
+        pre {
+            background-color: #f8f9fa;
+            padding: 15px;
+            border-radius: 5px;
+            font-size: 1rem;
+            overflow-x: auto;
+        }
+
+        ol {
+            padding-left: 1.5rem;
         }
 
         li {
@@ -58,7 +61,11 @@
             background-color: #007bff;
             color: #fff;
             text-align: center;
-            padding: 10px;
+            padding: 20px;
+        }
+
+        footer h3 {
+            margin-bottom: 10px;
         }
 
         footer ul {
@@ -67,14 +74,27 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            gap: 15px;
         }
 
         footer li {
-            margin-right: 15px;
+            background-color: #0056b3;
+            padding: 10px 15px;
+            border-radius: 5px;
         }
 
-        footer li:last-child {
-            margin-right: 0;
+        footer li a {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        footer li a:hover {
+            text-decoration: underline;
+        }
+
+        .highlight {
+            color: #d9534f;
+            font-weight: bold;
         }
     </style>
 </head>
@@ -86,30 +106,33 @@
     <main>
         <h2>How to Fill the Form</h2>
         <pre>
-            - After getting on the webpage, click on the form button. Select the year for which the form needs to be filled.
-            - Fill in the form, add all the required documents, select undertakings, and submit the form.
-            - You can preview your form after submission.
+1. Click the <span class="highlight">Form Button</span> and select the appropriate year.
+2. Fill in all required details and upload necessary documents.
+3. Review and submit the form.
+4. You can preview the submitted form afterward.
         </pre>
 
         <h2>How to View the Lists</h2>
         <pre>
-            : Go to Perspective Year And Access and download both provisional and final lists Same For Important Dates .
+1. Navigate to the respective year section.
+2. Download provisional and final lists.
+3. Repeat for important dates as needed.
         </pre>
 
-        <h2>Student:</h2>
+        <h2>Important Notes for Students</h2>
         <ol>
-            <li> - You can fill only one form of a one year in a single browser. If you fill a second, the first form will be lost.  </li>
-            <li> - You need to view your form in the same browser where you fill the form.  </li>
-            <li> - Nothing different between Mining Form. It is the same as the Normal Department. </li>
+            <li>You can only fill <span class="highlight">one form per year</span> in a single browser session.</li>
+            <li>To view your form, use the <span class="highlight">same browser</span> where it was submitted.</li>
+            <li>The <span class="highlight">Mining Form</span> is identical to the Normal Department form.</li>
         </ol>
     </main>
 
     <footer>
-        <h3>Emails of Our Staff:</h3>
+        <h3>Contact Our Staff</h3>
         <ul>
-            <li>LokeshBhadekar@gmail.com</li>
-            <li>LokeshBhadekar@gmail.com</li>
-            <li>LokeshBhadekar@gmail.com</li>
+            <li><a href="mailto:LokeshBhadekar@gmail.com">LokeshBhadekar@gmail.com</a></li>
+            <li><a href="mailto:SupportTeam@example.com">SupportTeam@example.com</a></li>
+            <li><a href="mailto:HelpDesk@example.com">HelpDesk@example.com</a></li>
         </ul>
     </footer>
 </body>
