@@ -7,13 +7,7 @@ from . import views
 from django.conf.urls import handler404
 from django.shortcuts import render
 
-
-
-
-
 handler404= 'Hostel_Admission.views.custom_404'
-
-
 
 urlpatterns = [
     path('admin/', admin.site.urls),
