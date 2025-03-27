@@ -1355,6 +1355,9 @@ def Year3_report(request):
 
 def Year2_report(request):
     data = HostelData2.objects.filter(status="accepted")
+    
+    # for i in data:
+    #        print(i.name + " " + i.Backlog)
     if request.method == 'POST':
         tseets = int(request.POST['Tseats'])
         print(str(tseets) + "tseats")
@@ -1364,7 +1367,7 @@ def Year2_report(request):
         STseets = int(request.POST['ST'])
         # NTseets = int(request.POST['NT'])
         SBCseets = int(request.POST['SBC'])
-        
+        # print(data)
         data_dict = {}
         for key, value in request.POST.items():
             try:
@@ -1391,6 +1394,7 @@ def Year2_report(request):
         Backlog_NO_students = sorted(backlog_NO_students ,key=lambda x:(-x.percentage))
         for index, student in enumerate(Backlog_NO_students):
            student.pmerit = index + 1
+        #    print(student.name)
         Backlog_Yes_students = sorted(backlog_YES_students ,key=lambda x:( x.Nu_Backlog , -x.percentage))
         
         print(data_dict)       
@@ -1406,7 +1410,8 @@ def Year2_report(request):
             'ST':0
         }
         ls = ['OBC','SC','SBC','DT/NT/VJ','ST']
-        
+        for i in Backlog_NO_students:
+           print(i.name + " " + i.Backlog)
         # for OPENs
         for i in range(OPENseets):
             # print(i)
@@ -1417,7 +1422,7 @@ def Year2_report(request):
             stud = vars(student) 
             stud['merit_no'] = ''               
             csmerit[student.cast] += 1
-            # print(csmerit[student.cast])
+            # print(student.name)
             seat = student.cast+'-'+ str(csmerit[student.cast]) #merit no
             if student.cast != "OPEN":
                 stud['merit_no'] = seat
