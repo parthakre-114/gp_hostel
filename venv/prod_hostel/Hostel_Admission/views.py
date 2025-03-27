@@ -2150,6 +2150,11 @@ def Provisional_list3(request):
 def Provisional_list2(request):
     data = HostelData2.objects.all()
     data = sorted(data ,key=lambda x:(-x.percentage))
+    print("data is here",data[0].name)
+    for i in data:
+        i.percentage = str(i.percentage)[:str(i.percentage).index('.')+3]  # Keep only 2 decimals without rounding
+        i.percentage = float(i.percentage)  # Convert back to float
+
     return render(request , 'Admin_OP/Provisional1/second_year.html',{'data':data} )
 
 
